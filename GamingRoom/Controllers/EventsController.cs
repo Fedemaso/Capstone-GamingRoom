@@ -1,0 +1,201 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using GamingRoom.Models;
+
+namespace GamingRoom.Controllers
+{
+    public class EventsController : Controller
+    {
+        private ModelDBContext db = new ModelDBContext();
+
+        // GET: Events
+        public ActionResult Index()
+        {
+            var events = db.Events.Include(e => e.Users).Include(e => e.Venues).Include(e => e.Teams);
+            return View(events.ToList());
+        }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Events events = db.Events.Include(e => e.Teams).SingleOrDefault(e => e.EventID == id);
+            if (events == null)
+            {
+                return HttpNotFound();
+            }
+            return View(events);
+        }
+
+
+        // GET: Events/Create
+        public ActionResult Create()
+        {
+            ViewBag.VenueID = new SelectList(db.Venues, "VenueID", "Name");
+            ViewBag.CreatedBy = new SelectList(db.Users, "UserID", "Username");
+            ViewBag.Teams = db.Teams.ToList();
+            return View();
+        }
+
+        // POST: Events/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Events events, HttpPostedFileBase eventPhoto, int[] selectedTeams)
+        {
+            if (ModelState.IsValid)
+            {
+                if (eventPhoto != null && eventPhoto.ContentLength > 0)
+                {
+                    events.Photo = eventPhoto.FileName;
+                    string pathToSave = Server.MapPath("~/Content/ImgEvents/") + eventPhoto.FileName;
+                    eventPhoto.SaveAs(pathToSave);
+                }
+
+                if (selectedTeams != null)
+                {
+                    events.Teams = new List<Teams>();
+                    foreach (var teamId in selectedTeams)
+                    {
+                        var teamToAdd = db.Teams.Find(teamId);
+                        events.Teams.Add(teamToAdd);
+                    }
+                }
+
+                db.Events.Add(events);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.VenueID = new SelectList(db.Venues, "VenueID", "Name", events.VenueID);
+            ViewBag.CreatedBy = new SelectList(db.Users, "UserID", "Username", events.CreatedBy);
+            ViewBag.Teams = db.Teams.ToList();
+            return View(events);
+        }
+
+        // GET: Events/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Events events = db.Events.Include(e => e.Teams).Where(e => e.EventID == id).Single();
+            if (events == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.CreatedBy = new SelectList(db.Users, "UserID", "Username", events.CreatedBy);
+            ViewBag.VenueID = new SelectList(db.Venues, "VenueID", "Name", events.VenueID);
+            ViewBag.Teams = db.Teams.ToList();
+            return View(events);
+        }
+
+        // POST: Events/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "EventID,Name,Description,Date,VenueID,TicketsAvailable,TicketsSold,IsActive,CreatedBy,Photo")] Events events, HttpPostedFileBase eventPhoto, int[] selectedTeams)
+        {
+            if (ModelState.IsValid)
+            {
+                if (eventPhoto != null && eventPhoto.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(eventPhoto.FileName);
+                    var pathToSave = Path.Combine(Server.MapPath("~/Content/ImgEvents/"), fileName);
+                    eventPhoto.SaveAs(pathToSave);
+                    events.Photo = fileName;
+                }
+
+                var eventToUpdate = db.Events.Include(i => i.Teams).Where(i => i.EventID == events.EventID).Single();
+
+                if (TryUpdateModel(eventToUpdate, "", new string[] { "Name", "Description", "Date", "VenueID", "TicketsAvailable", "TicketsSold", "IsActive", "CreatedBy", "Photo" }))
+                {
+                    UpdateEventTeams(selectedTeams, eventToUpdate);
+
+                    db.Entry(eventToUpdate).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+            }
+            ViewBag.CreatedBy = new SelectList(db.Users, "UserID", "Username", events.CreatedBy);
+            ViewBag.VenueID = new SelectList(db.Venues, "VenueID", "Name", events.VenueID);
+            ViewBag.Teams = db.Teams.ToList();
+            return View(events);
+        }
+
+        private void UpdateEventTeams(int[] selectedTeams, Events eventToUpdate)
+        {
+            if (selectedTeams == null)
+            {
+                eventToUpdate.Teams = new List<Teams>();
+                return;
+            }
+
+            var selectedTeamsHS = new HashSet<int>(selectedTeams);
+            var eventTeams = new HashSet<int>(eventToUpdate.Teams.Select(c => c.TeamID));
+
+            foreach (var team in db.Teams)
+            {
+                if (selectedTeamsHS.Contains(team.TeamID))
+                {
+                    if (!eventTeams.Contains(team.TeamID))
+                    {
+                        eventToUpdate.Teams.Add(team);
+                    }
+                }
+                else
+                {
+                    if (eventTeams.Contains(team.TeamID))
+                    {
+                        eventToUpdate.Teams.Remove(team);
+                    }
+                }
+            }
+        }
+
+
+        // GET: Events/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Events events = db.Events.Find(id);
+            if (events == null)
+            {
+                return HttpNotFound();
+            }
+            return View(events);
+        }
+
+        // POST: Events/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Events events = db.Events.Find(id);
+            db.Events.Remove(events);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

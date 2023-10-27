@@ -1,0 +1,59 @@
+﻿@model GamingRoom.Models.Players
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Players</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+        <dd>
+            <img src="@Url.Content("~/Content/ImgPlayers/" + Model.Photo)" alt="Player Photo" width="100" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Teams.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Teams.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.Username)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Users.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nickname)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nickname)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PlayerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
