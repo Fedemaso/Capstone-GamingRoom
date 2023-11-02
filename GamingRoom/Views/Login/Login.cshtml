@@ -1,0 +1,25 @@
+﻿@model GamingRoom.Models.UserCustomer
+@{
+    ViewBag.Title = "Login";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <!-- Aggiungi qui il tuo codice HTML per la struttura della pagina -->
+
+    @Html.LabelFor(m => m.Email)
+    @Html.TextBoxFor(m => m.Email)
+    @Html.ValidationMessageFor(m => m.Email)
+
+    @Html.LabelFor(m => m.Password)
+    @Html.PasswordFor(m => m.Password)
+    @Html.ValidationMessageFor(m => m.Password)
+
+    <input type="submit" value="Login" />
+}
+
+<p>
+    Non hai un account? @Html.ActionLink("Registrati ora!", "Register", "Register")
+</p>

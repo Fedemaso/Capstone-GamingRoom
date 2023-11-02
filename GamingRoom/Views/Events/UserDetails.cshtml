@@ -1,0 +1,64 @@
+﻿@model GamingRoom.Models.Events
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row">
+
+        <!-- Colonna principale per la card dell'evento -->
+        <div class="col-xl-6 col-lg-12 mb-4">
+            <!-- Card Evento Centrale -->
+            <div class="card text-white bg-middlepurple">
+                <div class="card-header text-center">
+                    <h1>@Model.Name</h1>
+                </div>
+                <img src="@Url.Content("~/Content/ImgEvents/" + Model.Photo)" class="card-img-top" alt="@Model.Name" style="max-height: 600px; object-fit: cover;">
+                <div class="card-body">
+                    <h4 class="card-title">Dettagli Evento</h4>
+                    <p class="card-text">@Model.Description</p>
+                    <h4>Data:</h4><p class="card-text"> @Model.Date.ToString("dd/MM/yyyy")</p>
+                    <h4>Biglietti disponibili:</h4><p class="card-text"> @Model.TicketsAvailable</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Colonna secondaria per le card di luogo e team -->
+        <div class="col-xl-6 col-lg-12 ">
+            <div class="row d-flex flex-column ">
+                <!-- Card Luogo -->
+                <div class="mb-4">
+                    <div class="card text-white bg-middlepurple">
+                        <div class="card-header text-center">
+                            <h3>@Model.Venues.Name</h3>
+                        </div>
+                        <img src="@Url.Content("~/Content/ImgVenues/" + Model.Venues.Photo)" class="card-img-top" style="height: 400px; width:auto; alt="@Model.Venues.Name" object-fit: cover;">
+                        <div class="card-body">
+                            <p class="card-text"><strong>Indirizzo:</strong> @Model.Venues.Address</p>
+                            <p class="card-text"><strong>Capacità:</strong> @Model.Venues.Capacity posti</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Teams -->
+                <div >
+                    <div class="card text-white bg-middlepurple">
+                        <div class="card-header text-center">
+                            <h3>Teams</h3>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            @foreach (var team in Model.Teams)
+                            {
+                                <li class="list-group-item bg-middlepurple">
+                                    <img src="@Url.Content("~/Content/ImgTeams/" + team.Photo)" class="img-fluid" alt="@team.Name" style="max-height: 50px; object-fit: cover;">
+                                    @team.Name
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -21,6 +21,10 @@ namespace GamingRoom.Models
         public virtual DbSet<Titles> Titles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Venues> Venues { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; } 
+        public virtual DbSet<CartItem> CartItems { get; set; }
+
+        public virtual DbSet<UserCustomer> UserCustomers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -49,3 +53,4 @@ namespace GamingRoom.Models
         }
     }
 }
+

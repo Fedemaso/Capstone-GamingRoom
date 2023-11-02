@@ -106,31 +106,46 @@ namespace GamingRoom.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Trova l'evento esistente nel database
+                var eventToUpdate = db.Events.Include(i => i.Teams).Where(i => i.EventID == events.EventID).Single();
+
+                // Se è stato caricato un nuovo file di foto, salvalo e aggiorna il percorso nel database
                 if (eventPhoto != null && eventPhoto.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(eventPhoto.FileName);
                     var pathToSave = Path.Combine(Server.MapPath("~/Content/ImgEvents/"), fileName);
                     eventPhoto.SaveAs(pathToSave);
-                    events.Photo = fileName;
+                    eventToUpdate.Photo = fileName; // Aggiorna l'entità tracciata
                 }
 
-                var eventToUpdate = db.Events.Include(i => i.Teams).Where(i => i.EventID == events.EventID).Single();
+                // Aggiorna le altre proprietà dell'evento
+                eventToUpdate.Name = events.Name;
+                eventToUpdate.Description = events.Description;
+                eventToUpdate.Date = events.Date;
+                eventToUpdate.VenueID = events.VenueID;
+                eventToUpdate.TicketsAvailable = events.TicketsAvailable;
+                eventToUpdate.TicketsSold = events.TicketsSold;
+                eventToUpdate.IsActive = events.IsActive;
+                eventToUpdate.CreatedBy = events.CreatedBy;
 
-                if (TryUpdateModel(eventToUpdate, "", new string[] { "Name", "Description", "Date", "VenueID", "TicketsAvailable", "TicketsSold", "IsActive", "CreatedBy", "Photo" }))
-                {
-                    UpdateEventTeams(selectedTeams, eventToUpdate);
+                // Aggiorna la lista delle squadre associate all'evento
+                UpdateEventTeams(selectedTeams, eventToUpdate);
 
-                    db.Entry(eventToUpdate).State = EntityState.Modified;
-                    db.SaveChanges();
+                // Salva le modifiche nel database
+                db.Entry(eventToUpdate).State = EntityState.Modified;
+                db.SaveChanges();
 
-                    return RedirectToAction("Index");
-                }
+                // Reindirizza all'indice
+                return RedirectToAction("Index");
             }
+
+            // Se il modello non è valido, ricarica la vista con le informazioni necessarie
             ViewBag.CreatedBy = new SelectList(db.Users, "UserID", "Username", events.CreatedBy);
             ViewBag.VenueID = new SelectList(db.Venues, "VenueID", "Name", events.VenueID);
             ViewBag.Teams = db.Teams.ToList();
             return View(events);
         }
+
 
         private void UpdateEventTeams(int[] selectedTeams, Events eventToUpdate)
         {
@@ -197,5 +212,19 @@ namespace GamingRoom.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
+        public ActionResult UserDetails(int id)
+        {
+            var evento = db.Events.Include(e => e.Venues).Include(e => e.Teams).FirstOrDefault(e => e.EventID == id);
+            if (evento == null)
+            {
+                return HttpNotFound();
+            }
+            return View(evento);
+        }
+
+
     }
 }

@@ -1,4 +1,10 @@
-﻿/* Set padding to keep content from hitting the edges */
+﻿@import url(https://db.onlinewebfonts.com/c/55d433372d270829c51e2577a78ef12d?family=Monument+Extended+Bold);
+@import url(https://db.onlinewebfonts.com/c/99501fdab737541e9315ceaf9229370f?family=Monument+Extended+Regular);
+@import url(https://db.onlinewebfonts.com/c/9c012a100c1e4e7c4411382d3bc15526?family=Bw+Gradual+Regular);
+@import url(https://db.onlinewebfonts.com/c/fcf50029ffc169d245efd2b7b39abe60?family=Bw+Gradual+DEMO+Bold);
+
+
+/* Set padding to keep content from hitting the edges */
 .body-content {
     margin-top: 15px;
     padding-left: 15px;
@@ -18,3 +24,164 @@ select,
 textarea {
     max-width: 280px;
 }
+
+@font-face {
+    font-family: "Monument Extended Regular";
+    src: url("https://db.onlinewebfonts.com/t/99501fdab737541e9315ceaf9229370f.eot");
+    src: url("https://db.onlinewebfonts.com/t/99501fdab737541e9315ceaf9229370f.eot?#iefix")format("embedded-opentype"), url("https://db.onlinewebfonts.com/t/99501fdab737541e9315ceaf9229370f.woff2")format("woff2"), url("https://db.onlinewebfonts.com/t/99501fdab737541e9315ceaf9229370f.woff")format("woff"), url("https://db.onlinewebfonts.com/t/99501fdab737541e9315ceaf9229370f.ttf")format("truetype"), url("https://db.onlinewebfonts.com/t/99501fdab737541e9315ceaf9229370f.svg#Monument Extended Regular")format("svg");
+    font-family: "Monument Extended Bold";
+    src: url("https://db.onlinewebfonts.com/t/55d433372d270829c51e2577a78ef12d.eot");
+    src: url("https://db.onlinewebfonts.com/t/55d433372d270829c51e2577a78ef12d.eot?#iefix")format("embedded-opentype"), url("https://db.onlinewebfonts.com/t/55d433372d270829c51e2577a78ef12d.woff2")format("woff2"), url("https://db.onlinewebfonts.com/t/55d433372d270829c51e2577a78ef12d.woff")format("woff"), url("https://db.onlinewebfonts.com/t/55d433372d270829c51e2577a78ef12d.ttf")format("truetype"), url("https://db.onlinewebfonts.com/t/55d433372d270829c51e2577a78ef12d.svg#Monument Extended Bold")format("svg");
+    font-family: "Bw Gradual Regular";
+    src: url("https://db.onlinewebfonts.com/t/9c012a100c1e4e7c4411382d3bc15526.eot");
+    src: url("https://db.onlinewebfonts.com/t/9c012a100c1e4e7c4411382d3bc15526.eot?#iefix")format("embedded-opentype"), url("https://db.onlinewebfonts.com/t/9c012a100c1e4e7c4411382d3bc15526.woff2")format("woff2"), url("https://db.onlinewebfonts.com/t/9c012a100c1e4e7c4411382d3bc15526.woff")format("woff"), url("https://db.onlinewebfonts.com/t/9c012a100c1e4e7c4411382d3bc15526.ttf")format("truetype"), url("https://db.onlinewebfonts.com/t/9c012a100c1e4e7c4411382d3bc15526.svg#Bw Gradual Regular")format("svg");
+    font-family: "Bw Gradual DEMO Bold";
+    src: url("https://db.onlinewebfonts.com/t/fcf50029ffc169d245efd2b7b39abe60.eot");
+    src: url("https://db.onlinewebfonts.com/t/fcf50029ffc169d245efd2b7b39abe60.eot?#iefix")format("embedded-opentype"), url("https://db.onlinewebfonts.com/t/fcf50029ffc169d245efd2b7b39abe60.woff2")format("woff2"), url("https://db.onlinewebfonts.com/t/fcf50029ffc169d245efd2b7b39abe60.woff")format("woff"), url("https://db.onlinewebfonts.com/t/fcf50029ffc169d245efd2b7b39abe60.ttf")format("truetype"), url("https://db.onlinewebfonts.com/t/fcf50029ffc169d245efd2b7b39abe60.svg#Bw Gradual DEMO Bold")format("svg");
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: "Monument Extended Regular"!important;
+
+}
+
+body {
+    min-height:100vh;
+    background: linear-gradient(45deg, rgb(0, 55, 255), rgb(157, 0, 255), rgb(0, 55, 255)) !important;
+    background-repeat:no-repeat;
+    font-family: "Bw Gradual Regular"!important;
+/*    font-family: "Bw Gradual DEMO Bold";
+*/}
+
+
+
+#imgarenahome {
+    box-shadow: 5px 5px 9px 3px rgba(0,0,0,0.64);
+    transition: 0.3s;
+}
+
+
+
+
+
+/*------------------------------  CSS CAROSELLO EVENTS HOME ------------------------------ */
+
+.carousel-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-wrapper {
+    display: flex;
+    animation: scroll 30s linear infinite;
+  
+}
+
+.event-card {
+    flex: 0 0 auto; 
+    width: 340px; 
+    margin: 0 10px; 
+    color: white; 
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%); 
+    }
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+    .event-card {
+        width: 250px; 
+    }
+
+    .carousel-wrapper {
+        animation: scroll 80s linear infinite;
+    }
+}
+
+@media (max-width: 768px) {
+    .event-card {
+        width: 200px; 
+    }
+
+    .carousel-wrapper {
+        animation: scroll 60s linear infinite;
+    }
+}
+
+.carousel-wrapper.paused {
+    animation-play-state: paused;
+}
+
+
+
+
+
+
+
+
+
+/* ------------------------------ CSS USERDETAILS--------------------------------*/
+
+
+.bg-middlepurple {
+    background-color: rgb(157, 0, 255)!important;
+}
+
+
+
+/* Stili per le card */
+.card {
+    margin: 0 auto; /* Centra la card */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+/* Stili per le immagini delle card */
+.card-img-top {
+    width: 100%;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+}
+
+/* Stili per la lista dei teams */
+.list-group-item {
+    display: flex;
+    align-items: center;
+}
+
+    .list-group-item img {
+        margin-right: 10px;
+    }
+
+/* Responsive breakpoints */
+@media (max-width: 992px) {
+    .card-img-top {
+        max-height: 400px; /* Riduci la dimensione dell'immagine per dispositivi medi */
+    }
+}
+
+@media (max-width: 768px) {
+    .card-img-top {
+        max-height: 300px; /* Riduci ulteriormente per dispositivi piccoli */
+    }
+}
+
+@media (max-width: 576px) {
+    /* Stili per dispositivi molto piccoli */
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
+

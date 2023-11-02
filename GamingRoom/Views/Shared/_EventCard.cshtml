@@ -1,0 +1,19 @@
+﻿@model GamingRoom.Models.Events
+
+<div class="event-card">
+    <div class="team-thumb">
+        <img src="@Url.Content("~/Content/ImgEvents/" + Model.Photo)" class="img-responsive" alt="@Model.Name">
+        <div class="team-hover">
+            <div class="team-item">
+                <h3>@Model.Name</h3>
+                <div class="team-info">
+                    <h4>Arena di gioco:</h4> <p>@Html.DisplayFor(model => model.Venues.Name)</p>
+                    <h4>Biglietti disponibili:</h4> <p>@Model.TicketsAvailable</p>
+                    <h4>Teams partecipanti:</h4> <p>@string.Join(", ", Model.Teams.Select(t => t.Name))</p>
+                    <a href="@Url.Action("UserDetails", "Events", new { id = Model.EventID })" class="btn btn-primary">Dettagli</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

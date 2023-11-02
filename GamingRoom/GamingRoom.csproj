@@ -131,7 +131,9 @@
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\EventTitlesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\TitlesController.cs" />
@@ -156,8 +158,26 @@
     <Compile Include="Migrations\202310270938282_Relazioneeventiteams.designer.cs">
       <DependentUpon>202310270938282_Relazioneeventiteams.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202310271350266_AggiuntaCarrello.cs" />
+    <Compile Include="Migrations\202310271350266_AggiuntaCarrello.designer.cs">
+      <DependentUpon>202310271350266_AggiuntaCarrello.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310271421077_AddUserCustomer.cs" />
+    <Compile Include="Migrations\202310271421077_AddUserCustomer.designer.cs">
+      <DependentUpon>202310271421077_AddUserCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311021544449_AddLastUpdatedField.cs" />
+    <Compile Include="Migrations\202311021544449_AddLastUpdatedField.designer.cs">
+      <DependentUpon>202311021544449_AddLastUpdatedField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311021601409_RemovedLastUpdateField.cs" />
+    <Compile Include="Migrations\202311021601409_RemovedLastUpdateField.designer.cs">
+      <DependentUpon>202311021601409_RemovedLastUpdateField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BusinessDetails.cs" />
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\CustomRoleProvider.cs" />
     <Compile Include="Models\Events.cs" />
     <Compile Include="Models\EventTitles.cs" />
     <Compile Include="Models\ModelDBContext.cs" />
@@ -165,11 +185,47 @@
     <Compile Include="Models\Teams.cs" />
     <Compile Include="Models\Tickets.cs" />
     <Compile Include="Models\Titles.cs" />
+    <Compile Include="Models\UserCustomer.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Models\Venues.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\animate.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\font-awesome.min.css" />
+    <Content Include="assets\css\magnific-popup.css" />
+    <Content Include="assets\css\owl.carousel.css" />
+    <Content Include="assets\css\owl.theme.default.min.css" />
+    <Content Include="assets\css\templatemo-style.css" />
+    <Content Include="assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\images\about-image.jpg" />
+    <Content Include="assets\images\arenapubg.png" />
+    <Content Include="assets\images\footer-open-hour-bg.jpg" />
+    <Content Include="assets\images\menu-image1.jpg" />
+    <Content Include="assets\images\menu-image2.jpg" />
+    <Content Include="assets\images\menu-image3.jpg" />
+    <Content Include="assets\images\menu-image4.jpg" />
+    <Content Include="assets\images\menu-image5.jpg" />
+    <Content Include="assets\images\menu-image6.jpg" />
+    <Content Include="assets\images\slider-1.png" />
+    <Content Include="assets\images\slider-2.jpg" />
+    <Content Include="assets\images\slider-3.png" />
+    <Content Include="assets\images\slider-image1.jpg" />
+    <Content Include="assets\images\slider-image2.jpg" />
+    <Content Include="assets\images\slider-image3.jpg" />
+    <Content Include="assets\images\team-image1.jpg" />
+    <Content Include="assets\images\team-image2.jpg" />
+    <Content Include="assets\images\team-image3.jpg" />
+    <Content Include="assets\images\testimonial-bg.jpg" />
+    <Content Include="assets\js\bootstrap.min.js" />
+    <Content Include="assets\js\custom.js" />
+    <Content Include="assets\js\jquery.js" />
+    <Content Include="assets\js\jquery.magnific-popup.min.js" />
+    <Content Include="assets\js\jquery.stellar.min.js" />
+    <Content Include="assets\js\owl.carousel.min.js" />
+    <Content Include="assets\js\smoothscroll.js" />
+    <Content Include="assets\js\wow.min.js" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -195,6 +251,13 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\fonts\FontAwesome.otf" />
+    <Content Include="assets\js\.DS_Store" />
+    <Content Include="assets\php\contact.php" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -263,6 +326,10 @@
     <Content Include="Views\Venues\Details.cshtml" />
     <Content Include="Views\Venues\Edit.cshtml" />
     <Content Include="Views\Venues\Index.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Register\Register.cshtml" />
+    <Content Include="Views\Shared\_EventCard.cshtml" />
+    <Content Include="Views\Events\UserDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -312,6 +379,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202310270938282_Relazioneeventiteams.resx">
       <DependentUpon>202310270938282_Relazioneeventiteams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310271350266_AggiuntaCarrello.resx">
+      <DependentUpon>202310271350266_AggiuntaCarrello.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310271421077_AddUserCustomer.resx">
+      <DependentUpon>202310271421077_AddUserCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311021544449_AddLastUpdatedField.resx">
+      <DependentUpon>202311021544449_AddLastUpdatedField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311021601409_RemovedLastUpdateField.resx">
+      <DependentUpon>202311021601409_RemovedLastUpdateField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
