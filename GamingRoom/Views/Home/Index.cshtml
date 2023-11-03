@@ -163,15 +163,18 @@
     <section id="team" data-stellar-background-ratio="0.5">
 
         <div class="row">
-
-            <div class="col-md-3 col-sm-3 ">
-                <div class="section-title wow fadeInUp container container-fluid " data-wow-delay="0.1s">
-                    <h2 class="text-start ms-5">Scopri gli eventi</h2>
+             
+                <div class="col-md-3 col-sm-3 text-start ">
+                    <div class="section-title wow fadeInUp container container-fluid " data-wow-delay="0.1s">
+                        <h2 class="text-start ms-5">Scopri gli eventi</h2>
+                    </div>
                 </div>
-            </div>
-
-
-
+                <div class="col-md-3 col-sm-3 text-end">
+                    <div class="wow fadeInUp" data-wow-delay="0.1s">
+                        <a href="@Url.Action("AllEvents", "Events")" class="btn btn-primary mt-3 me-5">Vedi tutti gli eventi</a>
+                    </div>
+                </div>
+           
             <div id="eventCarousel" class="carousel-container  my-5">
                 <div class="carousel-wrapper">
                     <!-- Set originale di card -->
@@ -200,7 +203,7 @@
 
             <!-- Carosello per i team -->
             <div id="teamCarousel" class="carousel-container my-5">
-                <div class="carousel-wrapper team-carousel">
+                <div class="carousel-wrapper ">
                     <!-- Set originale di card per i team -->
                     @foreach (var team in teams)
                     {
@@ -211,14 +214,11 @@
                     {
                         @Html.Partial("_TeamCard", team)
                     }
-                    @foreach (var team in teams)
-                    {
-                        @Html.Partial("_TeamCard", team)
-                    }
+
                 </div>
             </div>
 
-                    
+
 
 
 
@@ -226,23 +226,23 @@
     </section>
 
 
-    <!-- MENU-->
+    <!-- ARENE-->
     <section id="menu" data-stellar-background-ratio="0.5">
         <div class="container">
             <div class="row">
 
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
-                        <h2>Our Menus</h2>
-                        <h4>Tea Time &amp; Dining</h4>
+                        <h2>Le Nostre Arene</h2>
+                        <h4>Queste e molte altre</h4>
                     </div>
                 </div>
 
                 <div class="col-md-4 col-sm-6">
-                    <!-- MENU THUMB -->
+                    <!-- ARENE THUMB -->
                     <div class="menu-thumb">
-                        <a href="~/assets/images/menu-image1.jpg" class="image-popup" title="American Breakfast">
-                            <img src="~/assets/images/menu-image1.jpg" class="img-responsive" alt="">
+                        <a href="~/Content/ImgVenues/commerzbank_arena_frankfurt.jpg" class="image-popup" title="American Breakfast">
+                            <img src="~/Content/ImgVenues/commerzbank_arena_frankfurt.jpg"  class="img-responsive" alt="">
 
                             <div class="menu-info">
                                 <div class="menu-item">

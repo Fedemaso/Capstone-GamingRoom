@@ -64,7 +64,7 @@ body {
 
 
 
-/*------------------------------  CSS CAROSELLO EVENTS HOME ------------------------------ */
+/*------------------------------  CSS CAROSELLO EVENTS/ TEAMS HOME ------------------------------ */
 
 .carousel-container {
     overflow: hidden;
@@ -73,7 +73,7 @@ body {
 
 .carousel-wrapper {
     display: flex;
-    animation: scroll 30s linear infinite;
+    animation: scroll 20s linear infinite;
   
 }
 
@@ -120,7 +120,12 @@ body {
 }
 
 
-
+.team-card {
+    flex: 0 0 auto;
+    width: 340px;
+    margin: 0 10px;
+    color: white;
+}
 
 
 
@@ -184,4 +189,18 @@ body {
     }
 }
 
+
+/* ---------------------- CSS  CARD ALL EVENTS --------------------------*/
+
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+#all-events{
+    font-size:5.8em!important
+}
 

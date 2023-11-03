@@ -226,5 +226,15 @@ namespace GamingRoom.Controllers
         }
 
 
+        public ActionResult AllEvents()
+        {
+            var events = db.Events
+                           .Include(e => e.Venues)
+                           .Include(e => e.Teams)
+                           .ToList();
+
+            return View(events);
+        }
+
     }
 }

@@ -332,6 +332,8 @@
     <Content Include="Views\Events\UserDetails.cshtml" />
     <Content Include="Views\Shared\_TeamCard.cshtml" />
     <Content Include="Views\Teams\UserTeamDetails.cshtml" />
+    <Content Include="Views\Events\AllEvents.cshtml" />
+    <Content Include="Views\Shared\_AllEventCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
