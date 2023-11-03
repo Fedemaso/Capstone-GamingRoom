@@ -2,13 +2,13 @@
 @using System.Linq
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml"; // Assicurati di utilizzare il layout corretto per gli utenti
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
 }
 
 <div class="container mt-5">
     <div class="row">
         <!-- Colonna principale per la card del team -->
-        <div class="col-xl-12 col-lg-12 mb-4">
+        <div class="col-12 mb-4">
             <!-- Card Team Centrale -->
             <div class="card text-white bg-middlepurple">
                 <div class="card-header text-center">
@@ -21,30 +21,28 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Colonna secondaria per le card dei giocatori -->
-        <div class="col-xl-3 col-lg-12">
-            <div class="row d-flex flex-row">
-                <!-- Card Giocatori -->
-                @if (Model.Players.Any())
-                {
-                    foreach (var player in Model.Players)
-                    {
-                        <div class="mb-4">
-                            <div class="card text-white bg-middlepurple">
-                                <div class="card-header text-center">
-                                    <h3>@player.Nickname</h3>
-                                </div>
-                                <img src="@Url.Content("~/Content/ImgPlayers/" + player.Photo)" class="card-img-top" style="height: 200px; width:auto; alt=" @player.Nickname " object-fit: cover;">
-                                <div class="card-body">
-                                    <p class="card-text"><strong>Nome:</strong> @player.Name</p>
-                                    <p class="card-text"><strong>Cognome:</strong> @player.Surname</p>
-                                </div>
-                            </div>
+    <!-- Inizia la riga per le card dei giocatori -->
+    <div class="row">
+        <!-- Verifica se ci sono giocatori e crea una card per ciascuno -->
+        @if (Model.Players.Any())
+        {
+            foreach (var player in Model.Players)
+            {
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                    <div class="card text-white bg-middlepurple">
+                        <div class="card-header text-center">
+                            <h3>@player.Nickname</h3>
                         </div>
-                    }
-                }
-            </div>
-        </div>
+                        <img src="@Url.Content("~/Content/ImgPlayers/" + player.Photo)" class="card-img-top" alt="@player.Nickname" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <p class="card-text"><strong>Nome:</strong> @player.Name</p>
+                            <p class="card-text"><strong>Cognome:</strong> @player.Surname</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
     </div>
 </div>
