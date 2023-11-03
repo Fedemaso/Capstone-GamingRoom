@@ -1,6 +1,10 @@
 ﻿@model List<GamingRoom.Models.Events>
 
 @{
+    var teams = ViewBag.Teams as IEnumerable<GamingRoom.Models.Teams>;
+}
+
+@{
     ViewBag.Title = "Home Page";
 }
 <!DOCTYPE html>
@@ -132,7 +136,7 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="about-info">
                         <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
-                            
+
                             <h2>
                                 Cerca, trova, goditi l'E-show
                             </h2>
@@ -160,15 +164,15 @@
 
         <div class="row">
 
-            <div class="col-md-3 col-sm-3">
-                <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
-                    <h2>Scopri gli eventi</h2>
+            <div class="col-md-3 col-sm-3 ">
+                <div class="section-title wow fadeInUp container container-fluid " data-wow-delay="0.1s">
+                    <h2 class="text-start ms-5">Scopri gli eventi</h2>
                 </div>
             </div>
 
-          
 
-            <div id="eventCarousel" class="carousel-container my-5">
+
+            <div id="eventCarousel" class="carousel-container  my-5">
                 <div class="carousel-wrapper">
                     <!-- Set originale di card -->
                     @foreach (var evento in Model)
@@ -186,72 +190,38 @@
 
 
 
-
-
-
-
-
-            <div class="container container-fluid">
-                <div class="col-md-4 col-sm-4">
-                    <div class="team-thumb wow fadeInUp" data-wow-delay="0.4s">
-                        <img src="~/assets/images/team-image2.jpg" class="img-responsive" alt="">
-                        <div class="team-hover">
-                            <div class="team-item">
-                                <h4>Cras suscipit neque quis odio feugiat</h4>
-                                <ul class="social-icon">
-                                    <li><a href="#" class="fa fa-instagram"></a></li>
-                                    <li><a href="#" class="fa fa-flickr"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="team-info">
-                        <h3>Lindsay Perlen</h3>
-                        <p>Owner &amp; Manager</p>
-                    </div>
+            <div class="col-md-3 my-5 col-sm-3 ">
+                <div class="section-title my-5 wow fadeInUp container container-fluid " data-wow-delay="0.1s">
+                    <h2 class="text-start ms-5">Scopri i Teams E-sport</h2>
                 </div>
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="team-thumb wow fadeInUp" data-wow-delay="0.6s">
-                        <img src="~/assets/images/team-image3.jpg" class="img-responsive" alt="">
-                        <div class="team-hover">
-                            <div class="team-item">
-                                <h4>Etiam auctor enim tristique faucibus</h4>
-                                <ul class="social-icon">
-                                    <li><a href="#" class="fa fa-github"></a></li>
-                                    <li><a href="#" class="fa fa-google"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="team-info">
-                        <h3>Isabella Grace</h3>
-                        <p>Pizza Specialist</p>
-                    </div>
-                </div>
-
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
-                        <img src="~/assets/images/team-image1.jpg" class="img-responsive" alt="">
-                        <div class="team-hover">
-                            <div class="team-item">
-                                <h4>Duis vel lacus id magna mattis vehicula</h4>
-                                <ul class="social-icon">
-                                    <li><a href="#" class="fa fa-linkedin-square"></a></li>
-                                    <li><a href="#" class="fa fa-envelope-o"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="team-info">
-                        <h3>New Catherine</h3>
-                        <p>Kitchen Officer</p>
-                    </div>
-                </div>
-
-
             </div>
+
+
+
+            <!-- Carosello per i team -->
+            <div id="teamCarousel" class="carousel-container my-5">
+                <div class="carousel-wrapper team-carousel">
+                    <!-- Set originale di card per i team -->
+                    @foreach (var team in teams)
+                    {
+                        @Html.Partial("_TeamCard", team)
+                    }
+                    <!-- Set duplicato di card per il loop infinito -->
+                    @foreach (var team in teams)
+                    {
+                        @Html.Partial("_TeamCard", team)
+                    }
+                    @foreach (var team in teams)
+                    {
+                        @Html.Partial("_TeamCard", team)
+                    }
+                </div>
+            </div>
+
+                    
+
+
+
         </div>
     </section>
 
@@ -576,21 +546,30 @@
 
 
     <script>
-      
         document.addEventListener('DOMContentLoaded', function () {
-            const slider = document.querySelector('.carousel-wrapper');
+            // Seleziona il carosello degli eventi
+            const eventSlider = document.querySelector('#eventCarousel .carousel-wrapper');
+            // Seleziona il carosello dei team
+            const teamSlider = document.querySelector('#teamCarousel .carousel-wrapper');
 
-            // Evento per interrompere l'animazione quando il mouse è sopra il carosello
-            slider.addEventListener('mouseenter', () => {
+            // Funzione per gestire l'entrata del mouse
+            function pauseSlider(slider) {
                 slider.classList.add('paused');
-            });
+            }
 
-            // Evento per riprendere l'animazione quando il mouse lascia il carosello
-            slider.addEventListener('mouseleave', () => {
+            // Funzione per gestire l'uscita del mouse
+            function resumeSlider(slider) {
                 slider.classList.remove('paused');
-            });
-        });
+            }
 
+            // Eventi per il carosello degli eventi
+            eventSlider.addEventListener('mouseenter', () => pauseSlider(eventSlider));
+            eventSlider.addEventListener('mouseleave', () => resumeSlider(eventSlider));
+
+            // Eventi per il carosello dei team
+            teamSlider.addEventListener('mouseenter', () => pauseSlider(teamSlider));
+            teamSlider.addEventListener('mouseleave', () => resumeSlider(teamSlider));
+        });
     </script>
 
 </body>

@@ -141,5 +141,22 @@ namespace GamingRoom.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult UserTeamDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Teams team = db.Teams
+                           .Include(t => t.Players)
+                           .Include(t => t.Events)
+                           .SingleOrDefault(t => t.TeamID == id);
+            if (team == null)
+            {
+                return HttpNotFound();
+            }
+            return View(team);
+        }
     }
 }

@@ -1,0 +1,14 @@
+﻿
+@model GamingRoom.Models.Teams
+
+<div class="team-card">
+    <div class="team-thumb">
+        <img src="@Url.Content("~/Content/ImgTeams/" + Model.Photo)" class="img-responsive" alt="@Model.Name">
+        <div class="team-hover">
+            <div class="team-item">
+                <h3>@Model.Name</h3>
+                <a href="@Url.Action("UserTeamDetails", "Teams", new { id = Model.TeamID })" class="btn btn-primary">Scopri Team</a>
+            </div>
+        </div>
+    </div>
+</div>

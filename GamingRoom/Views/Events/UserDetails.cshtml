@@ -46,10 +46,10 @@
                         <div class="card-header text-center">
                             <h3>Teams</h3>
                         </div>
-                        <ul class="list-group list-group-flush">
+                        <ul class="list-group list-group-flush  ">
                             @foreach (var team in Model.Teams)
                             {
-                                <li class="list-group-item bg-middlepurple">
+                                <li class="list-group-item bg-middlepurple text-light">
                                     <img src="@Url.Content("~/Content/ImgTeams/" + team.Photo)" class="img-fluid" alt="@team.Name" style="max-height: 50px; object-fit: cover;">
                                     @team.Name
                                 </li>

@@ -50,22 +50,13 @@ namespace GamingRoom.Controllers
                            .Include(e => e.Venues)
                            .Include(e => e.Teams)
                            .ToList();
+            var teams = events.SelectMany(e => e.Teams).Distinct().ToList();
+
+            ViewBag.Teams = teams; // Passa i team alla view tramite ViewBag
             return View(events);
         }
 
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        
     }
 }
