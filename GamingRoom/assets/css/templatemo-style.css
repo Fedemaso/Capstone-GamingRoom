@@ -31,11 +31,11 @@ http://www.templatemo.com/tm-515-eatery
     line-height: 50px;
   }
 
-  h2 {
-    color: #353535;
-    font-size: 2em;
+h2 {
+    color: rgb(214, 214, 214);
+    font-size: 2.5em;
     padding-bottom: 10px;
-  }
+}
 
   h3 {
     font-size: 1.5em;
@@ -48,8 +48,8 @@ http://www.templatemo.com/tm-515-eatery
   }
 
   p {
-    color: white;
-    font-size: 14px;
+    color:rgb(214, 214, 214);
+    font-size: 19px;
     font-weight: normal;
     line-height: 24px;
   }
@@ -204,9 +204,9 @@ http://www.templatemo.com/tm-515-eatery
 
 
 
-  /*---------------------------------------
+  ---------------------------------------
       MENU              
-  -----------------------------------------*/
+  -----------------------------------------
 
   .custom-navbar {
     border: none;
@@ -569,15 +569,15 @@ http://www.templatemo.com/tm-515-eatery
      MENU ARENE  
   -----------------------------------------*/
 
-  #menu {
+  #arene {
     padding-bottom: 0;
   }
 
-  #menu .container {
+  #arene .container {
     width: 100%;
   }
 
-  #menu .col-md-4 {
+  #arene .col-md-4 {
     margin: 0;
     padding: 0;
   }
@@ -591,7 +591,7 @@ http://www.templatemo.com/tm-515-eatery
     transform: scale(1.15);
   }
 
-  #menu .menu-thumb {
+  #arene .menu-thumb {
     overflow: hidden;
     position: relative;
     cursor: pointer;
@@ -613,17 +613,9 @@ http://www.templatemo.com/tm-515-eatery
     float: left;
   }
 
-  .menu-info .menu-price {
-    float: right;
-  }
+  
 
-  .menu-info .menu-price span {
-    font-size: 20px;
-    font-weight: bold;
-    line-height: normal;
-    display: block;
-    margin-top: 10px;
-  }
+  
 
   .menu-thumb .menu-info h3,
   .menu-thumb .menu-info p,
@@ -661,60 +653,6 @@ http://www.templatemo.com/tm-515-eatery
   }
 
 
-
-  /*---------------------------------------
-      TESTIMONIAL             
-  -----------------------------------------*/
-
-/*#testimonial {
-    background-image:src("~/Content/ImgVenues/arena6.png") ;
-    background-size: cover;
-}
-
-  #testimonial .owl-dots {
-    position: relative;
-    top: 0;
-    right: 0;
-    justify-content: center;
-  }
-
-  #testimonial .owl-theme .owl-dots .owl-dot,
-  #testimonial .owl-theme .owl-dots .owl-dot span {
-    display: inline-block;
-  }
-
-  #testimonial .owl-theme .owl-dots .owl-dot span {
-    margin: 20px 5px;
-  }
-
-  #testimonial h2 {
-    color: #ffffff;
-  }
-
-  #testimonial p,
-  .tst-author h4,
-  .tst-author span {
-    display: inline;
-  }
-
-  #testimonial p {
-    color: #d9d9d9;
-    font-size: 20px;
-    line-height: 35px;
-  }
-
-  .tst-author {
-    margin-top: 20px;
-  }
-
-  .tst-author h4,
-  .tst-author span {
-    color: #b2b2b2;
-  }
-
-  .tst-author span {
-    margin-left: 5px;
-  }*/
 
 
 
@@ -861,18 +799,18 @@ http://www.templatemo.com/tm-515-eatery
     margin-bottom: 5px;
   }
 
-  .social-icon li a {
-    border-radius: 100px;
-    color: #ce3232;
-    font-size: 15px;
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
-    text-decoration: none;
-    text-align: center;
-    transition: all 0.4s ease-in-out;
-    position: relative;
-  }
+    .social-icon li a {
+        border-radius: 100px;
+        color: rgb(214, 214, 214);
+        font-size: 15px;
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        text-decoration: none;
+        text-align: center;
+        transition: all 0.4s ease-in-out;
+        position: relative;
+    }
 
   .social-icon li a:hover {
     background: #ce3232;

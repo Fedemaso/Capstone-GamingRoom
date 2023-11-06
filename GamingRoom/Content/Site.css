@@ -132,6 +132,23 @@ body {
 }
 
 
+.button-index {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #ce3232 !important;
+    border-radius: 0 !important;
+    border: 0;
+    color: rgb(214, 214, 214)!important;
+    font-weight: bold !important;
+    height: 50px;
+    width: 35%
+}
+
+    .button-index:hover {
+        background: #292929!important;
+        color: rgb(214, 214, 214)
+    }
 
 
 
