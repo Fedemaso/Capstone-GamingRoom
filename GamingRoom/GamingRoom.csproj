@@ -201,6 +201,7 @@
     <Content Include="assets\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\images\about-image.jpg" />
     <Content Include="assets\images\arenapubg.png" />
+    <Content Include="assets\images\esports.jpg" />
     <Content Include="assets\images\footer-open-hour-bg.jpg" />
     <Content Include="assets\images\menu-image1.jpg" />
     <Content Include="assets\images\menu-image2.jpg" />
@@ -242,6 +243,28 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\ImgVenues\anaheim_convention_center.jpg" />
+    <Content Include="Content\ImgVenues\arena.png" />
+    <Content Include="Content\ImgVenues\arena2.png" />
+    <Content Include="Content\ImgVenues\arena3.png" />
+    <Content Include="Content\ImgVenues\arena4.png" />
+    <Content Include="Content\ImgVenues\arena5.png" />
+    <Content Include="Content\ImgVenues\arena6.png" />
+    <Content Include="Content\ImgVenues\banc_of_california_los_angeles.jpg" />
+    <Content Include="Content\ImgVenues\barclays_center_new_york.jpg" />
+    <Content Include="Content\ImgVenues\commerzbank_arena_frankfurt.jpg" />
+    <Content Include="Content\ImgVenues\copper_box_arena.jpg" />
+    <Content Include="Content\ImgVenues\DOTA_2.jpg" />
+    <Content Include="Content\ImgVenues\esports_stadium_arlington %281%29.jpg" />
+    <Content Include="Content\ImgVenues\keyarena_seattle.jpg" />
+    <Content Include="Content\ImgVenues\lanxess_arena_cologne.jpg" />
+    <Content Include="Content\ImgVenues\malmo_arena.jpg" />
+    <Content Include="Content\ImgVenues\mercedes_benz_arena.jpg" />
+    <Content Include="Content\ImgVenues\qudos_bank_arena_sydney.jpg" />
+    <Content Include="Content\ImgVenues\royal_arena_copenhagen.jpg" />
+    <Content Include="Content\ImgVenues\sangam_world_cup_stadium_league_of_legends_2014.jpg" />
+    <Content Include="Content\ImgVenues\sap_centre_san_jose.jpg" />
+    <Content Include="Content\ImgVenues\sse_arena_wembley.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -334,6 +357,8 @@
     <Content Include="Views\Teams\UserTeamDetails.cshtml" />
     <Content Include="Views\Events\AllEvents.cshtml" />
     <Content Include="Views\Shared\_AllEventCard.cshtml" />
+    <Content Include="Views\Teams\AllTeams.cshtml" />
+    <Content Include="Views\Shared\_AllTeamCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -342,7 +367,6 @@
     <Folder Include="Content\ImgPlayers\" />
     <Folder Include="Content\ImgTeams\" />
     <Folder Include="Content\ImgTitles\" />
-    <Folder Include="Content\ImgVenues\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

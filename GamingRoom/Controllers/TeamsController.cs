@@ -158,5 +158,18 @@ namespace GamingRoom.Controllers
             }
             return View(team);
         }
+
+        public ActionResult AllTeams()
+        {
+            var teams = db.Teams
+                          .Include(t => t.Players) 
+                          .ToList();
+
+            return View(teams);
+        }
+
+
+
+
     }
 }

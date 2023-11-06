@@ -49,37 +49,7 @@
     </section>
 
 
-    <!-- MENU -->
-    <!--<section class="navbar custom-navbar navbar-fixed-top" role="navigation">
-        <div class="container">
-
-            <div class="navbar-header">
-                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-                </button>-->
-    <!-- lOGO TEXT HERE -->
-    <!--<a href="index.html" class="navbar-brand">Eatery <span>.</span> Cafe</a>
-    </div>-->
-    <!-- MENU LINKS -->
-    <!--<div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-nav-first">
-                    <li><a href="#home" class="smoothScroll">Home</a></li>
-                    <li><a href="#about" class="smoothScroll">About</a></li>
-                    <li><a href="#team" class="smoothScroll">Chef</a></li>
-                    <li><a href="#menu" class="smoothScroll">Menu</a></li>
-                    <li><a href="#contact" class="smoothScroll">Contact</a></li>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Call Now! <i class="fa fa-phone"></i> 010 020 0340</a></li>
-                    <a href="#footer" class="section-btn">Reserve a table</a>
-                </ul>
-            </div>
-
-        </div>
-    </section>-->
+  
     <!-- HOME -->
     <section id="home" class="slider" data-stellar-background-ratio="0.5">
         <div class="row">
@@ -163,18 +133,18 @@
     <section id="team" data-stellar-background-ratio="0.5">
 
         <div class="row">
-             
-                <div class="col-md-3 col-sm-3 text-start ">
-                    <div class="section-title wow fadeInUp container container-fluid " data-wow-delay="0.1s">
-                        <h2 class="text-start ms-5">Scopri gli eventi</h2>
-                    </div>
+
+            <div class="col-md-3 col-sm-3 text-start ">
+                <div class="section-title wow fadeInUp container container-fluid " data-wow-delay="0.1s">
+                    <h2 class="text-start ms-5">Scopri gli eventi</h2>
                 </div>
-                <div class="col-md-3 col-sm-3 text-end">
-                    <div class="wow fadeInUp" data-wow-delay="0.1s">
-                        <a href="@Url.Action("AllEvents", "Events")" class="btn btn-primary mt-3 me-5">Vedi tutti gli eventi</a>
-                    </div>
+            </div>
+            <div class="col-md-3 col-sm-3 text-end">
+                <div class="wow fadeInUp" data-wow-delay="0.1s">
+                    <a href="@Url.Action("AllEvents", "Events")" class="btn btn-primary mt-3 me-5">Vedi tutti gli eventi</a>
                 </div>
-           
+            </div>
+
             <div id="eventCarousel" class="carousel-container  my-5">
                 <div class="carousel-wrapper">
                     <!-- Set originale di card -->
@@ -193,11 +163,19 @@
 
 
 
-            <div class="col-md-3 my-5 col-sm-3 ">
-                <div class="section-title my-5 wow fadeInUp container container-fluid " data-wow-delay="0.1s">
-                    <h2 class="text-start ms-5">Scopri i Teams E-sport</h2>
+            <div class="row my-5">
+                <div class="col-md-3 col-sm-3 text-start">
+                    <div class="section-title wow fadeInUp container container-fluid" data-wow-delay="0.1s">
+                        <h2 class="text-start ms-5">Scopri i teams </h2>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 text-end">
+                    <div class="wow fadeInUp" data-wow-delay="0.1s">
+                        <a href="@Url.Action("AllTeams", "Teams")" class="btn btn-primary mt-3 me-5">Vedi tutti i Teams</a>
+                    </div>
                 </div>
             </div>
+
 
 
 
@@ -227,7 +205,7 @@
 
 
     <!-- ARENE-->
-    <section id="menu" data-stellar-background-ratio="0.5">
+    <section id="menu" data-stellar-background-ratio="0.5" class="mb-5">
         <div class="container">
             <div class="row">
 
@@ -239,114 +217,102 @@
                 </div>
 
                 <div class="col-md-4 col-sm-6">
-                    <!-- ARENE THUMB -->
+                    <!-- MENU ARENE THUMB -->
                     <div class="menu-thumb">
-                        <a href="~/Content/ImgVenues/commerzbank_arena_frankfurt.jpg" class="image-popup" title="American Breakfast">
-                            <img src="~/Content/ImgVenues/commerzbank_arena_frankfurt.jpg"  class="img-responsive" alt="">
+                        <a href="~/Content/ImgVenues/arena.png" class="image-popup" title="CopperBox Arena">
+                            <img src="~/Content/ImgVenues/arena.png" class="img-responsive" alt="">
 
                             <div class="menu-info">
                                 <div class="menu-item">
-                                    <h3>American Breakfast</h3>
-                                    <p>Tomato / Eggs / Sausage</p>
+                                    <h3>CopperBox Arena</h3>
+                                    <p>Londra - Regno Unito</p>
                                 </div>
-                                <div class="menu-price">
-                                    <span>$25</span>
-                                </div>
+                               
                             </div>
                         </a>
                     </div>
                 </div>
 
                 <div class="col-md-4 col-sm-6">
-                    <!-- MENU THUMB -->
+                    <!-- MENU ARENE THUMB -->
                     <div class="menu-thumb">
-                        <a href="~/assets/images/menu-image2.jpg" class="image-popup" title="Self-made Salad">
-                            <img src="~/assets/images/menu-image2.jpg" class="img-responsive" alt="">
+                        <a href="~/Content/ImgVenues/arena2.png" class="image-popup" title="MercedesBenz Arena">
+                            <img src="~/Content/ImgVenues/arena2.png" class="img-responsive" alt="">
 
                             <div class="menu-info">
                                 <div class="menu-item">
-                                    <h3>Self-made Salad</h3>
-                                    <p>Green / Fruits / Healthy</p>
+                                    <h3>MercedesBenz Arena</h3>
+                                    <p>Shanghai - Cina</p>
                                 </div>
-                                <div class="menu-price">
-                                    <span>$18</span>
-                                </div>
+                              
                             </div>
                         </a>
                     </div>
                 </div>
 
                 <div class="col-md-4 col-sm-6">
-                    <!-- MENU THUMB -->
+                    <!-- MENU ARENE THUMB -->
                     <div class="menu-thumb">
-                        <a href="~/assets/images/menu-image3.jpg" class="image-popup" title="Chinese Noodle">
-                            <img src="~/assets/images/menu-image3.jpg" class="img-responsive" alt="">
+                        <a href="~/Content/ImgVenues/arena3.png" class="image-popup" title="Lanxess Arena">
+                            <img src="~/Content/ImgVenues/arena3.png" class="img-responsive" alt="">
 
                             <div class="menu-info">
                                 <div class="menu-item">
-                                    <h3>Chinese Noodle</h3>
-                                    <p>Pepper / Chicken / Vegetables</p>
+                                    <h3>Lanxess Arena</h3>
+                                    <p>Colonia - Germania</p>
                                 </div>
-                                <div class="menu-price">
-                                    <span>$34</span>
-                                </div>
+                               
                             </div>
                         </a>
                     </div>
                 </div>
 
                 <div class="col-md-4 col-sm-6">
-                    <!-- MENU THUMB -->
+                    <!-- MENU ARENE THUMB -->
                     <div class="menu-thumb">
-                        <a href="~/assets/images/menu-image4.jpg" class="image-popup" title="Rice Soup">
-                            <img src="~/assets/images/menu-image4.jpg" class="img-responsive" alt="">
+                        <a href="~/Content/ImgVenues/arena4.png" class="image-popup" title="Qudos Bank Arena">
+                            <img src="~/Content/ImgVenues/arena4.png"  class="img-responsive" alt="">
 
                             <div class="menu-info">
                                 <div class="menu-item">
-                                    <h3>Rice Soup</h3>
-                                    <p>Green / Chicken</p>
+                                    <h3>Qudos Bank Arena</h3>
+                                    <p>Sydney - Australia</p>
                                 </div>
-                                <div class="menu-price">
-                                    <span>$28</span>
-                                </div>
+                               
                             </div>
                         </a>
                     </div>
                 </div>
 
                 <div class="col-md-4 col-sm-6">
-                    <!-- MENU THUMB -->
+                    <!-- MENU ARENE THUMB -->
                     <div class="menu-thumb">
-                        <a href="~/assets/images/menu-image5.jpg" class="image-popup" title="Project title">
-                            <img src="~/assets/images/menu-image5.jpg" class="img-responsive" alt="">
+                        <a href="~/Content/ImgVenues/arena5.png" class="image-popup" title="Royal Arena">
+                            <img src="~/Content/ImgVenues/arena5.png"  class="img-responsive" alt="">
 
                             <div class="menu-info">
                                 <div class="menu-item">
-                                    <h3>Deli Burger</h3>
-                                    <p>Beef / Fried Potatoes</p>
+                                    <h3>Royal Arena</h3>
+                                    <p>Copenhaghen - Danimarca</p>
                                 </div>
-                                <div class="menu-price">
-                                    <span>$46</span>
-                                </div>
+                                
                             </div>
                         </a>
                     </div>
                 </div>
 
                 <div class="col-md-4 col-sm-6">
-                    <!-- MENU THUMB -->
+                    <!-- MENU ARENE THUMB -->
                     <div class="menu-thumb">
-                        <a href="~/assets/images/menu-image6.jpg" class="image-popup" title="Project title">
-                            <img src="~/assets/images/menu-image6.jpg" class="img-responsive" alt="">
+                        <a href="~/Content/ImgVenues/arena6.png" class="image-popup" title="Commerzbank Arena">
+                            <img src="~/Content/ImgVenues/arena6.png" class="img-responsive" alt="">
 
                             <div class="menu-info">
                                 <div class="menu-item">
-                                    <h3>Big Flat Fried</h3>
-                                    <p>Pepper / Crispy</p>
+                                    <h3>Commerzbank Arena</h3>
+                                    <p>Francoforte - Germania</p>
                                 </div>
-                                <div class="menu-price">
-                                    <span>$30</span>
-                                </div>
+                                
                             </div>
                         </a>
                     </div>
@@ -358,73 +324,23 @@
     </section>
 
 
-    <!-- TESTIMONIAL -->
-    <section id="testimonial" data-stellar-background-ratio="0.5">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-12 col-sm-12">
-                    <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
-                        <h2>Testimonials</h2>
-                    </div>
-                </div>
-
-                <div class="col-md-offset-2 col-md-8 col-sm-12">
-                    <div class="owl-carousel owl-theme">
-                        <div class="item">
-                            <p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas faucibus mollis interdum ullamcorper nulla non.</p>
-                            <div class="tst-author">
-                                <h4>Digital Carlson</h4>
-                                <span>Pharetra quam sit amet</span>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed vestibulum orci quam.</p>
-                            <div class="tst-author">
-                                <h4>Johnny Stephen</h4>
-                                <span>Magna nisi porta ligula</span>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <p>Vivamus aliquet felis eu diam ultricies congue. Morbi porta lorem nec consectetur porta quis dui elit habitant morbi.</p>
-                            <div class="tst-author">
-                                <h4>Jessie White</h4>
-                                <span>Vitae lacinia augue urna quis</span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
+   
 
     <!-- CONTACT -->
-    <section id="contact" data-stellar-background-ratio="0.5">
+    <section id="contact" data-stellar-background-ratio="0.5" class="mt-5">
         <div class="container">
             <div class="row">
-                <!-- How to change your own map point
-                        1. Go to Google Maps
-                        2. Click on your location point
-                        3. Click "Share" and choose "Embed map" tab
-                        4. Copy only URL and paste it within the src="" field below
-                -->
-                <div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="0.4s">
+                
+                <div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="0.4s" style="box-shadow: 5px 5px 9px 3px rgba(0,0,0,0.64); transition: 0.3s;">
                     <div id="google-map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3647.3030413476204!2d100.5641230193719!3d13.757206847615207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf51ce6427b7918fc!2sG+Tower!5e0!3m2!1sen!2sth!4v1510722015945" allowfullscreen></iframe>
-                    </div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d79425.57402525588!2d-0.20575415967376223!3d51.530657641194004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m5!1s0x48761ba3a5a1470b%3A0xd5656d630ccedd8c!2sKings%20Cross%20Station%2C%20Euston%20Road%2C%20Londra%2C%20Regno%20Unito!3m2!1d51.530686499999995!2d-0.1233551!4m0!5e0!3m2!1sit!2sit!4v1699272532369!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                    </div>
                 </div>
 
                 <div class="col-md-6 col-sm-12">
 
                     <div class="col-md-12 col-sm-12">
                         <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
-                            <h2>Contact Us</h2>
+                            <h2>Contattaci</h2>
                         </div>
                     </div>
 
@@ -438,19 +354,19 @@
                         <h6 class="text-danger">E-mail must be valid and message must be longer than 1 character.</h6>
 
                         <div class="col-md-6 col-sm-6">
-                            <input type="text" class="form-control" id="cf-name" name="name" placeholder="Full name">
+                            <input type="text" class="form-control" id="cf-name" name="name" placeholder="Nome">
                         </div>
 
                         <div class="col-md-6 col-sm-6">
-                            <input type="email" class="form-control" id="cf-email" name="email" placeholder="Email address">
+                            <input type="email" class="form-control" id="cf-email" name="email" placeholder="Indirizzo Email">
                         </div>
 
                         <div class="col-md-12 col-sm-12">
-                            <input type="text" class="form-control" id="cf-subject" name="subject" placeholder="Subject">
+                            <input type="text" class="form-control" id="cf-subject" name="subject" placeholder="Oggetto">
 
-                            <textarea class="form-control" rows="6" id="cf-message" name="message" placeholder="Tell about your project"></textarea>
+                            <textarea class="form-control" rows="6" id="cf-message" name="message" placeholder="Come possiamo aiutarti?"></textarea>
 
-                            <button type="submit" class="form-control" id="cf-submit" name="submit">Send Message</button>
+                            <button type="submit" class="form-control" id="cf-submit" name="submit">Invia Messaggio</button>
                         </div>
                     </form>
                 </div>
@@ -460,75 +376,6 @@
     </section>
 
 
-    <!-- FOOTER -->
-    <footer id="footer" data-stellar-background-ratio="0.5">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-3 col-sm-8">
-                    <div class="footer-info">
-                        <div class="section-title">
-                            <h2 class="wow fadeInUp" data-wow-delay="0.2s">Find us</h2>
-                        </div>
-                        <address class="wow fadeInUp" data-wow-delay="0.4s">
-                            <p>123 nulla a cursus rhoncus,<br> augue sem viverra 10870<br>id ultricies sapien</p>
-                        </address>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-8">
-                    <div class="footer-info">
-                        <div class="section-title">
-                            <h2 class="wow fadeInUp" data-wow-delay="0.2s">Reservation</h2>
-                        </div>
-                        <address class="wow fadeInUp" data-wow-delay="0.4s">
-                            <p>090-080-0650 | 090-070-0430</p>
-                            <p><a href="mailto:info@company.com">info@company.com</a></p>
-                            <p>LINE: eatery247 </p>
-                        </address>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-8">
-                    <div class="footer-info footer-open-hour">
-                        <div class="section-title">
-                            <h2 class="wow fadeInUp" data-wow-delay="0.2s">Open Hours</h2>
-                        </div>
-                        <div class="wow fadeInUp" data-wow-delay="0.4s">
-                            <p>Monday: Closed</p>
-                            <div>
-                                <strong>Tuesday to Friday</strong>
-                                <p>7:00 AM - 9:00 PM</p>
-                            </div>
-                            <div>
-                                <strong>Saturday - Sunday</strong>
-                                <p>11:00 AM - 10:00 PM</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-2 col-sm-4">
-                    <ul class="wow fadeInUp social-icon" data-wow-delay="0.4s">
-                        <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                        <li><a href="#" class="fa fa-twitter"></a></li>
-                        <li><a href="#" class="fa fa-instagram"></a></li>
-                        <li><a href="#" class="fa fa-google"></a></li>
-                    </ul>
-
-                    <div class="wow fadeInUp copyright-text" data-wow-delay="0.8s">
-                        <p>
-                            <br>Copyright &copy; 2018 <br>Your Company Name
-
-                            <br><br>Design: <a rel="nofollow" href="http://templatemo.com" target="_parent">TemplateMo</a>
-                            <br><br>Distribution: <a href="http://themewagon.com" target="_parent">ThemeWagon</a>
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </footer>
 
 
 

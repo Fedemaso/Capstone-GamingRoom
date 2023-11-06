@@ -91,29 +91,32 @@ namespace GamingRoom.Controllers
             {
                 var playerToUpdate = db.Players.Find(player.PlayerID);
 
+                // Se viene fornita una nuova foto, salvala e aggiorna il record del giocatore
                 if (playerPhoto != null && playerPhoto.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(playerPhoto.FileName);
                     var pathToSave = Path.Combine(Server.MapPath("~/Content/ImgPlayers/"), fileName);
+
+                    // Salva la foto nel percorso specificato
                     playerPhoto.SaveAs(pathToSave);
+
+                    // Aggiorna il campo Photo solo se la foto è stata salvata con successo
                     playerToUpdate.Photo = fileName;
                 }
-                else
-                {
-                    playerToUpdate.Photo = player.Photo;
-                }
 
-                if (TryUpdateModel(playerToUpdate, "", new string[] { "Name", "Surname", "Nickname", "TeamID", "CreatedBy", "Photo" }))
-                {
-                    db.Entry(playerToUpdate).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+                // Aggiorna le altre proprietà del giocatore
+                db.Entry(playerToUpdate).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
             }
+
+            // Se siamo arrivati fin qui, qualcosa non va, quindi ri-mostra il form
             ViewBag.TeamID = new SelectList(db.Teams, "TeamID", "Name", player.TeamID);
             ViewBag.CreatedBy = new SelectList(db.Users, "UserID", "Username", player.CreatedBy);
             return View(player);
         }
+
 
 
 

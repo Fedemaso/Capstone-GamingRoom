@@ -1,0 +1,12 @@
+﻿@model List<GamingRoom.Models.Teams>
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        @foreach (var team in Model)
+        {
+            <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4 fs-5">
+                @Html.Partial("_AllTeamCard", team)
+            </div>
+        }
+    </div>
+</div>
