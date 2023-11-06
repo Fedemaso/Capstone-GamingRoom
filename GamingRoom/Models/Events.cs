@@ -33,6 +33,7 @@ namespace GamingRoom.Models
 
         public int? TicketsAvailable { get; set; }
 
+
         public int? TicketsSold { get; set; }
 
         public bool IsActive { get; set; }

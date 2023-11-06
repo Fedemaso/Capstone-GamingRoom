@@ -26,9 +26,12 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container">
-            @Html.ActionLink("Nome dell'applicazione", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+    @* NAVBAR SUPER ADMIN *@
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark " >
+        <img src="~/assets/images/logo.png" id="logo" />
+        <div class="container mt-3 ">
+            
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -36,15 +39,68 @@
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("BusinessDetails", "Index", "BusinessDetails", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Events", "Index", "Events", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("EventTitles", "Index", "EventTitles", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Aziende", "Index", "BusinessDetails", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Nomi Eventi", "Index", "EventTitles", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Eventi", "Index", "Events", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Players", "Index", "Players", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Teams", "Index", "Teams", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Tickets", "Index", "Tickets", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Titles", "Index", "Titles", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Users", "Index", "Users", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Venues", "Index", "Venues", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Titoli", "Index", "Titles", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Utenti", "Index", "Users", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Arene", "Index", "Venues", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+     NAVBAR ADMIN 
+
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark ">
+        <img src="~/assets/images/logo.png" id="logo" />
+        <div class="container mt-3 ">
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Aziende", "Index", "BusinessDetails", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Nomi Eventi", "Index", "EventTitles", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Eventi", "Index", "Events", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Players", "Index", "Players", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Teams", "Index", "Teams", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Tickets", "Index", "Tickets", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Titoli", "Index", "Titles", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Utenti", "Index", "Users", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Arene", "Index", "Venues", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+     NAVBAR USER 
+
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark ">
+        <img src="~/assets/images/logo.png" id="logo" />
+        <div class="container mt-3 ">
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Eventi", "AllEvents", "Events", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Teams", "AllTeams", "Teams", new { area = "" }, new { @class = "nav-link" })
+                    </li>
                 </ul>
             </div>
         </div>
@@ -59,21 +115,13 @@
 
 
 
-
-
-
-
-
-
-
-
     @*<ul class="nav navbar-nav navbar-nav-first">
-        <li><a href="#home" class="smoothScroll">Home</a></li>
-        <li><a href="#about" class="smoothScroll">About</a></li>
-        <li><a href="#team" class="smoothScroll">Chef</a></li>
-        <li><a href="#arene" class="smoothScroll">Menu</a></li>
-        <li><a href="#contact" class="smoothScroll">Contact</a></li>
-    </ul>*@
+            <li><a href="#home" class="smoothScroll">Home</a></li>
+            <li><a href="#about" class="smoothScroll">About</a></li>
+            <li><a href="#team" class="smoothScroll">Chef</a></li>
+            <li><a href="#arene" class="smoothScroll">Menu</a></li>
+            <li><a href="#contact" class="smoothScroll">Contact</a></li>
+        </ul>*@
 
 
 
@@ -81,91 +129,9 @@
 
     <div>
         @RenderBody()
-        <hr />
+       
 
-        <!-- FOOTER -->
-        <footer id="footer" data-stellar-background-ratio="0.5">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-3 col-sm-8">
-                        <div class="footer-info">
-                            <div class="section-title">
-                                <h2 class="wow fadeInUp" style="color:rgb(214, 214, 214)" data-wow-delay="0.2s">Dove Trovarci</h2>
-                            </div>
-                            <address class="wow fadeInUp" data-wow-delay="0.4s">
-                                <p>742 Evergreen Terrace,<br> Springfield<br>USA</p>
-                            </address>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-8">
-                        <div class="footer-info">
-                            <div class="section-title">
-                                <h2 class="wow fadeInUp" style="color:rgb(214, 214, 214)" data-wow-delay="0.2s">Numero Verde</h2>
-                            </div>
-                            <address class="wow fadeInUp" data-wow-delay="0.4s">
-                                <p>0837-283729 | 0293-283729</p>
-                                <p><a href="mailto:info@gamingroom.com">info@gamingroom.com</a></p>
-
-                            </address>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-8">
-                        <div class="footer-info footer-open-hour">
-                            <div class="section-title">
-                                <h2 class="wow fadeInUp" style="color:rgb(214, 214, 214)" data-wow-delay="0.2s">Orari Ufficio</h2>
-                            </div>
-                            <div class="wow fadeInUp" data-wow-delay="0.4s">
-
-                                <div>
-                                    <strong>Lunedì - Venerdì</strong>
-                                    <p>7:00 AM - 9:00 PM</p>
-                                </div>
-                                <div>
-                                    <strong>Sabato - Domenica</strong>
-                                    <p>11:00 AM - 10:00 PM</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2 col-sm-4">
-                        <ul class="wow fadeInUp social-icon" data-wow-delay="0.4s">
-                            <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-instagram"></a></li>
-                            <li><a href="#" class="fa fa-google"></a></li>
-                        </ul>
-
-                        <div class="wow fadeInUp copyright-text" data-wow-delay="0.8s">
-                            <p>
-                                <br>Copyright &copy; 2023 <br>Gaming Room
-                            </p>
-
-                        </div>
-                    </div>
-                    <hr />
-                    <div class="text-center wow fadeInUp social-icon mb-2" data-wow-delay="0.4s">
-                        <p>Un sentito ringraziamento per il logo a Giovanni Scarantino  <a href="https://www.linkedin.com/in/giovanni-scarantino-frontend-dev/" class="fa fa-linkedin"></a> 
-                    </div>
-                    
-                    <div class="text-center wow fadeInUp social-icon" data-wow-delay="0.4s">
-                        <p>
-                            Capstone Project - Applicazione creata a scopo didattico da:<br>
-                            Federico Maso
-
-                        </p>
-                        <ul style="color: rgb(214, 214, 214);">
-                            <li><a href="https://github.com/Fedemaso" class="fa fa-github"></a> </li>
-                            <li><a href="https://www.linkedin.com/in/federico-maso-full-stack-developer/" class="fa fa-linkedin"></a> </li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </footer>
+        
     </div>
 
     @Scripts.Render("~/bundles/jquery")

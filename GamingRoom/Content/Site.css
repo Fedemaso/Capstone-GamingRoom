@@ -61,7 +61,12 @@ body {
 }
 
 
-
+#logo{
+    height:4vh;
+    width:auto;
+    margin-left:2vh;
+    margin-top:2vh
+}
 
 
 /*------------------------------  CSS CAROSELLO EVENTS/ TEAMS HOME ------------------------------ */
