@@ -127,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BusinessDetailsController.cs" />
     <Compile Include="Controllers\CarrelloController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
@@ -135,10 +136,12 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\SuperAdminController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\TitlesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\ValidazioniController.cs" />
     <Compile Include="Controllers\VenuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -186,6 +189,10 @@
     <Compile Include="Migrations\202311061730051_AddCarrelloItemModel.cs" />
     <Compile Include="Migrations\202311061730051_AddCarrelloItemModel.designer.cs">
       <DependentUpon>202311061730051_AddCarrelloItemModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311081218289_AddModelRole.cs" />
+    <Compile Include="Migrations\202311081218289_AddModelRole.designer.cs">
+      <DependentUpon>202311081218289_AddModelRole.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BusinessDetails.cs" />
@@ -361,6 +368,8 @@
     <Content Include="Views\Carrello\_RiepilogoCarrello.cshtml" />
     <Content Include="Views\Carrello\_RiepilogoCarrelloVuoto.cshtml" />
     <Content Include="Views\Shared\_CartModal.cshtml" />
+    <Content Include="Views\Admin\AdminMenu.cshtml" />
+    <Content Include="Views\SuperAdmin\SuperAdminMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -369,6 +378,7 @@
     <Folder Include="Content\ImgPlayers\" />
     <Folder Include="Content\ImgTeams\" />
     <Folder Include="Content\ImgTitles\" />
+    <Folder Include="Views\Validazioni\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -430,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202311061730051_AddCarrelloItemModel.resx">
       <DependentUpon>202311061730051_AddCarrelloItemModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311081218289_AddModelRole.resx">
+      <DependentUpon>202311081218289_AddModelRole.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

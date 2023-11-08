@@ -10,6 +10,7 @@ namespace GamingRoom.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     [Table("UserCustomers")]
     public class UserCustomer
@@ -17,7 +18,7 @@ namespace GamingRoom.Models
         [Key]
         public int UserId { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(255)]
         public string Username { get; set; }
 
@@ -28,25 +29,27 @@ namespace GamingRoom.Models
         [Required]
         [StringLength(255)]
         [EmailAddress]
+        [Remote("IsEmailValid", "Validazioni", ErrorMessage = "Indirizzo e-mail già presente")]
+
         public string Email { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(50)]
         public string FirstName { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(50)]
         public string LastName { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(255)]
         public string Address { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(10)]
         public string ZipCode { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(15)]
         public string PhoneNumber { get; set; }
 

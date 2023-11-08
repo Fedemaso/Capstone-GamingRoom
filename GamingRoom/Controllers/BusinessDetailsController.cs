@@ -10,17 +10,24 @@ using GamingRoom.Models;
 
 namespace GamingRoom.Controllers
 {
+    
+
     public class BusinessDetailsController : Controller
     {
         private ModelDBContext db = new ModelDBContext();
 
         // GET: BusinessDetails
+        [Authorize(Roles = "SuperAdmin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var businessDetails = db.BusinessDetails.Include(b => b.Users);
             return View(businessDetails.ToList());
         }
 
+
+        [Authorize(Roles = "SuperAdmin")]
+        [Authorize(Roles = "Admin")]
         // GET: BusinessDetails/Details/5
         public ActionResult Details(int? id)
         {
@@ -36,6 +43,7 @@ namespace GamingRoom.Controllers
             return View(businessDetails);
         }
 
+        [Authorize(Roles = "SuperAdmin")]
         // GET: BusinessDetails/Create
         public ActionResult Create()
         {
@@ -61,6 +69,8 @@ namespace GamingRoom.Controllers
             return View(businessDetails);
         }
 
+
+        [Authorize(Roles = "SuperAdmin")]
         // GET: BusinessDetails/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -77,6 +87,9 @@ namespace GamingRoom.Controllers
             return View(businessDetails);
         }
 
+
+
+        [Authorize(Roles = "SuperAdmin")]
         // POST: BusinessDetails/Edit/5
         // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -94,6 +107,9 @@ namespace GamingRoom.Controllers
             return View(businessDetails);
         }
 
+
+
+        [Authorize(Roles = "SuperAdmin")]
         // GET: BusinessDetails/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -109,6 +125,10 @@ namespace GamingRoom.Controllers
             return View(businessDetails);
         }
 
+
+
+
+        [Authorize(Roles = "SuperAdmin")]
         // POST: BusinessDetails/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -120,6 +140,9 @@ namespace GamingRoom.Controllers
             return RedirectToAction("Index");
         }
 
+
+        [Authorize(Roles = "SuperAdmin")]
+        [Authorize(Roles = "Admin")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

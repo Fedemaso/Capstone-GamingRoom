@@ -9,7 +9,14 @@ namespace GamingRoom.Controllers
 {
     public class RegisterController : Controller
     {
-        private ModelDBContext db = new ModelDBContext();
+         ModelDBContext db = new ModelDBContext();
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+
 
         [HttpGet]
         public ActionResult Register()
@@ -18,8 +25,10 @@ namespace GamingRoom.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(UserCustomer user)
+        public ActionResult Register([Bind(Exclude = "Role")] UserCustomer user)
         {
+
+            user.Role = "User";
             if (ModelState.IsValid)
             {
                 db.UserCustomers.Add(user);

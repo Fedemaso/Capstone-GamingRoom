@@ -26,7 +26,7 @@ namespace GamingRoom.Controllers
         {
             if (ModelState.IsValid)
             {
-                var u = db.UserCustomers.Where(ut => ut.Email == user.Email && ut.Password == user.Password).FirstOrDefault();
+                UserCustomer u = db.UserCustomers.FirstOrDefault(ut => ut.Email == user.Email && ut.Password == user.Password);
                 if (u != null)
                 {
                     FormsAuthentication.SetAuthCookie(u.Email, false);
@@ -35,11 +35,12 @@ namespace GamingRoom.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Credenziali non valide. Controlla che le tue credenziali siano state inserite correttamente.");
-                    return View();
+                    return View(user); // Restituisci il modello alla vista per mostrare gli errori.
                 }
             }
-            return View();
+            return View(user); // Modifica aggiunta qui per mantenere l'input dell'utente e mostrare gli errori di convalida.
         }
+
 
         public ActionResult Logout()
         {
