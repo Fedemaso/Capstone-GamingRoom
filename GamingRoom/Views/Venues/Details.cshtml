@@ -1,56 +1,47 @@
 ﻿@model GamingRoom.Models.Venues
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Venue Details";
 }
 
-<h2>Details</h2>
+<div class="container" style="min-height:100vh">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card my-5 text-white" style="background-color: rgb(157, 0, 255)!important">
+                <div class="card-header">
+                    <h2 class="text-center">Dettagli Luogo</h2>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
 
-<div>
-    <h4>Venues</h4>
-    <hr />
-    <dl class="dl-horizontal text-light fs-5">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+                        <dt class="col-sm-4">Immagine</dt>
+                        <dd class="col-sm-8">
+                            @if (!string.IsNullOrEmpty(Model.Photo))
+                            {
+                                <img src="@Url.Content("~/Content/ImgVenues/" + Model.Photo)" alt="Venue Image" style="max-width: 100%; height: auto;" />
+                            }
+                            else
+                            {
+                                <text>Nessuna Immagine disponibile</text>
+                            }
+                        </dd>
+                        <dt class="col-sm-4">Nome</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Name)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                        <dt class="col-sm-4">Indirizzo</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Address)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Capacity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Capacity)
-        </dd>
-        <dt>
-            @Html.DisplayName("Image")
-        </dt>
-        <dd>
-            @if (!string.IsNullOrEmpty(Model.Photo))
-            {
-                <img src="@Url.Content("~/Content/ImgVenues/" + Model.Photo)" alt="Venue Image" style="max-width: 100%; height: auto;" />
-            }
-            else
-            {
-                <text>Nessuna Immagine disponibile</text>
-            }
-        </dd>
+                        <dt class="col-sm-4">Capacità</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Capacity) posti</dd>
 
 
-    </dl>
+                    </dl>
+                </div>
+                <div class="card-footer text-muted">
+                    <a href="@Url.Action("Edit", new { id = Model.VenueID })" class="btn btn-primary">Modifica</a>
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">Torna alla Lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.VenueID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

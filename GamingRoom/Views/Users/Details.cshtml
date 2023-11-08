@@ -1,58 +1,39 @@
 ﻿@model GamingRoom.Models.Users
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "User Details";
 }
 
-<h2>Details</h2>
+<div class="container" style="height:100vh">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card my-5 text-white" style="background-color: rgb(157, 0, 255)!important">
+                <div class="card-header">
+                    <h2 class="text-center">Dettagli Utente</h2>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.BusinessDetails.BusinessName)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.BusinessDetails.BusinessName)</dd>
 
-<div>
-    <h4>Users</h4>
-    <hr />
-    <dl class="dl-horizontal text-light fs-5">
-        <dt>
-            @Html.DisplayNameFor(model => model.BusinessDetails.BusinessName)
-        </dt>
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Username)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Username)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.BusinessDetails.BusinessName)
-        </dd>
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Password)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Password)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Email)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Email)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Username)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Role)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Role)
-        </dd>
-
-    </dl>
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Role)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Role)</dd>
+                    </dl>
+                </div>
+                <div class="card-footer text-muted">
+                    <a href="@Url.Action("Edit", new { id = Model.UserID })" class="btn btn-primary">Modifica</a>
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">Torna alla Lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

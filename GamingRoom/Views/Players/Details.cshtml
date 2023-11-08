@@ -1,59 +1,43 @@
 ﻿@model GamingRoom.Models.Players
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Player Details";
 }
 
-<h2>Details</h2>
+<div class="container" style="min-height:100vh">
+    <div class="row justify-content-center align-items-center" style="height:100%">
+        <div class="col-md-8">
+            <div class="card mt-5 text-white" style="background-color: rgb(157, 0, 255)!important">
+                <div class="card-header">
+                    <h2 class="text-center">Dettagli Giocatore</h2>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">Foto</dt>
+                        <dd class="col-sm-8">
+                            <img src="@Url.Content("~/Content/ImgPlayers/" + Model.Photo)" alt="Player Photo" width="200" />
+                        </dd>
 
-<div>
-    <h4>Players</h4>
-    <hr />
-    <dl class="dl-horizontal text-light fs-5">
-        <dt>
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
-        <dd>
-            <img src="@Url.Content("~/Content/ImgPlayers/" + Model.Photo)" alt="Player Photo" width="100" />
-        </dd>
+                        <dt class="col-sm-4">Squadra</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Teams.Name)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Teams.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Teams.Name)
-        </dd>
+                        
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Users.Username)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Users.Username)
-        </dd>
+                        <dt class="col-sm-4">Nome</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Name)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                        <dt class="col-sm-4">Cognome</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Surname)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Surname)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Surname)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nickname)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nickname)
-        </dd>
-    </dl>
+                        <dt class="col-sm-4">Nickname</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Nickname)</dd>
+                    </dl>
+                </div>
+                <div class="card-footer">
+                    <a href="@Url.Action("Edit", new { id = Model.PlayerID })" class="btn btn-primary">Modifica</a>
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">Torna alla Lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PlayerID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

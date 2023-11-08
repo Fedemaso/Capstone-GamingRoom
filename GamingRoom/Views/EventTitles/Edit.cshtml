@@ -4,46 +4,47 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<div  style="height:100vh">
     
-    <div class="form-horizontal text-light fs-5">
-        <h4>EventTitles</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.EventTitleID)
+            <h2 class="text-center text-white mt-5">Modifica Titolo Evento</h2>
+            @using (Html.BeginForm("Edit", "EventTitles", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal ms-5", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.EventID, "EventID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("EventID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.EventID, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group text-white">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.EventTitleID)
+
+                    <div class="form-group">
+                        <label for="EventID" class="control-label col-md-2">Evento</label>
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.EventID, (SelectList)ViewBag.Events, "Scegli Evento", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.EventID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="TitleID" class="control-label col-md-2">Titolo</label>
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.TitleID, (SelectList)ViewBag.Titles, "Scegli Titolo", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TitleID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Salva" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    @Html.ActionLink("Torna alla Lista", "Index", null, new { @class = "btn btn-secondary text-white ms-3" })
+                </div>
+            }
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TitleID, "TitleID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("TitleID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TitleID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+   
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
