@@ -12,10 +12,10 @@
             <!-- Card Evento Centrale -->
             <div class="card text-white bg-middlepurple">
                 <div class="card-header text-center">
-                    <h1>@Model.Name</h1>
+                    <h1 style=" color: rgb(214, 214, 214)!important">@Model.Name</h1>
                 </div>
                 <img src="@Url.Content("~/Content/ImgEvents/" + Model.Photo)" class="card-img-top" alt="@Model.Name" style="max-height: 600px; object-fit: cover;">
-                <div class="card-body">
+                <div class="card-body" style=" color: rgb(214, 214, 214)!important">
                     <h4 class="card-title">Dettagli Evento</h4>
                     <p class="card-text">@Model.Description</p>
                     <h4>Data:</h4><p class="card-text"> @Model.Date.ToString("dd/MM/yyyy")</p>
@@ -56,9 +56,9 @@
             <div class="row d-flex flex-column ">
                 <!-- Card Luogo -->
                 <div class="mb-4">
-                    <div class="card text-white bg-middlepurple">
+                    <div class="card  bg-middlepurple">
                         <div class="card-header text-center">
-                            <h3>@Model.Venues.Name</h3>
+                            <h3 style=" color: rgb(214, 214, 214)!important ">@Model.Venues.Name</h3>
                         </div>
                         <img src="@Url.Content("~/Content/ImgVenues/" + Model.Venues.Photo)" class="card-img-top" style="height: 400px; width:auto;object-fit: cover;" alt="@Model.Venues.Name" >
                         <div class="card-body">
@@ -71,7 +71,7 @@
                 <div >
                     <div class="card text-white bg-middlepurple">
                         <div class="card-header text-center">
-                            <h3>Teams</h3>
+                            <h3 style=" color: rgb(214, 214, 214)!important">Teams</h3>
                         </div>
                         <ul class="list-group list-group-flush  ">
                             @foreach (var team in Model.Teams)

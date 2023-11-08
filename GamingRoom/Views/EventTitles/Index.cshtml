@@ -4,36 +4,41 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="text-center">Titoli ed Eventi</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crea Nuovo", "Create", null, new { @class = "btn btn-primary ms-3" }) 
 </p>
-<table class="table text-light fs-5">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Events.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Titles.Name)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Events.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Titles.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EventTitleID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EventTitleID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EventTitleID })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="table-responsive">
+    <table class="table table-hover text-white fs-5">
+        <thead class="bg-primary">
+            <tr>
+                <th>
+                    Nome Evento
+                </th>
+                <th>
+                    Titolo Videogioco
+                </th>
+                <th></th> 
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Events.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titles.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.EventTitleID }, new { @class = "btn btn-info btn-sm" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.EventTitleID }, new { @class = "btn btn-primary btn-sm" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.EventTitleID }, new { @class = "btn btn-danger btn-sm" })
+                   </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -4,74 +4,60 @@
     ViewBag.Title = "Events Index";
 }
 
-<h2>Events</h2>
-<p>
-    @Html.ActionLink("Create New", "Create")
+<h2 class="text-center">Riepilogo Eventi</h2><p>
+
+
+
+    @Html.ActionLink("Crea Evento", "Create", null, new { @class = "btn btn-primary ms-3" }) 
 </p>
 <div class="table-responsive">
-    <table class="table text-light fs-5">
-        <thead>
+    <table class="table table-hover text-white fs-5">
+        <thead class="bg-primary">
             <tr>
-                <th></th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th class="d-none d-md-table-cell">
-                    <!-- Nascondi su schermi piccoli -->
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Date)
-                </th>
-                <th class="d-none d-lg-table-cell">
-                    @Html.DisplayNameFor(model => model.VenueID)
-                </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.TicketPrice)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TicketsAvailable)
-                </th>
-                <th class="d-none d-lg-table-cell">
-                    @Html.DisplayNameFor(model => model.TicketsSold)
-                </th>
-                <th class="d-none d-lg-table-cell">
-                    @Html.DisplayNameFor(model => model.IsActive)
-                </th>
-                <th class="d-none d-lg-table-cell">
-                    @Html.DisplayNameFor(model => model.CreatedBy)
-                </th>
                 
+                <th>
+                    Nome Evento
+                </th>
+               
+                <th>
+                    Data Evento
+                </th>
+                <th class="d-none d-lg-table-cell">
+                    Arena
+                </th>
+                <th>
+                    Prezzo Biglietto
+                </th>
+                <th>
+                    Biglietti Disponibili
+                </th>
+                <th class="d-none d-lg-table-cell">
+                    Biglietti Venduti
+                </th>
+                             
                 <th>
                     Team Partecipanti
                 </th>
                 <th>
-                    Photo
+                    Locandina
                 </th>
-
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.EventID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.EventID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.EventID })
-                    </td>
+
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
-                    <td class="d-none d-md-table-cell">
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
+
                     <td>
                         @Html.DisplayFor(modelItem => item.Date)
                     </td>
                     <td class="d-none d-lg-table-cell">
-                        @Html.DisplayFor(modelItem => item.VenueID)
+                        @Html.DisplayFor(modelItem => item.Venues.Name)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.TicketPrice)
@@ -82,19 +68,19 @@
                     <td class="d-none d-lg-table-cell">
                         @Html.DisplayFor(modelItem => item.TicketsSold)
                     </td>
-                    <td class="d-none d-lg-table-cell">
-                        @Html.DisplayFor(modelItem => item.IsActive)
-                    </td>
-                    <td class="d-none d-lg-table-cell">
-                        @Html.DisplayFor(modelItem => item.CreatedBy)
-                    </td>
+
+
                     <td>
                         @string.Join(", ", item.Teams.Select(t => t.Name))
                     </td>
                     <td>
-                        <img src="@Url.Content("~/Content/ImgEvents/" + item.Photo)" alt="Event Photo" width="100" />
+                        <img src="@Url.Content("~/Content/ImgEvents/" + item.Photo)" alt="Event Photo" class="img-fluid" width="100" /> <!-- img-fluid per un'immagine responsiva -->
                     </td>
-
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.EventID }, new { @class = "btn btn-info btn-sm" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.EventID }, new { @class = "btn btn-primary btn-sm" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.EventID }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
                 </tr>
             }
         </tbody>

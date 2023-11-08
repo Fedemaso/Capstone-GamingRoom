@@ -4,54 +4,59 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="text-center">Riepilogo Aziende</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crea Azienda", "Create", null, new { @class = "btn btn-primary ms-3" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Users.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BusinessName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Website)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Users.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BusinessName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Website)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BusinessID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BusinessID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BusinessID })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="table-responsive">
+    <table class="table table-hover text-white fs-5">
+        <thead class="bg-primary">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Users.Username)
+                </th>
+                <th>
+                    Nome Azienda
+                </th>
+                <th>
+                    Indirizzo
+                </th>
+                <th>
+                    Numero di Telefono
+                </th>
+                <th>
+                    Sito Web
+                </th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Users.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BusinessName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Website)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.BusinessID }, new { @class = "btn btn-sm btn-info" }) |
+                        @Html.ActionLink("Dettagli", "Details", new { id = item.BusinessID }, new { @class = "btn btn-sm btn-primary" }) |
+                        @Html.ActionLink("Elimina", "Delete", new { id = item.BusinessID }, new { @class = "btn btn-sm btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,59 +1,63 @@
 ﻿@model IEnumerable<GamingRoom.Models.Venues>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Indice Luoghi";
 }
 
-<h2>Index</h2>
+<h2 class="text-center">Riepilogo Arene</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crea Nuovo", "Create", null, new { @class = "btn btn-primary" })
 </p>
-<table class="table text-light fs-5">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Capacity)
-        </th>
-        <th>
-            Image
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Capacity)
-            </td>
-            <td>
-                @if (!string.IsNullOrEmpty(item.Photo))
-                {
-                    <img src="@Url.Content("~/Content/ImgVenues/" + item.Photo)" alt="Venue Image" style="max-width: 100px; height: auto;" />
-                }
-                else
-                {
-                    <text>None</text>
-                }
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.VenueID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.VenueID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.VenueID })
-            </td>
-        </tr>
-    }
-
-</table>
+<div class="table-responsive">
+    <table class="table table-hover text-white fs-5">
+        <thead class="bg-primary">
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Città
+                </th>
+                <th>
+                    Capacità
+                </th>
+                <th>
+                    Immagine
+                </th>
+                <th>Operazioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Capacity)
+                    </td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.Photo))
+                        {
+                            <img src="@Url.Content("~/Content/ImgVenues/" + item.Photo)" alt="Immagine Luogo" class="img-fluid" style="max-width: 100px; height: auto;" />
+                        }
+                        else
+                        {
+                            <span>Nessuna</span>
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Modifica", "Edit", new { id = item.VenueID }, new { @class = "btn btn-info btn-sm" }) |
+                        @Html.ActionLink("Dettagli", "Details", new { id = item.VenueID }, new { @class = "btn btn-primary btn-sm" }) |
+                        @Html.ActionLink("Elimina", "Delete", new { id = item.VenueID }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

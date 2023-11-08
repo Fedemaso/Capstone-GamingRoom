@@ -44,23 +44,31 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 @User.Identity.Name
-                                <img style="width:50px;" src="~/Content/Immagini/user-icon.png" />
                             </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item text-danger" href="/Login/Logout">Logout</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+
+                            @if (Request.IsAuthenticated)
+                            {
+                            <li class="nav-item">
+                                <a href="javascript:document.getElementById('logoutForm').submit();" class="nav-link">Logout</a>
+                                <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" style="display:none;">
+                                    @Html.AntiForgeryToken()
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                        }
+
+                        </ul>
 
 
 
-                    <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" class="form-inline my-2 my-lg-0">
-                        @Html.AntiForgeryToken()
-                        <button type="submit" class="btn btn-danger">Logout</button>
-                    </form>
-                </div>
+
+                        
+                    </div>
             </div>
         </nav>
     }
@@ -72,7 +80,7 @@
 
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark ">
             <img src="~/assets/images/logo.png" id="logo" />
-            <div class="container mt-3 ">
+            <div class="container mt-3">
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -89,25 +97,31 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 @User.Identity.Name
-                                <img style="width:50px;" src="~/Content/Immagini/user-icon.png" />
                             </a>
 
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item text-danger" href="/Login/Logout">Logout</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                           
+                            @if (Request.IsAuthenticated)
+                            {
+                            <li class="nav-item">
+                                <a href="javascript:document.getElementById('logoutForm').submit();" class="nav-link">Logout</a>
+                                <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" style="display:none;">
+                                    @Html.AntiForgeryToken()
+                                </form>
+                            </li>
+                            }
+                            else
+                            {
+                            <li class="nav-item">
+                                @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                             }
 
-
-                    <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" class="form-inline my-2 my-lg-0">
-                        @Html.AntiForgeryToken()
-                        <button type="submit" class="btn btn-danger">Logout</button>
-                    </form>
+                        </ul>
                 </div>
+               
             </div>
         </nav>
+
     }
 
 
@@ -119,7 +133,7 @@
     {
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark ">
             <img src="~/assets/images/logo.png" id="logo" />
-            <div class="container mt-3 ">
+            <div class="container mt-3">
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -133,34 +147,33 @@
                         <li class="nav-item">
                             @Html.ActionLink("Teams", "AllTeams", "Teams", new { area = "" }, new { @class = "nav-link" })
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                @User.Identity.Name
-                                <img style="width:50px;" src="~/Content/Immagini/user-icon.png" />
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item text-danger" href="/Login/Logout">Logout</a>
-                                </li>
-                            </ul>
-                        </li>
+                        @User.Identity.Name
+
+                      
+                        @if (Request.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a href="javascript:document.getElementById('logoutForm').submit();" class="nav-link">Logout</a>
+                                <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" style="display:none;">
+                                    @Html.AntiForgeryToken()
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                        }
+
                     </ul>
-
-                    <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" class="form-inline my-2 my-lg-0">
-                        @Html.AntiForgeryToken()
-                        <button type="submit" class="btn btn-danger">Logout</button>
-                    </form>
-
-
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#carrelloModal" data-url="/Carrello/CartSummary">
-                        Apri il carrello
-                    </button>
-
-
-
                 </div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#carrelloModal" data-url="/Carrello/CartSummary">
+                    Apri il carrello
+                </button>
             </div>
         </nav>
+
 
     }
 
@@ -176,18 +189,18 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        @User.Identity.Name
 
-                        
+
                         @if (Request.IsAuthenticated)
                         {
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     @User.Identity.Name
-                                    <img style="width:50px;" src="~/Content/Immagini/user-icon.png" />
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item text-danger" href="/Login/Logout">Logout</a>
+                                    <li class="nav-item">
+                                        @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" })
                                     </li>
                                 </ul>
                             </li>
@@ -205,21 +218,9 @@
                     {
                         <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" class="form-inline my-2 my-lg-0">
                             @Html.AntiForgeryToken()
-                            <button type="submit" class="btn btn-danger">Logout</button>
+                            <button type="submit" class="btn button-nav">Logout</button>
                         </form>
                     }
-                    
-
-                    <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" class="form-inline my-2 my-lg-0">
-                        @Html.AntiForgeryToken()
-                        <button type="submit" class="btn btn-danger">Logout</button>
-                    </form>
-
-
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#carrelloModal" data-url="/Carrello/CartSummary">
-                        Apri il carrello
-                    </button>
-
 
 
                 </div>

@@ -4,52 +4,53 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="text-center">Riepilogo Teams</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crea Nuova", "Create", null, new { @class = "btn btn-primary ms-3" })
 </p>
-<table class="table text-light fs-5">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Users.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayName("Photo")
-        </th>
-        <th></th>
-    </tr>
+<div class="table-responsive">
+    <table class="table table-hover text-white fs-5">
+        <thead class="bg-primary">
+            <tr>
+                
+                <th>
+                Nome    
+                </th>
+                <th>
+                Descrizione
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Users.Username)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @if (item.Photo != null)
-                {
-                    <img src="@Url.Content("~/Content/ImgTeams/" + item.Photo)" alt="Team Photo" width="100" />
-                }
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.TeamID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.TeamID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.TeamID })
-            </td>
-        </tr>
-    }
-
-</table>
+                </th>
+                <th>
+                Logo 
+                </th>
+                <th>Operazioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @if (item.Photo != null)
+                        {
+                            <img src="@Url.Content("~/Content/ImgTeams/" + item.Photo)" alt="Foto Squadra" class="img-fluid" width="100" />
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Modifica", "Edit", new { id = item.TeamID }, new { @class = "btn btn-info btn-sm" }) |
+                        @Html.ActionLink("Dettagli", "Details", new { id = item.TeamID }, new { @class = "btn btn-primary btn-sm" }) |
+                        @Html.ActionLink("Elimina", "Delete", new { id = item.TeamID }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
