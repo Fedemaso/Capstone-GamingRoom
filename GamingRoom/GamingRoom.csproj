@@ -175,9 +175,20 @@
     <Compile Include="Migrations\202311021601409_RemovedLastUpdateField.designer.cs">
       <DependentUpon>202311021601409_RemovedLastUpdateField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202311061558325_AddTicketPriceToEvents.cs" />
+    <Compile Include="Migrations\202311061558325_AddTicketPriceToEvents.designer.cs">
+      <DependentUpon>202311061558325_AddTicketPriceToEvents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311061617350_AdjustTicketPriceDecimal.cs" />
+    <Compile Include="Migrations\202311061617350_AdjustTicketPriceDecimal.designer.cs">
+      <DependentUpon>202311061617350_AdjustTicketPriceDecimal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311061730051_AddCarrelloItemModel.cs" />
+    <Compile Include="Migrations\202311061730051_AddCarrelloItemModel.designer.cs">
+      <DependentUpon>202311061730051_AddCarrelloItemModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BusinessDetails.cs" />
-    <Compile Include="Models\CarrelloItem.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CustomRoleProvider.cs" />
     <Compile Include="Models\Events.cs" />
@@ -347,6 +358,9 @@
     <Content Include="Views\Shared\_AllEventCard.cshtml" />
     <Content Include="Views\Teams\AllTeams.cshtml" />
     <Content Include="Views\Shared\_AllTeamCard.cshtml" />
+    <Content Include="Views\Carrello\_RiepilogoCarrello.cshtml" />
+    <Content Include="Views\Carrello\_RiepilogoCarrelloVuoto.cshtml" />
+    <Content Include="Views\Shared\_CartModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -355,7 +369,6 @@
     <Folder Include="Content\ImgPlayers\" />
     <Folder Include="Content\ImgTeams\" />
     <Folder Include="Content\ImgTitles\" />
-    <Folder Include="Views\Carrello\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -408,6 +421,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202311021601409_RemovedLastUpdateField.resx">
       <DependentUpon>202311021601409_RemovedLastUpdateField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311061558325_AddTicketPriceToEvents.resx">
+      <DependentUpon>202311061558325_AddTicketPriceToEvents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311061617350_AdjustTicketPriceDecimal.resx">
+      <DependentUpon>202311061617350_AdjustTicketPriceDecimal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311061730051_AddCarrelloItemModel.resx">
+      <DependentUpon>202311061730051_AddCarrelloItemModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

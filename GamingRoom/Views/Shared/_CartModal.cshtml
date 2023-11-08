@@ -1,0 +1,112 @@
+﻿@model List<GamingRoom.Models.CartItem>
+
+<div class="modal fade" id="carrelloModal" tabindex="-1" role="dialog" aria-labelledby="carrelloModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="carrelloModalLabel">Riepilogo Carrello</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @if (Model != null && Model.Any())
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Evento</th>
+                                <th>Quantità</th>
+                                <th>Prezzo Unitario</th>
+                                <th>Totale</th>
+                                <th></th> <!-- Colonna per il pulsante di rimozione -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Event.Name</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@item.Event.TicketPrice.ToString("C")</td> 
+                                    <td>@item.Total.ToString("C")</td>
+                                    <td>
+                                        <button data-id="@item.CartItemID" class="btn btn-danger remove-item">Rimuovi</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p>Il tuo carrello è vuoto.</p>
+                }
+            </div>
+            <div class="modal-footer">
+                @if (Model != null && Model.Any())
+                {
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Continua lo shopping</button>
+                    <button type="button" class="btn btn-danger svuota-carrello">Svuota Carrello</button>
+                    <button type="button" class="btn btn-primary checkout">Checkout</button>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateCartModal() {
+        $.get('/Carrello/CartSummary', function (data) {
+            $('#carrelloModal .modal-body').html(data);
+        }).fail(function () {
+            alert("Errore durante l'aggiornamento del carrello.");
+        });
+    }
+
+    $(document).ready(function () {
+        // Evento per il caricamento del contenuto del modale quando si apre
+        $('#carrelloModal').on('show.bs.modal', function (e) {
+            updateCartModal();
+        });
+
+        // Gestione del click per il pulsante di rimozione dell'articolo
+        $(document).on('click', '.remove-item', function () {
+            var itemId = $(this).data("id");
+            $.ajax({
+                url: '/Carrello/RemoveFromCart',
+                type: 'POST',
+                data: { cartItemId: itemId }, 
+                success: function (data) {
+                    updateCartModal();
+                },
+                error: function () {
+                    alert("Errore durante la rimozione dell'articolo.");
+                }
+            });
+        });
+
+        // Gestione del click per il pulsante "Svuota Carrello"
+        $(document).on('click', '.svuota-carrello', function () {
+            $.ajax({
+                url: '/Carrello/EmptyCart',
+                type: 'POST',
+                success: function (data) {
+                    updateCartModal();
+                },
+                error: function () {
+                    alert("Errore durante lo svuotamento del carrello.");
+                }
+            });
+        });
+
+        // Gestione del click per il pulsante "Checkout"
+        $(document).on('click', '.checkout', function () {
+            window.location.href = '/Carrello/Checkout'; 
+        });
+    });
+</script>

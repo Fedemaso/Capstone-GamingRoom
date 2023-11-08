@@ -24,31 +24,32 @@
                     @Html.DisplayNameFor(model => model.Date)
                 </th>
                 <th class="d-none d-lg-table-cell">
-                    <!-- Nascondi su schermi medi e piccoli -->
                     @Html.DisplayNameFor(model => model.VenueID)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.TicketPrice)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.TicketsAvailable)
                 </th>
                 <th class="d-none d-lg-table-cell">
-                    <!-- Nascondi su schermi medi e piccoli -->
                     @Html.DisplayNameFor(model => model.TicketsSold)
                 </th>
                 <th class="d-none d-lg-table-cell">
-                    <!-- Nascondi su schermi extra-large -->
                     @Html.DisplayNameFor(model => model.IsActive)
                 </th>
                 <th class="d-none d-lg-table-cell">
-                    <!-- Nascondi su schermi extra-large -->
                     @Html.DisplayNameFor(model => model.CreatedBy)
                 </th>
+                
                 <th>
                     Team Partecipanti
                 </th>
                 <th>
                     Photo
                 </th>
-                
+
             </tr>
         </thead>
         <tbody>
@@ -71,6 +72,9 @@
                     </td>
                     <td class="d-none d-lg-table-cell">
                         @Html.DisplayFor(modelItem => item.VenueID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TicketPrice)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.TicketsAvailable)

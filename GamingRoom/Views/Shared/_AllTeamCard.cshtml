@@ -9,7 +9,6 @@
                 <h3>@Model.Name</h3>
                 <div class="team-info">
                     <h4>Giocatori:</h4> <p>@string.Join(", ", Model.Players.Select(p => p.Nickname))</p>
-                    <!-- Aggiungi altri dettagli del team qui se necessario -->
                     <a href="@Url.Action("UserTeamDetails", "Teams", new { id = Model.TeamID })" class="btn btn-primary">Dettagli team</a>
                 </div>
             </div>

@@ -49,7 +49,7 @@ namespace GamingRoom.Controllers
         // POST: Events/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Events events, HttpPostedFileBase eventPhoto, int[] selectedTeams)
+        public ActionResult Create([Bind(Include = "Name,Description,Date,VenueID,TicketsAvailable,TicketsSold,IsActive,CreatedBy,Photo,TicketPrice")] Events events, HttpPostedFileBase eventPhoto, int[] selectedTeams)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +102,7 @@ namespace GamingRoom.Controllers
         // POST: Events/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventID,Name,Description,Date,VenueID,TicketsAvailable,TicketsSold,IsActive,CreatedBy,Photo")] Events events, HttpPostedFileBase eventPhoto, int[] selectedTeams)
+        public ActionResult Edit([Bind(Include = "EventID,Name,Description,Date,VenueID,TicketsAvailable,TicketsSold,IsActive,CreatedBy,Photo,TicketPrice")] Events events, HttpPostedFileBase eventPhoto, int[] selectedTeams)
         {
             if (ModelState.IsValid)
             {
@@ -127,6 +127,7 @@ namespace GamingRoom.Controllers
                 eventToUpdate.TicketsSold = events.TicketsSold;
                 eventToUpdate.IsActive = events.IsActive;
                 eventToUpdate.CreatedBy = events.CreatedBy;
+                eventToUpdate.TicketPrice = events.TicketPrice; // Aggiorna il prezzo del biglietto
 
                 // Aggiorna la lista delle squadre associate all'evento
                 UpdateEventTeams(selectedTeams, eventToUpdate);
@@ -145,7 +146,6 @@ namespace GamingRoom.Controllers
             ViewBag.Teams = db.Teams.ToList();
             return View(events);
         }
-
 
         private void UpdateEventTeams(int[] selectedTeams, Events eventToUpdate)
         {

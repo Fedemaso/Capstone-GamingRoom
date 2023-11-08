@@ -20,6 +20,33 @@
                     <p class="card-text">@Model.Description</p>
                     <h4>Data:</h4><p class="card-text"> @Model.Date.ToString("dd/MM/yyyy")</p>
                     <h4>Biglietti disponibili:</h4><p class="card-text"> @Model.TicketsAvailable</p>
+                    <h4>Prezzo del Biglietto:</h4><p class="card-text">@Model.TicketPrice.ToString("C")</p>
+
+                                                  <div class="card-footer">
+                                                      @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
+                                                      {
+                                                          @Html.AntiForgeryToken()
+                                                          @Html.HiddenFor(model => model.EventID)
+                                                          @Html.Hidden("ticketPrice", Model.TicketPrice) 
+                                                          @Html.Hidden("eventName", Model.Name) 
+                                                          <div class="row align-items-center">
+                                                              <div class="col">
+                                                                  <label for="quantity">Quantità:</label>
+                                                                  <select id="quantity" name="quantity" class="form-control">
+                                                                      @for (int i = 1; i <= 5; i++)
+                                                                      {
+                                                                          <option value="@i">@i</option>
+                                                                      }
+                                                                  </select>
+                                                              </div>
+                                                              <div class="col">
+                                                                  <button type="submit" class="btn btn-primary">Aggiungi al carrello</button>
+                                                              </div>
+                                                          </div>
+                                                      }
+
+
+                                                  </div>
                 </div>
             </div>
         </div>
@@ -33,7 +60,7 @@
                         <div class="card-header text-center">
                             <h3>@Model.Venues.Name</h3>
                         </div>
-                        <img src="@Url.Content("~/Content/ImgVenues/" + Model.Venues.Photo)" class="card-img-top" style="height: 400px; width:auto; alt="@Model.Venues.Name" object-fit: cover;">
+                        <img src="@Url.Content("~/Content/ImgVenues/" + Model.Venues.Photo)" class="card-img-top" style="height: 400px; width:auto;object-fit: cover;" alt="@Model.Venues.Name" >
                         <div class="card-body">
                             <p class="card-text"><strong>Indirizzo:</strong> @Model.Venues.Address</p>
                             <p class="card-text"><strong>Capacità:</strong> @Model.Venues.Capacity posti</p>
@@ -62,3 +89,24 @@
 
     </div>
 </div>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('form').submit(function (event) {
+                event.preventDefault(); 
+                var form = $(this);
+                $.ajax({
+                    url: form.attr('action'), // Prendo l'URL dall'attributo 'action' del form
+                    type: form.attr('method'), // Prendo il metodo (POST/GET) dall'attributo 'method' del form
+                    data: form.serialize(), // Serializza i dati del form
+                    success: function (response) {
+                        // Aggiorna il modale con il contenuto ritornato dalla chiamata AJAX
+                        $('#cartModalContent').html(response);
+                        $('#cartModal').modal('show');
+                    }
+                });
+            });
+        });
+    </script>

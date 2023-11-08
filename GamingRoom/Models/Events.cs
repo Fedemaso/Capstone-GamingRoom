@@ -33,6 +33,11 @@ namespace GamingRoom.Models
 
         public int? TicketsAvailable { get; set; }
 
+        [Display(Name = "Prezzo del Biglietto")]
+        [DataType(DataType.Currency)]
+        
+        public decimal TicketPrice { get; set; }
+
 
         public int? TicketsSold { get; set; }
 
