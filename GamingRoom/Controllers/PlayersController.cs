@@ -11,7 +11,7 @@ using GamingRoom.Models;
 
 namespace GamingRoom.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "SuperAdmin")]
     public class PlayersController : Controller
     {
         private ModelDBContext db = new ModelDBContext();

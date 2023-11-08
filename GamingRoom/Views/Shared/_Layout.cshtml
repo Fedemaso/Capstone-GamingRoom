@@ -80,15 +80,12 @@
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Aziende", "Index", "BusinessDetails", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Nomi Eventi", "Index", "EventTitles", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Eventi", "Index", "Events", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Players", "Index", "Players", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Teams", "Index", "Teams", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Tickets", "Index", "Tickets", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Titoli", "Index", "Titles", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Utenti", "Index", "Users", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Arene", "Index", "Venues", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Eventi", "AllEvents", "Events", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Teams", "AllTeams", "Teams", new { area = "" }, new { @class = "nav-link" })
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 @User.Identity.Name
@@ -179,6 +176,8 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+
+                        
                         @if (Request.IsAuthenticated)
                         {
                             <li class="nav-item dropdown">

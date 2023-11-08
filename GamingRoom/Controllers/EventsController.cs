@@ -11,6 +11,8 @@ using GamingRoom.Models;
 
 namespace GamingRoom.Controllers
 {
+
+
     public class EventsController : Controller
     {
         private ModelDBContext db = new ModelDBContext();
@@ -21,6 +23,9 @@ namespace GamingRoom.Controllers
             var events = db.Events.Include(e => e.Users).Include(e => e.Venues).Include(e => e.Teams);
             return View(events.ToList());
         }
+
+
+        [Authorize(Roles = "SuperAdmin")]
 
         public ActionResult Details(int? id)
         {
@@ -37,6 +42,9 @@ namespace GamingRoom.Controllers
         }
 
 
+
+        [Authorize(Roles = "SuperAdmin")]
+
         // GET: Events/Create
         public ActionResult Create()
         {
@@ -45,6 +53,10 @@ namespace GamingRoom.Controllers
             ViewBag.Teams = db.Teams.ToList();
             return View();
         }
+
+
+
+        [Authorize(Roles = "SuperAdmin")]
 
         // POST: Events/Create
         [HttpPost]
@@ -81,6 +93,10 @@ namespace GamingRoom.Controllers
             return View(events);
         }
 
+
+
+        [Authorize(Roles = "SuperAdmin")]
+
         // GET: Events/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -98,6 +114,11 @@ namespace GamingRoom.Controllers
             ViewBag.Teams = db.Teams.ToList();
             return View(events);
         }
+
+
+
+
+        [Authorize(Roles = "SuperAdmin")]
 
         // POST: Events/Edit/5
         [HttpPost]
@@ -147,6 +168,11 @@ namespace GamingRoom.Controllers
             return View(events);
         }
 
+
+
+
+        [Authorize(Roles = "SuperAdmin")]
+
         private void UpdateEventTeams(int[] selectedTeams, Events eventToUpdate)
         {
             if (selectedTeams == null)
@@ -178,7 +204,10 @@ namespace GamingRoom.Controllers
         }
 
 
-        // GET: Events/Delete/5
+
+
+        [Authorize(Roles = "SuperAdmin")]
+                // GET: Events/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -193,6 +222,9 @@ namespace GamingRoom.Controllers
             return View(events);
         }
 
+
+
+        [Authorize(Roles = "SuperAdmin")]
         // POST: Events/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

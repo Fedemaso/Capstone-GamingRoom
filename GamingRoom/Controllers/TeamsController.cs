@@ -11,10 +11,16 @@ using GamingRoom.Models;
 
 namespace GamingRoom.Controllers
 {
+
+    
+
     public class TeamsController : Controller
     {
         private ModelDBContext db = new ModelDBContext();
 
+
+
+       
         // GET: Teams
         public ActionResult Index()
         {
@@ -22,6 +28,9 @@ namespace GamingRoom.Controllers
             return View(teams.ToList());
         }
 
+
+
+        [Authorize(Roles = "SuperAdmin")]
         // GET: Teams/Details/5
         public ActionResult Details(int? id)
         {
@@ -37,6 +46,9 @@ namespace GamingRoom.Controllers
             return View(teams);
         }
 
+
+
+        [Authorize(Roles = "SuperAdmin")]
         // GET: Teams/Create
         public ActionResult Create()
         {
@@ -44,6 +56,10 @@ namespace GamingRoom.Controllers
             return View();
         }
 
+
+
+
+        [Authorize(Roles = "SuperAdmin")]
         // POST: Teams/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -67,6 +83,10 @@ namespace GamingRoom.Controllers
             return View(team);
         }
 
+
+
+
+        [Authorize(Roles = "SuperAdmin")]
         // GET: Teams/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -83,6 +103,10 @@ namespace GamingRoom.Controllers
             return View(team);
         }
 
+
+
+
+        [Authorize(Roles = "SuperAdmin")]
         // POST: Teams/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -107,6 +131,8 @@ namespace GamingRoom.Controllers
         }
 
 
+
+        [Authorize(Roles = "SuperAdmin")]
         // GET: Teams/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -122,6 +148,10 @@ namespace GamingRoom.Controllers
             return View(teams);
         }
 
+
+
+
+        [Authorize(Roles = "SuperAdmin")]
         // POST: Teams/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -142,6 +172,10 @@ namespace GamingRoom.Controllers
             base.Dispose(disposing);
         }
 
+
+
+
+        
         public ActionResult UserTeamDetails(int? id)
         {
             if (id == null)

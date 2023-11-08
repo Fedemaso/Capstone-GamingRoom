@@ -11,6 +11,10 @@ using GamingRoom.Models;
 
 namespace GamingRoom.Controllers
 {
+
+    [Authorize(Roles = "SuperAdmin")]
+
+
     public class TitlesController : Controller
     {
         private ModelDBContext db = new ModelDBContext();
