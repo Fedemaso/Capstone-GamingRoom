@@ -129,7 +129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BusinessDetailsController.cs" />
-    <Compile Include="Controllers\CarrelloController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\EventTitlesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -370,6 +370,7 @@
     <Content Include="Views\Shared\_CartModal.cshtml" />
     <Content Include="Views\Admin\AdminMenu.cshtml" />
     <Content Include="Views\SuperAdmin\SuperAdminMenu.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
