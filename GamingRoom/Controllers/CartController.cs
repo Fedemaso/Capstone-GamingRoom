@@ -1,7 +1,8 @@
-﻿using GamingRoom.Models;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using GamingRoom.Models;
 using System.Data.Entity;
 
 
@@ -113,5 +114,83 @@ namespace GamingRoom.Controllers
             Session.Remove("Cart");
             return RedirectToAction("Index");
         }
+
+        // GET: Cart/Checkout
+        public ActionResult Checkout()
+        {
+            var cart = GetOrCreateCart();
+            if (cart.CartItems.Count == 0)
+            {
+                return RedirectToAction("Index");
+            }
+
+            // Recupera i dettagli dell'utente
+            var user = db.UserCustomers.FirstOrDefault(u => u.Email == User.Identity.Name);
+            if (user == null)
+            {
+                // Redirect l'utente alla pagina di login o mostra un errore
+                return RedirectToAction("Login", "Account"); // Assicurati di avere un controller Account con azione Login
+            }
+
+            // Passa i dettagli all'utente attraverso ViewBag
+            ViewBag.UserDetails = user;
+
+            return View(cart);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmOrder()
+        {
+            var cart = GetOrCreateCart();
+            var user = db.UserCustomers.FirstOrDefault(u => u.Email == User.Identity.Name); // Assumi che l'utente sia già autenticato e il suo Email sia univoco
+
+            if (user == null || !cart.CartItems.Any())
+            {
+                // Gestisci l'errore qui
+                return RedirectToAction("Index");
+            }
+
+            // Crea l'ordine
+            Order order = new Order
+            {
+                UserId = user.UserId,
+                OrderDate = DateTime.Now,
+                Total = cart.CartItems.Sum(i => i.Total)
+            };
+
+            db.Orders.Add(order);
+            db.SaveChanges(); // Salva l'ordine per ottenere un OrderId generato
+
+            // Aggiungi i dettagli dell'ordine
+            foreach (var item in cart.CartItems)
+            {
+                var orderDetail = new OrderDetail
+                {
+                    OrderId = order.OrderId,
+                    EventID = item.EventID,
+                    Quantity = item.Quantity,
+                    UnitPrice = item.Price
+                };
+                db.OrderDetails.Add(orderDetail);
+            }
+
+            db.SaveChanges(); // Salva i dettagli dell'ordine
+
+            // Pulisci il carrello
+            Session["Cart"] = null;
+
+            return RedirectToAction("OrderConfirmation"); // Crea questa view per mostrare la conferma
+        }
+
+
+        // GET: Cart/OrderConfirmation
+        public ActionResult OrderConfirmation()
+        {
+            // Mostra una pagina di conferma dell'ordine qui
+            return View();
+        }
+
     }
 }

@@ -221,7 +221,6 @@
                         }
                     </ul>
 
-                    @* Form per il logout, visibile solo se l'utente è autenticato *@
                     @if (Request.IsAuthenticated)
                     {
                         <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" class="form-inline my-2 my-lg-0">
@@ -240,32 +239,6 @@
 
 
     }
-
-
-    <!-- Modale Carrello -->
-    <!--<div class="modal fade" id="carrelloModal" tabindex="-1" role="dialog" aria-labelledby="carrelloModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="carrelloModalLabel">Riepilogo Carrellosssssssssss</h5>
-                </div>
-                <div class="modal-body">-->
-    <!-- Il contenuto del modale verrà caricato qui -->
-    <!--</div>
-    <div class="modal-footer">-->
-    <!-- Pulsanti o altro contenuto per il footer del modale -->
-    <!--</div>
-            </div>
-        </div>
-    </div>-->
-    @*<ul class="nav navbar-nav navbar-nav-first">
-            <li><a href="#home" class="smoothScroll">Home</a></li>
-            <li><a href="#about" class="smoothScroll">About</a></li>
-            <li><a href="#team" class="smoothScroll">Chef</a></li>
-            <li><a href="#arene" class="smoothScroll">Menu</a></li>
-            <li><a href="#contact" class="smoothScroll">Contact</a></li>
-        </ul>*@
-
 
 
 
@@ -288,19 +261,7 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     @RenderSection("scripts", required: false)
 
-    <!-- Script modale -->
-    @*<script>
-            $(document).ready(function () {
-                $('#carrelloModal').on('show.bs.modal', function (e) {
-                    var button = $(e.relatedTarget); // Il pulsante che ha attivato il modal
-                    var url = button.data('url'); // Estrai l'URL dalla data-* attributes del pulsante
-
-                    var modal = $(this);
-                    modal.find('.modal-body').load(url); // Carica il contenuto della partial view nell'elemento con classe .modal-body
-                });
-            });
-        </script>*@
-
+ 
 
 
 </body>

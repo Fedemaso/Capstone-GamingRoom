@@ -55,7 +55,7 @@
                             <div class="col-md-8 col-sm-12">
                                 <h3>Battaglie Leggendarie Ti Aspettano</h3>
                                 <h1>Unisciti all'emozione del gioco e assisti a battaglie epiche</h1>
-                                <a href="@Url.Action("AllEvents", "Events")" class="button-index btn mt-3 me-5 smoothScroll">Esplora Eventi</a>
+                                <a href="#eventCarousel" class="col-md-4 button-index btn mt-3 me-5 smoothScroll">Esplora Eventi</a>
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                             <div class="col-md-8 col-sm-12">
                                 <h3>Vivi l'Esports Come Mai Prima d'ora</h3>
                                 <h1>Ottieni posti in prima fila e tifa per i tuoi team preferiti</h1>
-                                <a href="#tickets" class="button-index btn mt-3 me-5 smoothScroll">Acquista Biglietti</a>
+                                <a href="@Url.Action("AllEvents", "Events")" class="col-md-4 button-index btn mt-3 me-5 smoothScroll">Acquista Biglietti</a>
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                             <div class="col-md-8 col-sm-12">
                                 <h3>Arene infuocate</h3>
                                 <h1>Partecipa ad eventi incredibili nelle arene da gaming più grandi del mondo </h1>
-                                <a href="#arene" class="button-index btn mt-3 me-5 smoothScroll">Esplora Arene</a>
+                                <a href="#arene" class="col-md-4 button-index btn mt-3 me-5 smoothScroll">Esplora Arene</a>
                             </div>
                         </div>
                     </div>
@@ -130,14 +130,14 @@
 
         <div class="row">
 
-            <div class="col-md-3 col-sm-3 text-start ">
-                <div class="section-title wow fadeInUp container container-fluid " data-wow-delay="0.1s">
+            <div class="col-md-4 col-sm-12 text-start">
+                <div class="section-title wow fadeInUp " data-wow-delay="0.1s">
                     <h2 class="text-start ms-5">Scopri gli eventi</h2>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-3 text-end">
+            <div class="col-md-3 col-sm-6 ">
                 <div class="wow fadeInUp" data-wow-delay="0.1s">
-                    <a href="@Url.Action("AllEvents", "Events")" class="button-index btn mt-3 me-5">Vedi tutti gli eventi</a>
+                    <a href="@Url.Action("AllEvents", "Events")" class="btn button-index">Vedi tutti gli eventi</a>
                 </div>
             </div>
 
@@ -159,18 +159,17 @@
 
 
 
-            <div class="row my-5">
-                <div class="col-md-3 col-sm-3 text-start">
-                    <div class="section-title wow fadeInUp container container-fluid" data-wow-delay="0.1s">
-                        <h2 class="text-start ms-5">Scopri i teams </h2>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 text-end">
-                    <div class="wow fadeInUp" data-wow-delay="0.1s">
-                        <a href="@Url.Action("AllTeams", "Teams")" class="btn button-index mt-3 me-5">Vedi tutti i Teams</a>
-                    </div>
+            <div class="col-md-4 col-sm-12 text-start">
+                <div class="section-title wow fadeInUp " data-wow-delay="0.1s">
+                    <h2 class="text-start ms-5">Scopri i teams </h2>
                 </div>
             </div>
+            <div class="col-md-3 col-sm-6 ">
+                <div class="wow fadeInUp" data-wow-delay="0.1s">
+                    <a href="@Url.Action("AllTeams", "Teams")" class="btn button-index">Vedi tutti i Teams</a>
+                </div>
+            </div>
+
 
 
 
@@ -366,7 +365,7 @@
                         </div>
                     </form>
                 </div>
-
+                <hr class="mt-5"/>
             </div>
         </div>
     </section>

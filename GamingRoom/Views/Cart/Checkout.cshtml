@@ -1,0 +1,64 @@
+﻿@model GamingRoom.Models.Cart
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Checkout";
+    var user = ViewBag.UserDetails as GamingRoom.Models.UserCustomer;
+}
+
+<div class="container my-5" style="min-height:100vh;">
+    <div class="row">
+        <!-- Card Dati Utente -->
+        <div class="col-md-6 mb-4">
+            <div class="card customRounded" style="background-color: rgb(157, 0, 255); color: rgb(214, 214, 214);">
+                <div class="card-header">
+                    <h4 class="text-center">Dati Utente</h4>
+                </div>
+                <div class="card-body">
+                    @if (user != null)
+                    {
+                        <p><strong>Nome:</strong> @user.FirstName</p>
+                        <p><strong>Cognome:</strong> @user.LastName</p>
+                        <p><strong>Email:</strong> @user.Email</p>
+                        <p><strong>Indirizzo:</strong> @user.Address</p>
+                        <p><strong>CAP:</strong> @user.ZipCode</p>
+                        <p><strong>Telefono:</strong> @user.PhoneNumber</p>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- Card Dettagli Carrello -->
+        <div class="col-md-6 mb-4">
+            <div class="card customRounded" style="background-color: rgb(157, 0, 255); color: rgb(214, 214, 214);">
+                <div class="card-header">
+                    <h4 class="text-center">Dettagli Carrello</h4>
+                </div>
+                <div class="card-body">
+                    @foreach (var item in Model.CartItems)
+                    {
+                        <div class="mb-2">
+                            <p><strong>Evento:</strong> @item.Event.Name</p>
+                            <p><strong>Quantità:</strong> @item.Quantity</p>
+                            <p><strong>Prezzo unitario:</strong> @item.Price.ToString("C")</p>
+                        </div>
+                        <hr style=" height:2px" />
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Card Totale e Conferma -->
+    <div class="card customRounded mb-4" style="background-color: rgb(157, 0, 255); color: rgb(214, 214, 214);">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="totalAmount" style="color: rgb(214, 214, 214);">Totale: @Model.CartItems.Sum(i => i.Total).ToString("C")</h3>
+                @using (Html.BeginForm("ConfirmOrder", "Cart", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn button-index">Conferma Acquisto</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

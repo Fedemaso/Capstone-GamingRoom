@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Conferma Ordine";
+}
+
+<div class="container my-5" style="min-height:100vh;">
+    <div class="card customRounded mb-4" style="background-color: rgb(157, 0, 255); color: rgb(214, 214, 214);">
+        <div class="card-header">
+            <h2 class="text-center">Ordine Confermato!</h2>
+        </div>
+        <div class="card-body text-center">
+            <p class="card-text">Grazie per il tuo acquisto. Ti abbiamo inviato i dettagli dell'ordine via email.</p>
+            <a class="btn button-index " style="width:20%; margin-left:auto; margin-right:auto" href="@Url.Action("Index", "Home")">Torna alla Home</a>
+        </div>
+    </div>
+</div>
