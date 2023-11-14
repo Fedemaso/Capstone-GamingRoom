@@ -20,12 +20,10 @@ namespace GamingRoom.Controllers
             var cart = (Cart)Session["Cart"];
             if (cart == null)
             {
-                cart = new Cart(); // Crea un nuovo carrello se non esiste
-                cart.CartItems = new List<CartItem>(); // Assicurati che la lista degli articoli non sia mai null
+                cart = new Cart { CartItems = new List<CartItem>() };
                 Session["Cart"] = cart;
             }
-
-            return View(cart); // Ora puoi essere sicuro che CartItems non sia mai null
+            return View(cart);
         }
 
 
@@ -45,29 +43,27 @@ namespace GamingRoom.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddToCart(int EventID, int quantity)
         {
-            Cart cart = (Cart)Session["Cart"] ?? new Cart { CartItems = new List<CartItem>() };
-            CartItem item = cart.CartItems.FirstOrDefault(i => i.EventID == EventID);
+            if (!User.Identity.IsAuthenticated)
+            {
+                Session["RedirectEventID"] = EventID;
+                Session["RedirectQuantity"] = quantity;
+                return RedirectToAction("Login", "Login");
+            }
 
+            var cart = GetOrCreateCart();
+            var item = cart.CartItems.FirstOrDefault(i => i.EventID == EventID);
             if (item == null)
             {
-                // Carica l'evento completo dal database
                 var eventToAdd = db.Events.Include(e => e.Venues).FirstOrDefault(e => e.EventID == EventID);
-                if (eventToAdd != null) // Assicurati che l'evento esista
+                if (eventToAdd != null)
                 {
-                    cart.CartItems.Add(new CartItem
-                    {
-                        EventID = eventToAdd.EventID,
-                        Quantity = quantity,
-                        Event = eventToAdd // L'oggetto Event ora contiene tutti i dettagli necessari
-                    });
+                    cart.CartItems.Add(new CartItem { EventID = eventToAdd.EventID, Quantity = quantity, Event = eventToAdd });
                 }
             }
             else
             {
-                // Aggiorna solo la quantità per l'articolo esistente nel carrello
                 item.Quantity += quantity;
             }
-
             Session["Cart"] = cart;
             return RedirectToAction("Index");
         }
@@ -123,20 +119,11 @@ namespace GamingRoom.Controllers
             {
                 return RedirectToAction("Index");
             }
-
-            // Recupera i dettagli dell'utente
             var user = db.UserCustomers.FirstOrDefault(u => u.Email == User.Identity.Name);
-            if (user == null)
-            {
-                // Redirect l'utente alla pagina di login o mostra un errore
-                return RedirectToAction("Login", "Account"); // Assicurati di avere un controller Account con azione Login
-            }
-
-            // Passa i dettagli all'utente attraverso ViewBag
             ViewBag.UserDetails = user;
-
             return View(cart);
         }
+
 
 
         [HttpPost]
@@ -144,53 +131,32 @@ namespace GamingRoom.Controllers
         public ActionResult ConfirmOrder()
         {
             var cart = GetOrCreateCart();
-            var user = db.UserCustomers.FirstOrDefault(u => u.Email == User.Identity.Name); // Assumi che l'utente sia già autenticato e il suo Email sia univoco
+            var user = db.UserCustomers.FirstOrDefault(u => u.Email == User.Identity.Name);
 
             if (user == null || !cart.CartItems.Any())
             {
-                // Gestisci l'errore qui
                 return RedirectToAction("Index");
             }
 
-            // Crea l'ordine
-            Order order = new Order
-            {
-                UserId = user.UserId,
-                OrderDate = DateTime.Now,
-                Total = cart.CartItems.Sum(i => i.Total)
-            };
-
+            var order = new Order { UserId = user.UserId, OrderDate = DateTime.Now, Total = cart.CartItems.Sum(i => i.Total) };
             db.Orders.Add(order);
-            db.SaveChanges(); // Salva l'ordine per ottenere un OrderId generato
+            db.SaveChanges();
 
-            // Aggiungi i dettagli dell'ordine
             foreach (var item in cart.CartItems)
             {
-                var orderDetail = new OrderDetail
-                {
-                    OrderId = order.OrderId,
-                    EventID = item.EventID,
-                    Quantity = item.Quantity,
-                    UnitPrice = item.Price
-                };
+                var orderDetail = new OrderDetail { OrderId = order.OrderId, EventID = item.EventID, Quantity = item.Quantity, UnitPrice = item.Price };
                 db.OrderDetails.Add(orderDetail);
             }
-
-            db.SaveChanges(); // Salva i dettagli dell'ordine
-
-            // Pulisci il carrello
+            db.SaveChanges();
             Session["Cart"] = null;
 
-            return RedirectToAction("OrderConfirmation"); // Crea questa view per mostrare la conferma
+            return RedirectToAction("OrderConfirmation");
         }
 
-
-        // GET: Cart/OrderConfirmation
         public ActionResult OrderConfirmation()
         {
-            // Mostra una pagina di conferma dell'ordine qui
             return View();
         }
-
     }
+
 }

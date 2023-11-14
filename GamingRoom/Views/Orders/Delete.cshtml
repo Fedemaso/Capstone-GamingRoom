@@ -1,0 +1,17 @@
+﻿@model GamingRoom.Models.Order
+
+@{
+    ViewBag.Title = "Elimina Ordine";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sei sicuro di voler eliminare questo ordine?</h2>
+
+@using (Html.BeginForm("Delete", "Orders", new { id = Model.OrderId }))
+{
+    @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-danger">Elimina</button>
+}
+
+<a href="@Url.Action("Index")" class="btn btn-default">Annulla</a>

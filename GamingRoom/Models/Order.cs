@@ -15,7 +15,6 @@ namespace GamingRoom.Models
         public DateTime OrderDate { get; set; }
         public decimal Total { get; set; }
 
-        // Altri campi necessari per l'ordine
 
         [ForeignKey("UserId")]
         public virtual UserCustomer UserCustomer { get; set; }

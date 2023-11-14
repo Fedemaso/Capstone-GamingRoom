@@ -7,30 +7,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 
 
-//namespace GamingRoom.Controllers
-//{
-//    public class HomeController : Controller
-//    {
-//        [Authorize(Roles = "User")]
-//        public ActionResult UserPanel()
-//        {
-//            return View();
-//        }
 
-//        [Authorize(Roles = "Admin,SuperAdmin")]
-//        public ActionResult AdminPanel()
-//        {
-//            return View();
-//        }
-
-//        [Authorize(Roles = "SuperAdmin")]
-//        public ActionResult SuperAdminPanel()
-//        {
-//            return View();
-//        }
-//    }
-
-//}
 
 
 namespace GamingRoom.Controllers

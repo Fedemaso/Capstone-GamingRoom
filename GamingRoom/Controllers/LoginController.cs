@@ -9,20 +9,16 @@ namespace GamingRoom.Controllers
     {
         private ModelDBContext db = new ModelDBContext();
 
-        // GET: Login
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult Login(string returnUrl = "")
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(UserCustomer user)
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(UserCustomer user, string returnUrl = "")
         {
             if (ModelState.IsValid)
             {
@@ -30,15 +26,22 @@ namespace GamingRoom.Controllers
                 if (u != null)
                 {
                     FormsAuthentication.SetAuthCookie(u.Email, false);
-                    return RedirectToAction("Index", "Home");
+
+                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Credenziali non valide. Controlla che le tue credenziali siano state inserite correttamente.");
-                    return View(user); // Restituisci il modello alla vista per mostrare gli errori.
+                    ModelState.AddModelError("", "Credenziali non valide.");
                 }
             }
-            return View(user); // Modifica aggiunta qui per mantenere l'input dell'utente e mostrare gli errori di convalida.
+            return View(user);
         }
 
 
@@ -49,5 +52,3 @@ namespace GamingRoom.Controllers
         }
     }
 }
-
-

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<GamingRoom.Models.Order>
+
+@{
+    ViewBag.Title = "Elenco Ordini";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Elenco Ordini</h2>
+
+<div class="table-responsive">
+    <table class="table table-hover text-white fs-5">
+        <thead class="bg-primary">
+            <tr>
+                <th>ID Ordine</th>
+                <th>Cliente</th>
+                <th>Data Ordine</th>
+                <th>Totale</th>
+                <th>Dettagli Ordine</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.OrderId</td>
+                    <td>@order.UserCustomer.Email</td>
+                    <td>@order.OrderDate.ToString("dd/MM/yyyy")</td>
+                    <td>@order.Total.ToString("C")</td>
+                    <td>
+                        @foreach (var detail in order.OrderDetails)
+                        {
+                            <p>@detail.Event.Name - Quantità: @detail.Quantity - Prezzo Unitario: @detail.UnitPrice.ToString("C")</p>
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Modifica", "Edit", new { id = order.OrderId }, new { @class = "btn btn-info btn-sm" }) |
+                        @Html.ActionLink("Dettagli", "Details", new { id = order.OrderId }, new { @class = "btn btn-primary btn-sm" }) |
+                        @Html.ActionLink("Elimina", "Delete", new { id = order.OrderId }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

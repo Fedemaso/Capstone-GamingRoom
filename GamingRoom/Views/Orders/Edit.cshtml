@@ -1,0 +1,24 @@
+﻿
+@model GamingRoom.Models.Order
+
+@{
+    ViewBag.Title = "Modifica Ordine";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Modifica Ordine</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.OrderId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Total)
+        @Html.EditorFor(model => model.Total)
+        @Html.ValidationMessageFor(model => model.Total)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salva Modifiche</button>
+}
