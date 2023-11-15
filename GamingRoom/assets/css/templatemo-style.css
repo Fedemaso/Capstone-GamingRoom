@@ -208,7 +208,7 @@ h2 {
       MENU              
   -----------------------------------------
 */
-  .custom-navbar {
+  /*.custom-navbar {
     border: none;
     margin-bottom: 0;
     padding: 25px 0;
@@ -322,7 +322,23 @@ h2 {
     .top-nav-collapse .nav .section-btn a {
       color: #ffffff;
     }
-  }
+  }*/
+
+
+/*----------------------- NAVBAR -------------------------*/
+
+
+@media (max-width: 1100px) {
+    #adminDropdownMenu {
+        display: block;
+    }
+
+    .navbar .navbar-nav > .nav-item:not(#adminDropdownMenu) {
+        display: none;
+    }
+}
+
+
 
 
 
@@ -402,17 +418,17 @@ h2 {
     height: 650px;
   }
 
-  .slider .item-first {
+.slider .item-first {
     background-image: url(../images/slider-1.png);
-  }
+}
 
-  .slider .item-second {
+.slider .item-second {
     background-image: url(../images/slider-2.jpg);
-  }
+}
 
-  .slider .item-third {
+.slider .item-third {
     background-image: url(../images/slider-3.png);
-  }
+}
 
   .slider .item-second .section-btn {
     background: #292929;

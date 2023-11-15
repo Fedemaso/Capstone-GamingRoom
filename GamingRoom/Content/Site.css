@@ -56,6 +56,7 @@ body {
 
 #navbar{
     font-size:1.4em!important;
+
 }
 
 #imgarenahome {
@@ -70,6 +71,30 @@ body {
     margin-left:2vh;
     margin-top:2vh
 }
+
+
+/* Nasconde il primo div e mostra il secondo quando la larghezza dello schermo è superiore a 1000px */
+@media (min-width: 1000px) {
+    .first-div {
+        display: none;
+    }
+
+    .second-div {
+        display: block;
+    }
+}
+
+/* Nasconde il secondo div e mostra il primo quando la larghezza dello schermo è inferiore a 1000px */
+@media (max-width: 999px) {
+    .first-div {
+        display: block;
+    }
+
+    .second-div {
+        display: none;
+    }
+}
+
 
 
 /*------------------------------  CSS CAROSELLO EVENTS/ TEAMS HOME ------------------------------ */
