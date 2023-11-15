@@ -77,9 +77,9 @@
                         <img src="@Url.Content("~/Content/ImgEvents/" + item.Photo)" alt="Event Photo" class="img-fluid" width="100" /> <!-- img-fluid per un'immagine responsiva -->
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.EventID }, new { @class = "btn btn-info btn-sm" }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.EventID }, new { @class = "btn btn-primary btn-sm" }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.EventID }, new { @class = "btn btn-danger btn-sm" })
+                        @Html.ActionLink("Modifica", "Edit", new { id = item.EventID }, new { @class = "btn btn-info btn-sm" }) |
+                        @Html.ActionLink("Dettagli", "Details", new { id = item.EventID }, new { @class = "btn btn-primary btn-sm" }) |
+                        @Html.ActionLink("Elimina", "Delete", new { id = item.EventID }, new { @class = "btn btn-danger btn-sm" })
                     </td>
                 </tr>
             }

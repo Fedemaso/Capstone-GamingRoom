@@ -1,40 +1,34 @@
 ﻿@model GamingRoom.Models.EventTitles
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Elimina Titolo Evento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>EventTitles</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Events.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Events.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Titles.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Titles.Name)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+<div class="container" style="min-height:100vh">
+    <div class="row justify-content-center align-items-center" style="height:100%">
+        <div class="col-md-8">
+            <div class="card mt-5 text-white" style="background-color: rgb(157, 0, 255)!important">
+                <div class="card-header">
+                    <h2 class="text-center">Elimina Titolo Evento</h2>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-center">Sei sicuro di voler eliminare questo titolo evento?</h3>
+                    <dl class="dl-horizontal">
+                        <dt>Nome Evento</dt>
+                        <dd>@Model.Events.Name</dd>
+                        <dt>Titolo</dt>
+                        <dd>@Model.Titles.Name</dd>
+                    </dl>
+                </div>
+                <div class="card-footer text-center">
+                   
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-danger">Elimina</button>
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">Annulla</a>
+                    
+                </div>
+            </div>
         </div>
-    }
+    </div>
 </div>

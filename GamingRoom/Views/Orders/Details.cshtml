@@ -1,0 +1,58 @@
+﻿@model GamingRoom.Models.Order
+
+@{
+    ViewBag.Title = "Dettagli Ordine";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="min-height:100vh">
+    <div class="row justify-content-center align-items-center" style="height:100%">
+        <div class="col-md-8">
+            <div class="card mt-5 text-white" style="background-color: rgb(157, 0, 255)!important">
+                <div class="card-header">
+                    <h2 class="text-center">Dettagli Ordine</h2>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">ID Ordine</dt>
+                        <dd class="col-sm-8">@Model.OrderId</dd>
+
+                        <dt class="col-sm-4">Cliente</dt>
+                        <dd class="col-sm-8">@Model.UserCustomer.Email</dd>
+
+                        <dt class="col-sm-4">Data Ordine</dt>
+                        <dd class="col-sm-8">@Model.OrderDate.ToString("dd/MM/yyyy")</dd>
+
+                        <dt class="col-sm-4">Totale</dt>
+                        <dd class="col-sm-8">@Model.Total.ToString("C")</dd>
+                    </dl>
+                    <h4 class="text-center">Dettagli Articoli</h4>
+                    <table class="table text-white">
+                        <thead>
+                            <tr>
+                                <th>Evento</th>
+                                <th>Quantità</th>
+                                <th>Prezzo Unitario</th>
+                                <th>Totale</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var detail in Model.OrderDetails)
+                            {
+                                <tr>
+                                    <td>@detail.Event.Name</td>
+                                    <td>@detail.Quantity</td>
+                                    <td>@detail.UnitPrice.ToString("C")</td>
+                                    <td>@Model.Total.ToString("C")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">Torna agli Ordini</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

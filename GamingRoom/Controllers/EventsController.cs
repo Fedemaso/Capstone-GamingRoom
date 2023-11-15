@@ -225,16 +225,22 @@ namespace GamingRoom.Controllers
 
 
         [Authorize(Roles = "SuperAdmin")]
-        // POST: Events/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Events events = db.Events.Find(id);
-            db.Events.Remove(events);
-            db.SaveChanges();
+            if (events != null)
+            {
+                db.Events.Remove(events);
+                db.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
+
+
+
+
 
         protected override void Dispose(bool disposing)
         {

@@ -1,48 +1,37 @@
 ﻿@model GamingRoom.Models.Titles
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Elimina Titolo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Titles</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductionHouse)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductionHouse)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+<div class="container" style="min-height:100vh">
+    <div class="row justify-content-center align-items-center" style="height:100%">
+        <div class="col-md-8">
+            <div class="card mt-5 text-white" style="background-color: rgb(157, 0, 255)!important">
+                <div class="card-header">
+                    <h2 class="text-center">Elimina Titolo</h2>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-center text-white">Sei sicuro di voler eliminare questo titolo?</h3>
+                    <dl class="dl-horizontal">
+                        <dt>Nome Titolo</dt>
+                        <dd>@Model.Name</dd>
+                        <dt>Descrizione</dt>
+                        <dd>@Model.Description</dd>
+                        <dt>Casa di Produzione</dt>
+                        <dd>@Model.ProductionHouse</dd>
+                    </dl>
+                </div>
+                <div class="card-footer text-center">
+                    @using (Html.BeginForm("Delete", "Titles", new { id = Model.TitleID }, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger">Elimina</button>
+                    }
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">Annulla</a>
+                </div>
+            </div>
         </div>
-    }
+    </div>
 </div>

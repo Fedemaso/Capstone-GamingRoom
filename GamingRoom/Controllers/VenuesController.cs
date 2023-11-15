@@ -82,26 +82,50 @@ namespace GamingRoom.Controllers
             return View(venues);
         }
 
+
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "VenueID,Name,Address,Capacity,ImageFileName")] Venues venues, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
+                var venueToUpdate = db.Venues.Find(venues.VenueID);
+
+                if (venueToUpdate == null)
+                {
+                    return HttpNotFound();
+                }
+
+                // Aggiorna le proprietà di venueToUpdate
+                venueToUpdate.Name = venues.Name;
+                venueToUpdate.Address = venues.Address;
+                venueToUpdate.Capacity = venues.Capacity;
+
+                // Aggiorna l'immagine solo se ne viene fornita una nuova
                 if (image != null && image.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(image.FileName);
                     var path = Path.Combine(Server.MapPath("~/Content/ImgVenues"), fileName);
                     image.SaveAs(path);
-                    venues.Photo = fileName;
+                    venueToUpdate.Photo = fileName;
                 }
 
-                db.Entry(venues).State = EntityState.Modified;
+                // Se non viene fornita una nuova immagine, conserva quella esistente
+                else
+                {
+                    venueToUpdate.Photo = venueToUpdate.Photo;
+                }
+
+                db.Entry(venueToUpdate).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(venues);
         }
+
 
 
         // GET: Venues/Delete/5
@@ -124,11 +148,21 @@ namespace GamingRoom.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Venues venues = db.Venues.Find(id);
-            db.Venues.Remove(venues);
+            var venue = db.Venues.Include(v => v.Events).FirstOrDefault(v => v.VenueID == id);
+
+            // Controlla se il luogo è associato a un evento
+            if (venue != null && venue.Events.Any())
+            {
+                // Imposta il messaggio di errore
+                TempData["ErrorMessage"] = "Non è possibile eliminare l'arena perché è associata a uno o più eventi.";
+                return RedirectToAction("Delete", new { id = id });
+            }
+
+            db.Venues.Remove(venue);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {

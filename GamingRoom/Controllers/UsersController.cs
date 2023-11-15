@@ -111,16 +111,28 @@ namespace GamingRoom.Controllers
             return View(users);
         }
 
+
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Users users = db.Users.Find(id);
-            db.Users.Remove(users);
+            var user = db.Users.Include(u => u.BusinessDetails).FirstOrDefault(u => u.UserID == id);
+
+            // Verifica se l'utente è associato a un'azienda
+            if (user != null && user.BusinessDetails != null)
+            {
+                // Imposta il messaggio di errore
+                TempData["ErrorMessage"] = "Non è possibile eliminare l'utente perché è associato a un'azienda.";
+                return RedirectToAction("Delete", new { id = id });
+            }
+
+            db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
 
         protected override void Dispose(bool disposing)
         {

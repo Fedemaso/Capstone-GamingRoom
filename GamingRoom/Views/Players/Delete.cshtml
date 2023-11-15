@@ -1,64 +1,41 @@
 ﻿@model GamingRoom.Models.Players
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Elimina Giocatore";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Players</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Teams.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Teams.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Users.Username)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Users.Username)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Surname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Surname)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nickname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nickname)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+<div class="container" style="min-height:100vh">
+    <div class="row justify-content-center align-items-center" style="height:100%">
+        <div class="col-md-8">
+            <div class="card mt-5 text-white" style="background-color: rgb(157, 0, 255)!important">
+                <div class="card-header">
+                    <h2 class="text-center">Elimina Giocatore</h2>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-center text-white">Sei sicuro di voler eliminare questo giocatore?</h3>
+                    <dl class="dl-horizontal">
+                        <dt>Nome Squadra</dt>
+                        <dd>@Model.Teams.Name</dd>
+                        <dt>Nome Utente Creatore</dt>
+                        <dd>@Model.Users.Username</dd>
+                        <dt>Nome</dt>
+                        <dd>@Model.Name</dd>
+                        <dt>Cognome</dt>
+                        <dd>@Model.Surname</dd>
+                        <dt>Nickname</dt>
+                        <dd>@Model.Nickname</dd>
+                    </dl>
+                </div>
+                <div class="card-footer text-center">
+                    @using (Html.BeginForm("Delete", "Players", new { id = Model.PlayerID }, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger">Elimina</button>
+                    }
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">Annulla</a>
+                </div>
+            </div>
         </div>
-    }
+    </div>
 </div>

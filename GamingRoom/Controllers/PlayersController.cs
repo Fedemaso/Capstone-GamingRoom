@@ -82,6 +82,8 @@ namespace GamingRoom.Controllers
             return View(player);
         }
 
+
+
         // POST: Players/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -90,6 +92,13 @@ namespace GamingRoom.Controllers
             if (ModelState.IsValid)
             {
                 var playerToUpdate = db.Players.Find(player.PlayerID);
+
+                // Aggiorna le proprietà del giocatore con i nuovi valori
+                playerToUpdate.Name = player.Name;
+                playerToUpdate.Surname = player.Surname;
+                playerToUpdate.Nickname = player.Nickname;
+                playerToUpdate.TeamID = player.TeamID;
+                playerToUpdate.CreatedBy = player.CreatedBy;
 
                 // Se viene fornita una nuova foto, salvala e aggiorna il record del giocatore
                 if (playerPhoto != null && playerPhoto.ContentLength > 0)
@@ -104,7 +113,6 @@ namespace GamingRoom.Controllers
                     playerToUpdate.Photo = fileName;
                 }
 
-                // Aggiorna le altre proprietà del giocatore
                 db.Entry(playerToUpdate).State = EntityState.Modified;
                 db.SaveChanges();
 
@@ -116,8 +124,6 @@ namespace GamingRoom.Controllers
             ViewBag.CreatedBy = new SelectList(db.Users, "UserID", "Username", player.CreatedBy);
             return View(player);
         }
-
-
 
 
 

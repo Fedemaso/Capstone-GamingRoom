@@ -5,13 +5,38 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Sei sicuro di voler eliminare questo ordine?</h2>
+<div class="container" style="min-height:100vh">
+    <div class="row justify-content-center align-items-center" style="height:100%">
+        <div class="col-md-8">
+            <div class="card mt-5 text-white" style="background-color: rgb(157, 0, 255)!important">
+                <div class="card-header">
+                    <h2 class="text-center">Elimina Ordine</h2>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-center text-white">Sei sicuro di voler eliminare questo ordine?</h3>
+                    <dl class="row">
+                        <dt class="col-sm-4">ID Ordine</dt>
+                        <dd class="col-sm-8">@Model.OrderId</dd>
 
-@using (Html.BeginForm("Delete", "Orders", new { id = Model.OrderId }))
-{
-    @Html.AntiForgeryToken()
+                        <dt class="col-sm-4">Cliente</dt>
+                        <dd class="col-sm-8">@Model.UserCustomer.Email</dd>
 
-    <button type="submit" class="btn btn-danger">Elimina</button>
-}
+                        <dt class="col-sm-4">Data Ordine</dt>
+                        <dd class="col-sm-8">@Model.OrderDate.ToString("dd/MM/yyyy")</dd>
 
-<a href="@Url.Action("Index")" class="btn btn-default">Annulla</a>
+                        <dt class="col-sm-4">Totale</dt>
+                        <dd class="col-sm-8">@Model.Total.ToString("C")</dd>
+                    </dl>
+                </div>
+                <div class="card-footer text-center">
+                    @using (Html.BeginForm("Delete", "Orders", new { id = Model.OrderId }, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger">Elimina</button>
+                        <a href="@Url.Action("Index")" class="btn btn-secondary">Annulla</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
