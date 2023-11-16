@@ -1,0 +1,79 @@
+﻿@model GamingRoom.Models.EventRequest
+
+@{
+    ViewBag.Title = "Richiedi Creazione Evento";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Create", "EventRequests", FormMethod.Post, new { @class = "form-horizontal ms-4", @style = "height:100vh", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group text-white">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label for="Name" class="control-label col-md-2">Nome Evento</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Description" class="control-label col-md-2">Descrizione</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", rows = 5 } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ProposedDate" class="control-label col-md-2">Data Proposta</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ProposedDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(model => model.ProposedDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="VenueProposal" class="control-label col-md-2">Proposta di Luogo</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VenueProposal, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.VenueProposal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ProposedTicketsAvailable" class="control-label col-md-2">Biglietti Disponibili</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProposedTicketsAvailable, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProposedTicketsAvailable, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ProposedTicketPrice" class="control-label col-md-2">Prezzo Biglietto</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProposedTicketPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProposedTicketPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Invia Richiesta" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Torna alla Lista", "Index", null, new { @class = "btn btn-secondary text-white ms-3" })
+    </div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,43 @@
+﻿
+@model GamingRoom.Models.EventRequest
+
+@{
+    ViewBag.Title = "Elimina Richiesta di Evento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="min-height:100vh">
+    <div class="row justify-content-center align-items-center" style="height:100%">
+        <div class="col-md-8">
+            <div class="card mt-5 text-white" style="background-color: rgb(157, 0, 255)!important">
+                <div class="card-header">
+                    <h2 class="text-center">Sei sicuro di voler eliminare questa richiesta di evento?</h2>
+                </div>
+                <div class="card-body">
+                    <dl class="dl-horizontal">
+                        <dt>Nome Evento</dt>
+                        <dd>@Model.Name</dd>
+                        <dt>Descrizione</dt>
+                        <dd>@Model.Description</dd>
+                        <dt>Data Proposta</dt>
+                        <dd>@Model.ProposedDate.ToString("dd/MM/yyyy")</dd>
+                        <dt>Luogo Proposto</dt>
+                        <dd>@Model.VenueProposal</dd>
+                        <dt>Biglietti Disponibili</dt>
+                        <dd>@Model.ProposedTicketsAvailable</dd>
+                        <dt>Prezzo Biglietto</dt>
+                        <dd>@Model.ProposedTicketPrice.ToString("C")</dd>
+                    </dl>
+                </div>
+                <div class="card-footer text-center">
+                    @using (Html.BeginForm("Delete", "EventRequests", new { id = Model.EventRequestId }, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger">Elimina</button>
+                    }
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">Annulla</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

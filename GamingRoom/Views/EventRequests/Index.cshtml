@@ -1,0 +1,41 @@
+﻿@model IEnumerable<GamingRoom.Models.EventRequest>
+
+@{
+    ViewBag.Title = "Approvazione Richieste Evento";
+}
+
+<h2 class="text-center">Richieste di Evento</h2>
+
+<div class="table-responsive" style="height:100vh">
+    <table class="table table-hover text-white fs-5">
+        <thead class="bg-primary">
+            <tr>
+                <th>Nome Evento</th>
+                <th>Descrizione</th>
+                <th>Data Proposta</th>
+                <th>Luogo Proposto</th>
+                <th>Biglietti Disponibili</th>
+                <th>Prezzo Biglietto</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => request.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => request.Description)</td>
+                    <td>@Html.DisplayFor(modelItem => request.ProposedDate)</td>
+                    <td>@Html.DisplayFor(modelItem => request.VenueProposal)</td>
+                    <td>@Html.DisplayFor(modelItem => request.ProposedTicketsAvailable)</td>
+                    <td>@Html.DisplayFor(modelItem => request.ProposedTicketPrice)</td>
+                    <td>
+                        @Html.ActionLink("Approva", "Approve", new { id = request.EventRequestId }, new { @class = "btn btn-success btn-sm" })
+                        @Html.ActionLink("Elimina", "Delete", new { id = request.EventRequestId }, new { @class = "btn btn-danger btn-sm" })
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

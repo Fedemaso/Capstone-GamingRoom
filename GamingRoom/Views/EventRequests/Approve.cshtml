@@ -1,0 +1,36 @@
+﻿@model GamingRoom.Models.EventRequest
+
+@{
+    ViewBag.Title = "Approva Richiesta Evento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Approva Richiesta Evento</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>Nome</dt>
+        <dd>@Html.DisplayFor(model => model.Name)</dd>
+        <dt>Descrizione</dt>
+        <dd>@Html.DisplayFor(model => model.Description)</dd>
+        <dt>Data Proposta</dt>
+        <dd>@Html.DisplayFor(model => model.ProposedDate)</dd>
+        <dt>Luogo Proposto</dt>
+        <dd>@Html.DisplayFor(model => model.VenueProposal)</dd>
+        <dt>Biglietti Disponibili</dt>
+        <dd>@Html.DisplayFor(model => model.ProposedTicketsAvailable)</dd>
+        <dt>Prezzo Biglietto</dt>
+        <dd>@Html.DisplayFor(model => model.ProposedTicketPrice)</dd>
+    </dl>
+
+    @using (Html.BeginForm("Approve", "EventRequests", new { id = Model.EventRequestId }, FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Approva Evento" class="btn btn-success" />
+            </div>
+        </div>
+    }
+</div>

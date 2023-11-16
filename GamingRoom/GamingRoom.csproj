@@ -130,6 +130,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BusinessDetailsController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\EventRequestsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\EventTitlesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -203,10 +204,15 @@
     <Compile Include="Migrations\202311131212001_CreateOrderTables1.designer.cs">
       <DependentUpon>202311131212001_CreateOrderTables1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202311161110201_AddEventRequests.cs" />
+    <Compile Include="Migrations\202311161110201_AddEventRequests.designer.cs">
+      <DependentUpon>202311161110201_AddEventRequests.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BusinessDetails.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CustomRoleProvider.cs" />
+    <Compile Include="Models\EventRequest.cs" />
     <Compile Include="Models\Events.cs" />
     <Compile Include="Models\EventTitles.cs" />
     <Compile Include="Models\ModelDBContext.cs" />
@@ -492,7 +498,6 @@
     <Content Include="Views\Shared\_AllEventCard.cshtml" />
     <Content Include="Views\Teams\AllTeams.cshtml" />
     <Content Include="Views\Shared\_AllTeamCard.cshtml" />
-    <Content Include="Views\Admin\AdminMenu.cshtml" />
     <Content Include="Views\SuperAdmin\SuperAdminMenu.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\Checkout.cshtml" />
@@ -501,6 +506,10 @@
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Delete.cshtml" />
     <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\EventRequests\Create.cshtml" />
+    <Content Include="Views\EventRequests\Approve.cshtml" />
+    <Content Include="Views\EventRequests\Index.cshtml" />
+    <Content Include="Views\EventRequests\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -580,6 +589,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202311131212001_CreateOrderTables1.resx">
       <DependentUpon>202311131212001_CreateOrderTables1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311161110201_AddEventRequests.resx">
+      <DependentUpon>202311161110201_AddEventRequests.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
