@@ -11,26 +11,18 @@ using GamingRoom.Models;
 
 namespace GamingRoom.Controllers
 {
-
-    
-
     public class TeamsController : Controller
     {
         private ModelDBContext db = new ModelDBContext();
 
-
-
-       
         // GET: Teams
         public ActionResult Index()
         {
+            // Recupera tutti i team dal database e include gli utenti associati a ciascun team
             var teams = db.Teams.Include(t => t.Users);
             return View(teams.ToList());
         }
 
-
-
-        
         // GET: Teams/Details/5
         public ActionResult Details(int? id)
         {
@@ -46,18 +38,14 @@ namespace GamingRoom.Controllers
             return View(teams);
         }
 
-
-
         [Authorize(Roles = "SuperAdmin")]
         // GET: Teams/Create
         public ActionResult Create()
         {
+            // Recupera l'elenco degli utenti per il dropdown e passalo alla vista
             ViewBag.CreatedBy = new SelectList(db.Users, "UserID", "Username");
             return View();
         }
-
-
-
 
         [Authorize(Roles = "SuperAdmin")]
         // POST: Teams/Create
@@ -67,6 +55,7 @@ namespace GamingRoom.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Salva la foto del team se fornita
                 if (PhotoFile != null && PhotoFile.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(PhotoFile.FileName);
@@ -79,12 +68,10 @@ namespace GamingRoom.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            // Se il modello non è valido, ripassa l'elenco degli utenti alla vista
             ViewBag.CreatedBy = new SelectList(db.Users, "UserID", "Username", team.CreatedBy);
             return View(team);
         }
-
-
-
 
         [Authorize(Roles = "SuperAdmin")]
         // GET: Teams/Edit/5
@@ -99,12 +86,10 @@ namespace GamingRoom.Controllers
             {
                 return HttpNotFound();
             }
+            // Passa l'elenco degli utenti e i dati del team alla vista
             ViewBag.CreatedBy = new SelectList(db.Users, "UserID", "Username", team.CreatedBy);
             return View(team);
         }
-
-
-
 
         [Authorize(Roles = "SuperAdmin")]
         // POST: Teams/Edit/5
@@ -114,6 +99,7 @@ namespace GamingRoom.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Aggiorna la foto del team se fornita
                 if (PhotoFile != null && PhotoFile.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(PhotoFile.FileName);
@@ -126,11 +112,10 @@ namespace GamingRoom.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            // Se il modello non è valido, ripassa l'elenco degli utenti e i dati del team alla vista
             ViewBag.CreatedBy = new SelectList(db.Users, "UserID", "Username", team.CreatedBy);
             return View(team);
         }
-
-
 
         [Authorize(Roles = "SuperAdmin")]
         // GET: Teams/Delete/5
@@ -148,9 +133,6 @@ namespace GamingRoom.Controllers
             return View(teams);
         }
 
-
-
-
         [Authorize(Roles = "SuperAdmin")]
         // POST: Teams/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -163,19 +145,7 @@ namespace GamingRoom.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-
-
-
-        
+        // Visualizza i dettagli del team, inclusi i giocatori ed eventi associati
         public ActionResult UserTeamDetails(int? id)
         {
             if (id == null)
@@ -193,17 +163,15 @@ namespace GamingRoom.Controllers
             return View(team);
         }
 
+        // Visualizza tutti i team
         public ActionResult AllTeams()
         {
+            // Recupera tutti i team inclusi i giocatori
             var teams = db.Teams
-                          .Include(t => t.Players) 
+                          .Include(t => t.Players)
                           .ToList();
 
             return View(teams);
         }
-
-
-
-
     }
 }

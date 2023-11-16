@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GamingRoom.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -7,7 +8,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using GamingRoom.Models;
 
 namespace GamingRoom.Controllers
 {
@@ -15,15 +15,16 @@ namespace GamingRoom.Controllers
     {
         private ModelDBContext db = new ModelDBContext();
 
+        // GET: Players/Index
+        // Questo metodo restituisce la lista di tutti i giocatori presenti nel database.
         public ActionResult Index()
         {
             var players = db.Players.Include(p => p.Teams).Include(p => p.Users);
             return View(players.ToList());
         }
 
-
-
-
+        // GET: Players/Details/5
+        // Questo metodo restituisce i dettagli di un giocatore specifico identificato dall'ID.
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,12 +39,9 @@ namespace GamingRoom.Controllers
             return View(player);
         }
 
-
-
-
-
+        // GET: Players/Create
         [Authorize(Roles = "SuperAdmin")]
-
+        // Questo metodo gestisce la richiesta GET per creare un nuovo giocatore.
         public ActionResult Create()
         {
             ViewBag.TeamID = new SelectList(db.Teams, "TeamID", "Name");
@@ -51,13 +49,11 @@ namespace GamingRoom.Controllers
             return View();
         }
 
-
-
-
-        [Authorize(Roles = "SuperAdmin")]
-
+        // POST: Players/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin")]
+        // Questo metodo gestisce la richiesta POST per creare un nuovo giocatore.
         public ActionResult Create(Players player, HttpPostedFileBase foto)
         {
             if (ModelState.IsValid)
@@ -78,11 +74,9 @@ namespace GamingRoom.Controllers
             return View(player);
         }
 
-
-
-
+        // GET: Players/Edit/5
         [Authorize(Roles = "SuperAdmin")]
-
+        // Questo metodo gestisce la richiesta GET per modificare un giocatore identificato dall'ID.
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -96,19 +90,15 @@ namespace GamingRoom.Controllers
             }
             ViewBag.TeamID = new SelectList(db.Teams, "TeamID", "Name", player.TeamID);
             ViewBag.CreatedBy = new SelectList(db.Users, "UserID", "Username", player.CreatedBy);
-            ViewBag.ExistingPhoto = player.Photo; 
+            ViewBag.ExistingPhoto = player.Photo; // Mostra la foto esistente del giocatore
             return View(player);
         }
-
-
-
-
-
-        [Authorize(Roles = "SuperAdmin")]
 
         // POST: Players/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin")]
+        // Questo metodo gestisce la richiesta POST per modificare un giocatore identificato dall'ID.
         public ActionResult Edit([Bind(Include = "PlayerID,Name,Surname,Nickname,TeamID,CreatedBy,Photo")] Players player, HttpPostedFileBase playerPhoto)
         {
             if (ModelState.IsValid)
@@ -147,10 +137,9 @@ namespace GamingRoom.Controllers
             return View(player);
         }
 
-
-
+        // GET: Players/Delete/5
         [Authorize(Roles = "SuperAdmin")]
-
+        // Questo metodo gestisce la richiesta GET per eliminare un giocatore identificato dall'ID.
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -165,8 +154,10 @@ namespace GamingRoom.Controllers
             return View(player);
         }
 
+        // POST: Players/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        // Questo metodo gestisce la richiesta POST per confermare l'eliminazione di un giocatore identificato dall'ID.
         public ActionResult DeleteConfirmed(int id)
         {
             Players player = db.Players.Find(id);
@@ -174,9 +165,6 @@ namespace GamingRoom.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-
-
 
         protected override void Dispose(bool disposing)
         {

@@ -13,12 +13,10 @@ namespace GamingRoom.Controllers
         // Metodo per creare una nuova richiesta di team
         public ActionResult Create()
         {
-            ViewBag.CreatedBy = GetUsersList(); // Aggiungi questa riga
+            ViewBag.CreatedBy = GetUsersList(); // Ottieni la lista degli utenti per il dropdown
 
             return View();
         }
-
-
 
         // Metodo per creare la lista di SelectListItem
         private IEnumerable<SelectListItem> GetUsersList()
@@ -26,12 +24,9 @@ namespace GamingRoom.Controllers
             return db.Users.Select(u => new SelectListItem
             {
                 Value = u.UserID.ToString(),
-                Text = u.Username // o qualsiasi proprietà tu voglia mostrare
+                Text = u.Username 
             }).ToList();
         }
-
-
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -43,7 +38,7 @@ namespace GamingRoom.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
-            ViewBag.CreatedBy = GetUsersList(); // Aggiungi anche qui per mantenere il dropdown in caso di errore
+            ViewBag.CreatedBy = GetUsersList(); // Mantieni il dropdown in caso di errore
             return View();
         }
 
@@ -73,7 +68,6 @@ namespace GamingRoom.Controllers
                 Name = teamRequest.Name,
                 Description = teamRequest.Description,
                 Photo = teamRequest.ProposedPhoto,
-                // Imposta altri campi necessari
             };
 
             db.Teams.Add(newTeam);

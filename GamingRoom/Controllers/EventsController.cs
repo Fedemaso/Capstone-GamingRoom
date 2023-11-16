@@ -11,21 +11,17 @@ using GamingRoom.Models;
 
 namespace GamingRoom.Controllers
 {
-
-
     public class EventsController : Controller
     {
         private ModelDBContext db = new ModelDBContext();
 
         // GET: Events
+        // Questo metodo gestisce la richiesta GET per visualizzare una lista di eventi.
         public ActionResult Index()
         {
             var events = db.Events.Include(e => e.Users).Include(e => e.Venues).Include(e => e.Teams);
             return View(events.ToList());
         }
-
-
-       
 
         public ActionResult Details(int? id)
         {
@@ -41,11 +37,9 @@ namespace GamingRoom.Controllers
             return View(events);
         }
 
-
-
-        [Authorize(Roles = "SuperAdmin")]
-
         // GET: Events/Create
+        [Authorize(Roles = "SuperAdmin")]
+        // Questo metodo gestisce la richiesta GET per creare un nuovo evento.
         public ActionResult Create()
         {
             ViewBag.VenueID = new SelectList(db.Venues, "VenueID", "Name");
@@ -54,17 +48,16 @@ namespace GamingRoom.Controllers
             return View();
         }
 
-
-
-        [Authorize(Roles = "SuperAdmin")]
-
         // POST: Events/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin")]
+        // Questo metodo gestisce la richiesta POST per creare un nuovo evento.
         public ActionResult Create([Bind(Include = "Name,Description,Date,VenueID,TicketsAvailable,TicketsSold,IsActive,CreatedBy,Photo,TicketPrice")] Events events, HttpPostedFileBase eventPhoto, int[] selectedTeams)
         {
             if (ModelState.IsValid)
             {
+                // Carica la foto dell'evento se fornita.
                 if (eventPhoto != null && eventPhoto.ContentLength > 0)
                 {
                     events.Photo = eventPhoto.FileName;
@@ -72,6 +65,7 @@ namespace GamingRoom.Controllers
                     eventPhoto.SaveAs(pathToSave);
                 }
 
+                // Associa le squadre selezionate all'evento.
                 if (selectedTeams != null)
                 {
                     events.Teams = new List<Teams>();
@@ -82,6 +76,7 @@ namespace GamingRoom.Controllers
                     }
                 }
 
+                // Aggiunge l'evento al database e reindirizza alla pagina principale.
                 db.Events.Add(events);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -93,11 +88,9 @@ namespace GamingRoom.Controllers
             return View(events);
         }
 
-
-
-        [Authorize(Roles = "SuperAdmin")]
-
         // GET: Events/Edit/5
+        [Authorize(Roles = "SuperAdmin")]
+        // Questo metodo gestisce la richiesta GET per modificare un evento esistente.
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -115,31 +108,28 @@ namespace GamingRoom.Controllers
             return View(events);
         }
 
-
-
-
-        [Authorize(Roles = "SuperAdmin")]
-
         // POST: Events/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin")]
+        // Questo metodo gestisce la richiesta POST per modificare un evento esistente.
         public ActionResult Edit([Bind(Include = "EventID,Name,Description,Date,VenueID,TicketsAvailable,TicketsSold,IsActive,CreatedBy,Photo,TicketPrice")] Events events, HttpPostedFileBase eventPhoto, int[] selectedTeams)
         {
             if (ModelState.IsValid)
             {
-                // Trova l'evento esistente nel database
+                // Trova l'evento esistente nel database.
                 var eventToUpdate = db.Events.Include(i => i.Teams).Where(i => i.EventID == events.EventID).Single();
 
-                // Se è stato caricato un nuovo file di foto, salvalo e aggiorna il percorso nel database
+                // Carica la nuova foto dell'evento, se fornita.
                 if (eventPhoto != null && eventPhoto.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(eventPhoto.FileName);
                     var pathToSave = Path.Combine(Server.MapPath("~/Content/ImgEvents/"), fileName);
                     eventPhoto.SaveAs(pathToSave);
-                    eventToUpdate.Photo = fileName; // Aggiorna l'entità tracciata
+                    eventToUpdate.Photo = fileName; // Aggiorna l'entità tracciata.
                 }
 
-                // Aggiorna le altre proprietà dell'evento
+                // Aggiorna le altre proprietà dell'evento.
                 eventToUpdate.Name = events.Name;
                 eventToUpdate.Description = events.Description;
                 eventToUpdate.Date = events.Date;
@@ -148,31 +138,28 @@ namespace GamingRoom.Controllers
                 eventToUpdate.TicketsSold = events.TicketsSold;
                 eventToUpdate.IsActive = events.IsActive;
                 eventToUpdate.CreatedBy = events.CreatedBy;
-                eventToUpdate.TicketPrice = events.TicketPrice; // Aggiorna il prezzo del biglietto
+                eventToUpdate.TicketPrice = events.TicketPrice; // Aggiorna il prezzo del biglietto.
 
-                // Aggiorna la lista delle squadre associate all'evento
+                // Aggiorna la lista delle squadre associate all'evento.
                 UpdateEventTeams(selectedTeams, eventToUpdate);
 
-                // Salva le modifiche nel database
+                // Salva le modifiche nel database.
                 db.Entry(eventToUpdate).State = EntityState.Modified;
                 db.SaveChanges();
 
-                // Reindirizza all'indice
+                // Reindirizza alla pagina principale degli eventi.
                 return RedirectToAction("Index");
             }
 
-            // Se il modello non è valido, ricarica la vista con le informazioni necessarie
+            // Se il modello non è valido, ricarica la vista con le informazioni necessarie.
             ViewBag.CreatedBy = new SelectList(db.Users, "UserID", "Username", events.CreatedBy);
             ViewBag.VenueID = new SelectList(db.Venues, "VenueID", "Name", events.VenueID);
             ViewBag.Teams = db.Teams.ToList();
             return View(events);
         }
 
-
-
-
+        // Metodo privato per aggiornare le squadre associate all'evento.
         [Authorize(Roles = "SuperAdmin")]
-
         private void UpdateEventTeams(int[] selectedTeams, Events eventToUpdate)
         {
             if (selectedTeams == null)
@@ -203,11 +190,9 @@ namespace GamingRoom.Controllers
             }
         }
 
-
-
-
+        // GET: Events/Delete/5
         [Authorize(Roles = "SuperAdmin")]
-                // GET: Events/Delete/5
+        // Questo metodo gestisce la richiesta GET per eliminare un evento.
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -222,11 +207,11 @@ namespace GamingRoom.Controllers
             return View(events);
         }
 
-
-
-        [Authorize(Roles = "SuperAdmin")]
+        // POST: Events/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin")]
+        // Questo metodo gestisce la richiesta POST per confermare l'eliminazione di un evento.
         public ActionResult DeleteConfirmed(int id)
         {
             Events events = db.Events.Find(id);
@@ -238,21 +223,7 @@ namespace GamingRoom.Controllers
             return RedirectToAction("Index");
         }
 
-
-
-
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-
-
+        // Questo metodo gestisce la richiesta GET per visualizzare i dettagli di un evento.
         public ActionResult UserDetails(int id)
         {
             var evento = db.Events.Include(e => e.Venues).Include(e => e.Teams).FirstOrDefault(e => e.EventID == id);
@@ -263,7 +234,7 @@ namespace GamingRoom.Controllers
             return View(evento);
         }
 
-
+        // Questo metodo gestisce la richiesta GET per visualizzare tutti gli eventi.
         public ActionResult AllEvents()
         {
             var events = db.Events
@@ -273,6 +244,5 @@ namespace GamingRoom.Controllers
 
             return View(events);
         }
-
     }
 }

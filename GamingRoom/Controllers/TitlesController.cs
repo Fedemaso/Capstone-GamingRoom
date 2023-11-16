@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.Data;
 using System.Data.Entity;
 using System.IO;
@@ -14,19 +13,17 @@ namespace GamingRoom.Controllers
 
     [Authorize(Roles = "SuperAdmin")]
 
-
-
     public class TitlesController : Controller
     {
         private ModelDBContext db = new ModelDBContext();
 
-        // GET: Titles
+        // GET: Titles - Mostra l'elenco dei titoli
         public ActionResult Index()
         {
             return View(db.Titles.ToList());
         }
 
-        // GET: Titles/Details/5
+        // GET: Titles/Details/5 - Mostra i dettagli di un titolo specifico
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -41,16 +38,13 @@ namespace GamingRoom.Controllers
             return View(titles);
         }
 
-
-
-
-        // GET: Titles/Create
+        // GET: Titles/Create - Mostra il form per la creazione di un nuovo titolo
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Titles/Create
+        // POST: Titles/Create - Gestisce la creazione di un nuovo titolo
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TitleID,Name,Description,ProductionHouse,Photo")] Titles titles, HttpPostedFileBase titlePhoto)
@@ -73,7 +67,7 @@ namespace GamingRoom.Controllers
             return View(titles);
         }
 
-        // GET: Titles/Edit/5
+        // GET: Titles/Edit/5 - Mostra il form per la modifica di un titolo esistente
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,7 +82,7 @@ namespace GamingRoom.Controllers
             return View(titles);
         }
 
-        // POST: Titles/Edit/5
+        // POST: Titles/Edit/5 - Gestisce la modifica di un titolo esistente
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "TitleID,Name,Description,ProductionHouse,Photo")] Titles titles, HttpPostedFileBase titlePhoto)
@@ -110,8 +104,7 @@ namespace GamingRoom.Controllers
             return View(titles);
         }
 
-
-        // GET: Titles/Delete/5
+        // GET: Titles/Delete/5 - Mostra il form per la cancellazione di un titolo
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -126,7 +119,7 @@ namespace GamingRoom.Controllers
             return View(titles);
         }
 
-        // POST: Titles/Delete/5
+        // POST: Titles/Delete/5 - Gestisce la cancellazione di un titolo
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

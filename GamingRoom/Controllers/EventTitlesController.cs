@@ -10,14 +10,14 @@ using GamingRoom.Models;
 
 namespace GamingRoom.Controllers
 {
-
     [Authorize(Roles = "SuperAdmin")]
-
+    // Questo attributo specifica che solo gli utenti con il ruolo "SuperAdmin" possono accedere a questo controller.
     public class EventTitlesController : Controller
     {
         private ModelDBContext db = new ModelDBContext();
 
         // GET: EventTitles
+        // Questo metodo gestisce la richiesta GET per visualizzare una lista di associazioni tra eventi e titoli.
         public ActionResult Index()
         {
             var eventTitles = db.EventTitles.Include(e => e.Events).Include(e => e.Titles);
@@ -25,6 +25,7 @@ namespace GamingRoom.Controllers
         }
 
         // GET: EventTitles/Details/5
+        // Questo metodo gestisce la richiesta GET per visualizzare i dettagli di un'associazione tra evento e titolo.
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,6 +41,7 @@ namespace GamingRoom.Controllers
         }
 
         // GET: EventTitles/Create
+        // Questo metodo gestisce la richiesta GET per creare una nuova associazione tra evento e titolo.
         public ActionResult Create()
         {
             ViewBag.EventID = new SelectList(db.Events, "EventID", "Name");
@@ -48,10 +50,9 @@ namespace GamingRoom.Controllers
         }
 
         // POST: EventTitles/Create
-        // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
-        // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        // Questo metodo gestisce la richiesta POST per creare una nuova associazione tra evento e titolo.
         public ActionResult Create([Bind(Include = "EventTitleID,EventID,TitleID")] EventTitles eventTitles)
         {
             if (ModelState.IsValid)
@@ -67,6 +68,7 @@ namespace GamingRoom.Controllers
         }
 
         // GET: EventTitles/Edit/5
+        // Questo metodo gestisce la richiesta GET per modificare un'associazione tra evento e titolo.
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -84,10 +86,9 @@ namespace GamingRoom.Controllers
         }
 
         // POST: EventTitles/Edit/5
-        // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
-        // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        // Questo metodo gestisce la richiesta POST per modificare un'associazione tra evento e titolo.
         public ActionResult Edit([Bind(Include = "EventTitleID,EventID,TitleID")] EventTitles eventTitles)
         {
             if (ModelState.IsValid)
@@ -102,6 +103,7 @@ namespace GamingRoom.Controllers
         }
 
         // GET: EventTitles/Delete/5
+        // Questo metodo gestisce la richiesta GET per eliminare un'associazione tra evento e titolo.
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -119,6 +121,7 @@ namespace GamingRoom.Controllers
         // POST: EventTitles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        // Questo metodo gestisce la richiesta POST per confermare l'eliminazione di un'associazione tra evento e titolo.
         public ActionResult DeleteConfirmed(int id)
         {
             EventTitles eventTitles = db.EventTitles.Find(id);
