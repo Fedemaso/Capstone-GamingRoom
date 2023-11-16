@@ -1,0 +1,40 @@
+﻿@model GamingRoom.Models.TeamRequest
+
+@{
+    ViewBag.Title = "Approva Richiesta Team";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="container" style="min-height:100vh">
+    <div class="row justify-content-center align-items-center" style="height:100%">
+        <div class="col-md-8">
+            <div class="card mt-5 text-white" style="background-color: rgb(157, 0, 255)!important">
+                <div class="card-header">
+                    <h2 class="text-center">Dettagli Richiesta Team</h2>
+                </div>
+                <div class="card-body">
+                    <dl class="dl-horizontal">
+                        <dt>Nome Team</dt>
+                        <dd>@Html.DisplayFor(model => model.Name)</dd>
+                        <dt>Descrizione</dt>
+                        <dd>@Html.DisplayFor(model => model.Description)</dd>
+                        <dt>Foto Proposta</dt>
+                        <dd>@Html.DisplayFor(model => model.ProposedPhoto)</dd>
+                        <dt>Creato Da</dt>
+                        <dd>@Html.DisplayFor(model => model.CreatedBy)</dd>
+                    </dl>
+                </div>
+                <div class="card-footer text-center">
+                    @using (Html.BeginForm("Approve", "TeamRequests", new { id = Model.TeamRequestId }, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" value="Approva" class="btn btn-success">Approva Team</button>
+                    }
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">Annulla</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

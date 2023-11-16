@@ -30,6 +30,7 @@ namespace GamingRoom.Models
 
         public DbSet<EventRequest> EventRequests { get; set; }
 
+        public DbSet<TeamRequest> TeamRequests { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

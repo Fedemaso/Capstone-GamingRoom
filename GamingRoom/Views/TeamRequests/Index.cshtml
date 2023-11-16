@@ -1,0 +1,34 @@
+﻿@model IEnumerable<GamingRoom.Models.TeamRequest>
+
+@{
+    ViewBag.Title = "Richieste di Team";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<div class="table-responsive" style="height:100vh">
+    <table class="table table-hover text-white fs-5">
+        <thead class="bg-primary">
+            <tr>
+                <th>Nome Team</th>
+                <th>Descrizione</th>
+                <th>Foto Proposta</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => request.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => request.Description)</td>
+                    <td>@Html.DisplayFor(modelItem => request.ProposedPhoto)</td>
+                    <td>
+                        @Html.ActionLink("Approva", "Approve", new { id = request.TeamRequestId }, new { @class = "btn btn-success btn-sm" })
+                        @Html.ActionLink("Elimina", "Delete", new { id = request.TeamRequestId }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

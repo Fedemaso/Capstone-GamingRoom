@@ -39,478 +39,154 @@
     @if (User.IsInRole("SuperAdmin"))
     {
 
-        <div class="first-div">
-            <div class="site-mobile-menu site-navbar-target ">
-                <div class="site-mobile-menu-header">
-                    <div class="site-mobile-menu-close mt-3">
-                        <span class="icon-close2 js-menu-toggle"></span>
-                    </div>
+        @*<div class="first-div">*@
+        <div class="site-mobile-menu site-navbar-target ">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
                 </div>
-                <div class="site-mobile-menu-body"></div>
             </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
 
 
-            <nav class="navbar site-navbar  js-sticky-header site-navbar-target" role="banner" id="navbar">
+        <nav class="navbar site-navbar  js-sticky-header site-navbar-target" role="banner" id="navbar">
 
-                <div class="container ">
+            <div class="container ">
 
-                    <div class="row align-items-center  ">
+                <div class="row align-items-center  ">
 
-                        <div class="col-6 col-xl-2 mb-3">
-                            <img src="~/assets/images/logo.png" id="logo" />
-                        </div>
-
-                        <div class="col-12 col-md-10 d-none d-xl-block">
-                            <nav class="site-navigation position-relative text-right" role="navigation">
-
-                                <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                                    <li class="has-children">
-                                        <a href="#about-section" class="nav-link">BackOffice</a>
-                                        <ul class="dropdown">
-                                            <li>@Html.ActionLink("Approva Eventi", "Index", "EventRequests", new { area = "" }, new { @class = "nav-link" })</li>
-
-                                            <li>@Html.ActionLink("Eventi", "Index", "Events", new { area = "" }, new { @class = "nav-link" })</li>
-                                            <li>@Html.ActionLink("Players", "Index", "Players", new { area = "" }, new { @class = "nav-link" })</li>
-                                            <li>@Html.ActionLink("Teams", "Index", "Teams", new { area = "" }, new { @class = "nav-link" })</li>
-                                            <li>@Html.ActionLink("Titoli", "Index", "Titles", new { area = "" }, new { @class = "nav-link" })</li>
-                                            <li>@Html.ActionLink("Arene", "Index", "Venues", new { area = "" }, new { @class = "nav-link" })</li>
-                                            <li>@Html.ActionLink("Utenti", "Index", "Users", new { area = "" }, new { @class = "nav-link" })</li>
-                                            <li>@Html.ActionLink("Ordini", "Index", "Orders", new { area = "" }, new { @class = "nav-link" })</li>
-                                            <li>@Html.ActionLink("Aziende", "Index", "BusinessDetails", new { area = "" }, new { @class = "nav-link" })</li>
-
-                                        </ul>
-                                    <li class="nav-item ">
-                                        <a class="nav-link">@User.Identity.Name</a>
-
-                                        @if (Request.IsAuthenticated)
-                                        {
-                                        <li class="nav-item">
-                                            <a href="javascript:document.getElementById('logoutForm').submit();" class="nav-link">Logout</a>
-                                            <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" style="display:none;">
-                                                @Html.AntiForgeryToken()
-                                            </form>
-                                        </li>
-                                    }
-                                    else
-                                    {
-                                        <li class="nav-item">
-                                            @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" })
-                                        </li>
-                                    }
-
-
-
-                                        <li><a href="#contact" class="nav-link">Contatti</a></li>
-                                        <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-facebook"></span></a></li>
-                                        <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-twitter"></span></a></li>
-                                        <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-linkedin"></span></a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-
-
-                            <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a></div>
-
-                        </div>
+                    <div class="col-6 col-xl-2 mb-3">
+                        <img src="~/assets/images/logo.png" id="logo" />
                     </div>
 
-                </nav>
-            </div>
+                    <div class="col-12 col-md-10 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
 
-
-
-
-
-            <div class="second-div">
-
-                <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark d-flex align-items-center justify-content-between " id="navbar">
-                    <img src="~/assets/images/logo.png" id="logo" />
-                    <div class="d-flex mt-3">
-
-
-                        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                            <ul class="navbar-nav flex-grow-1">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                                 <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                                <li>@Html.ActionLink("Approva Eventi", "Index", "EventRequests", new { area = "" }, new { @class = "nav-link" })</li>
+                                <li class="has-children">
+                                    <a href="#about-section" class="nav-link">BackOffice</a>
+                                    <ul class="dropdown" style=" background: linear-gradient(45deg, rgb(0, 55, 255), rgb(157, 0, 255), rgb(0, 55, 255)) !important">
+                                        <li>@Html.ActionLink("Approva Eventi", "Index", "EventRequests", new { area = "" }, new { @class = "nav-link" })</li>
+                                        <li>@Html.ActionLink("Approva Team", "Index", "TeamRequests", new { area = "" }, new { @class = "nav-link" })</li>
 
-                                <li>@Html.ActionLink("Aziende", "Index", "BusinessDetails", new { area = "" }, new { @class = "nav-link" })</li>
-                                <li>@Html.ActionLink("Nomi Eventi", "Index", "EventTitles", new { area = "" }, new { @class = "nav-link" })</li>
-                                <li>@Html.ActionLink("Eventi", "Index", "Events", new { area = "" }, new { @class = "nav-link" })</li>
-                                <li>@Html.ActionLink("Players", "Index", "Players", new { area = "" }, new { @class = "nav-link" })</li>
-                                <li>@Html.ActionLink("Teams", "Index", "Teams", new { area = "" }, new { @class = "nav-link" })</li>
-                                <li>@Html.ActionLink("Tickets", "Index", "Tickets", new { area = "" }, new { @class = "nav-link" })</li>
-                                <li>@Html.ActionLink("Titoli", "Index", "Titles", new { area = "" }, new { @class = "nav-link" })</li>
-                                <li>@Html.ActionLink("Utenti", "Index", "Users", new { area = "" }, new { @class = "nav-link" })</li>
-                                <li>@Html.ActionLink("Arene", "Index", "Venues", new { area = "" }, new { @class = "nav-link" })</li>
-                                <li>@Html.ActionLink("Ordini", "Index", "Orders", new { area = "" }, new { @class = "nav-link" })</li>
+                                        <li>@Html.ActionLink("Eventi", "Index", "Events", new { area = "" }, new { @class = "nav-link" })</li>
+                                        <li>@Html.ActionLink("Players", "Index", "Players", new { area = "" }, new { @class = "nav-link" })</li>
+                                        <li>@Html.ActionLink("Teams", "Index", "Teams", new { area = "" }, new { @class = "nav-link" })</li>
+                                        <li>@Html.ActionLink("Titoli", "Index", "Titles", new { area = "" }, new { @class = "nav-link" })</li>
+                                        <li>@Html.ActionLink("Arene", "Index", "Venues", new { area = "" }, new { @class = "nav-link" })</li>
+                                        <li>@Html.ActionLink("Utenti", "Index", "Users", new { area = "" }, new { @class = "nav-link" })</li>
+                                        <li>@Html.ActionLink("Ordini", "Index", "Orders", new { area = "" }, new { @class = "nav-link" })</li>
+                                        <li>@Html.ActionLink("Aziende", "Index", "BusinessDetails", new { area = "" }, new { @class = "nav-link" })</li>
 
-                            </ul>
-
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item ">
-                                <a class="nav-link">@User.Identity.Name</a>
-
-                                @if (Request.IsAuthenticated)
-                                {
-                                <li class="nav-item">
-                                    <a href="javascript:document.getElementById('logoutForm').submit();" class="nav-link">Logout</a>
-                                    <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" style="display:none;">
-                                        @Html.AntiForgeryToken()
-                                    </form>
-                                </li>
-                            }
-                            else
-                            {
-                                <li class="nav-item">
-                                    @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" })
-                                </li>
-                            }
-                            </ul>
-
-                        </div>
-
-                    </nav>
-                </div>
-            }
-
-            @*NAVBAR ADMIN*@
-
-    @if (User.IsInRole("Admin"))
-    {
-        <div class="first-div">
-            <div class="site-mobile-menu site-navbar-target ">
-                <div class="site-mobile-menu-header">
-                    <div class="site-mobile-menu-close mt-3">
-                        <span class="icon-close2 js-menu-toggle"></span>
-                    </div>
-                </div>
-                <div class="site-mobile-menu-body"></div>
-            </div>
-
-
-            <nav class="navbar site-navbar  js-sticky-header site-navbar-target" role="banner" id="navbar">
-
-                <div class="container ">
-
-                    <div class="row align-items-center  ">
-
-                        <div class="col-6 col-xl-2 mb-3">
-                            <img src="~/assets/images/logo.png" id="logo" />
-                        </div>
-
-                        <div class="col-12 col-md-10 d-none d-xl-block">
-                            <nav class="site-navigation position-relative text-right" role="navigation">
-
-                                <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                                    <li class="has-children">
-                                        <a href="#about-section" class="nav-link">BackOffice</a>
-                                        <ul class="dropdown">
-                                            <li>@Html.ActionLink("Richiedi Evento", "Create", "EventRequests", new { area = "" }, new { @class = "nav-link" })</li>
-
-                                            <li>@Html.ActionLink("Eventi", "Index", "Events", new { area = "" }, new { @class = "nav-link" })</li>
-                                            <li>@Html.ActionLink("Players", "Index", "Players", new { area = "" }, new { @class = "nav-link" })</li>
-                                            <li>@Html.ActionLink("Teams", "Index", "Teams", new { area = "" }, new { @class = "nav-link" })</li>
-                                            <li>@Html.ActionLink("Ordini", "Index", "Orders", new { area = "" }, new { @class = "nav-link" })</li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="nav-item ">
-                                        <a class="nav-link">@User.Identity.Name</a>
-
-                                        @if (Request.IsAuthenticated)
-                                        {
-                                        <li class="nav-item">
-                                            <a href="javascript:document.getElementById('logoutForm').submit();" class="nav-link">Logout</a>
-                                            <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" style="display:none;">
-                                                @Html.AntiForgeryToken()
-                                            </form>
-                                        </li>
-                                    }
-                                    else
-                                    {
-                                        <li class="nav-item">
-                                            @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" })
-                                        </li>
-                                    }
-
-
-                                        <li><a href="#contact" class="nav-link">Contatti</a></li>
-                                        <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-facebook"></span></a></li>
-                                        <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-twitter"></span></a></li>
-                                        <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-linkedin"></span></a></li>
                                     </ul>
-                                </nav>
-                            </div>
+                                <li class="nav-item ">
+                                    <a class="nav-link">@User.Identity.Name</a>
 
-
-                            <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a></div>
-
-                        </div>
-                    </div>
-
-                </nav>
-            </div>
-
-
-
-
-
-            <div class="second-div">
-
-                <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark d-flex align-items-center justify-content-between " id="navbar">
-                    <img src="~/assets/images/logo.png" id="logo" />
-                    <div class="d-flex mt-3">
-
-
-                        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                            <ul class="navbar-nav flex-grow-1">
-                                <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-
-                                <li>@Html.ActionLink("Richiedi Evento", "Create", "EventRequests", new { area = "" }, new { @class = "nav-link" })</li>
-                                <li>@Html.ActionLink("Eventi", "Index", "Events", new { area = "" }, new { @class = "nav-link" })</li>
-                                <li>@Html.ActionLink("Players", "Index", "Players", new { area = "" }, new { @class = "nav-link" })</li>
-                                <li>@Html.ActionLink("Teams", "Index", "Teams", new { area = "" }, new { @class = "nav-link" })</li>
-                                <li>@Html.ActionLink("Ordini", "Index", "Orders", new { area = "" }, new { @class = "nav-link" })</li>
-
-                            </ul>
-
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item ">
-                                <a class="nav-link">@User.Identity.Name</a>
-
-                                @if (Request.IsAuthenticated)
-                                {
-                                <li class="nav-item">
-                                    <a href="javascript:document.getElementById('logoutForm').submit();" class="nav-link">Logout</a>
-                                    <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" style="display:none;">
-                                        @Html.AntiForgeryToken()
-                                    </form>
-                                </li>
-                            }
-                            else
-                            {
-                                <li class="nav-item">
-                                    @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" })
-                                </li>
-                            }
-                            </ul>
-
-                        </div>
-
-                    </nav>
-                </div>
-            }
-
-
-
-            @*NAVBAR USER*@
-
-
-    @if (User.IsInRole("User"))
-    {
-
-
-
-        <div class="first-div">
-            <div class="site-mobile-menu site-navbar-target ">
-                <div class="site-mobile-menu-header">
-                    <div class="site-mobile-menu-close mt-3">
-                        <span class="icon-close2 js-menu-toggle"></span>
-                    </div>
-                </div>
-                <div class="site-mobile-menu-body"></div>
-            </div>
-
-
-            <nav class="navbar site-navbar  js-sticky-header site-navbar-target" role="banner" id="navbar">
-
-                <div class="container ">
-
-                    <div class="row align-items-center  ">
-
-                        <div class="col-6 col-xl-2 mb-3">
-                            <img src="~/assets/images/logo.png" id="logo" />
-                        </div>
-
-                        <div class="col-12 col-md-10 d-none d-xl-block">
-                            <nav class="site-navigation position-relative text-right" role="navigation">
-
-                                <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-
-                                    <li>
-                                        @Html.ActionLink("Eventi", "AllEvents", "Events", new { area = "" }, new { @class = "nav-link" })
-                                    </li>
-                                    <li>
-                                        @Html.ActionLink("Teams", "AllTeams", "Teams", new { area = "" }, new { @class = "nav-link" })
-                                    </li>
-                                    <li>
-                                        @Html.ActionLink("Carrello", "Index", "Cart", null, new { @class = "nav-link" })
-                                    </li>
-
-                                    <li class="nav-item ">
-                                        <a class="nav-link">@User.Identity.Name</a>
-
-                                        @if (Request.IsAuthenticated)
-                                        {
-                                        <li class="nav-item">
-                                            <a href="javascript:document.getElementById('logoutForm').submit();" class="nav-link">Logout</a>
-                                            <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" style="display:none;">
-                                                @Html.AntiForgeryToken()
-                                            </form>
-                                        </li>
-                                    }
-                                    else
+                                    @if (Request.IsAuthenticated)
                                     {
-                                        <li class="nav-item">
-                                            @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" })
-                                        </li>
-                                    }
-
-
-
-                                        <li><a href="#contact" class="nav-link">Contatti</a></li>
-                                        <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-facebook"></span></a></li>
-                                        <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-twitter"></span></a></li>
-                                        <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-linkedin"></span></a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-
-
-                            <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a></div>
-
-                        </div>
-                    </div>
-
-                </nav>
-            </div>
-
-
-
-
-
-            <div class="second-div">
-
-                <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark d-flex align-items-center justify-content-between " id="navbar">
-                    <img src="~/assets/images/logo.png" id="logo" />
-                    <div class="d-flex mt-3">
-
-
-                        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                            <ul class="navbar-nav flex-grow-1">
-                                <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-
-                                <li>
-                                    @Html.ActionLink("Eventi", "AllEvents", "Events", new { area = "" }, new { @class = "nav-link" })
-                                </li>
-                                <li>
-                                    @Html.ActionLink("Teams", "AllTeams", "Teams", new { area = "" }, new { @class = "nav-link" })
-                                </li>
-                                <li>
-                                    @Html.ActionLink("Carrello", "Index", "Cart", null, new { @class = "nav-link" })
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item ">
-                                <a class="nav-link">@User.Identity.Name</a>
-
-                                @if (Request.IsAuthenticated)
+                                    <li class="nav-item">
+                                        <a href="javascript:document.getElementById('logoutForm').submit();" class="nav-link">Logout</a>
+                                        <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" style="display:none;">
+                                            @Html.AntiForgeryToken()
+                                        </form>
+                                    </li>
+                                }
+                                else
                                 {
-                                <li class="nav-item">
-                                    <a href="javascript:document.getElementById('logoutForm').submit();" class="nav-link">Logout</a>
-                                    <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" style="display:none;">
-                                        @Html.AntiForgeryToken()
-                                    </form>
-                                </li>
-                            }
-                            else
-                            {
-                                <li class="nav-item">
-                                    @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" })
-                                </li>
-                            }
-                            </ul>
-
-                        </div>
-
-                    </nav>
-                </div>
-
-
-
-
-            }
-
-
-            @*NAVBAR NESSUN RUOLO*@
-
-
-
-
-    @if (!User.IsInRole("User") && !User.IsInRole("Admin") && !User.IsInRole("SuperAdmin"))
-    {
-
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark ">
-            <img src="~/assets/images/logo.png" id="logo" />
-            <div class="container mt-3 ">
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        @User.Identity.Name
-
-
-                        @if (Request.IsAuthenticated)
-                        {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    @User.Identity.Name
-                                </a>
-                                <ul class="dropdown-menu">
                                     <li class="nav-item">
                                         @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" })
                                     </li>
+                                }
+
+
                                 </ul>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" })
-                            </li>
-                        }
-                    </ul>
-
-                    @if (Request.IsAuthenticated)
-                    {
-                        <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" class="form-inline my-2 my-lg-0">
-                            @Html.AntiForgeryToken()
-                            <button type="submit" class="btn button-nav">Logout</button>
-                        </form>
-                    }
+                            </nav>
+                        </div>
 
 
+                        <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a></div>
+
+                    </div>
+                </div>
+
+            </nav>
+          
+      }
+
+        @*NAVBAR ADMIN*@
+
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="site-mobile-menu site-navbar-target ">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
                 </div>
             </div>
-        </nav>
+            <div class="site-mobile-menu-body"></div>
+        </div>
 
 
+        <nav class="navbar site-navbar  js-sticky-header site-navbar-target" role="banner" id="navbar">
 
+            <div class="container ">
+
+                <div class="row align-items-center  ">
+
+                    <div class="col-6 col-xl-2 mb-3">
+                        <img src="~/assets/images/logo.png" id="logo" />
+                    </div>
+
+                    <div class="col-12 col-md-10 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                                <li class="has-children">
+                                    <a href="#about-section" class="nav-link">BackOffice</a>
+                                    <ul class="dropdown" style=" background: linear-gradient(45deg, rgb(0, 55, 255), rgb(157, 0, 255), rgb(0, 55, 255)) !important">
+                                        <li>@Html.ActionLink("Richiedi Evento", "Create", "EventRequests", new { area = "" }, new { @class = "nav-link" })</li>
+                                        <li>@Html.ActionLink("Richiedi Team", "Create", "TeamRequests", new { area = "" }, new { @class = "nav-link" })</li>
+
+                                        <li>@Html.ActionLink("Eventi", "Index", "Events", new { area = "" }, new { @class = "nav-link" })</li>
+                                        <li>@Html.ActionLink("Players", "Index", "Players", new { area = "" }, new { @class = "nav-link" })</li>
+                                        <li>@Html.ActionLink("Teams", "Index", "Teams", new { area = "" }, new { @class = "nav-link" })</li>
+                                        <li>@Html.ActionLink("Ordini", "Index", "Orders", new { area = "" }, new { @class = "nav-link" })</li>
+
+                                    </ul>
+                                <li class="nav-item ">
+                                    <a class="nav-link">@User.Identity.Name</a>
+
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                    <li class="nav-item">
+                                        <a href="javascript:document.getElementById('logoutForm').submit();" class="nav-link">Logout</a>
+                                        <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" style="display:none;">
+                                            @Html.AntiForgeryToken()
+                                        </form>
+                                    </li>
+                                    }
+                                    else
+                                    {
+                                    <li class="nav-item">
+                                        @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" })
+                                    </li>
+                                    }
+
+
+                                </ul>
+                            </nav>
+                        </div>
+
+
+                        <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a></div>
+
+                    </div>
+                </div>
+
+            </nav>
 
 
     }
@@ -518,30 +194,179 @@
 
 
 
-    <div>
-        @RenderBody()
+            @*NAVBAR USER*@
+
+
+            @if (User.IsInRole("User"))
+            {
+
+                <div class="site-mobile-menu site-navbar-target ">
+                    <div class="site-mobile-menu-header">
+                        <div class="site-mobile-menu-close mt-3">
+                            <span class="icon-close2 js-menu-toggle"></span>
+                        </div>
+                    </div>
+                    <div class="site-mobile-menu-body"></div>
+                </div>
+
+
+                <nav class="navbar site-navbar  js-sticky-header site-navbar-target" role="banner" id="navbar">
+
+                    <div class="container container-fluid">
+
+                        <div class="row align-items-center  ">
+
+                            <div class="col-6 col-xl-2 mb-3">
+                                <img src="~/assets/images/logo.png" id="logo" />
+                            </div>
+
+                            <div class="col-12 col-md-10 d-none d-xl-block">
+                                <nav class="site-navigation position-relative text-right" role="navigation">
+
+                                    <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                                        
+
+                                                <li>
+                                                    @Html.ActionLink("Eventi", "AllEvents", "Events", new { area = "" }, new { @class = "nav-link" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Teams", "AllTeams", "Teams", new { area = "" }, new { @class = "nav-link" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Carrello", "Index", "Cart", null, new { @class = "nav-link" })
+
+
+                                              
+                                            
+                                        <li class="nav-item ">
+                                            <a class="nav-link">@User.Identity.Name</a>
+
+                                            @if (Request.IsAuthenticated)
+                                            {
+                                            <li class="nav-item">
+                                                <a href="javascript:document.getElementById('logoutForm').submit();" class="nav-link">Logout</a>
+                                                <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" style="display:none;">
+                                                    @Html.AntiForgeryToken()
+                                                </form>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="nav-item">
+                                                @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" })
+                                            </li>
+                                        }
+
+
+                                        </ul>
+                                    </nav>
+                                </div>
+
+
+                                <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a></div>
+
+                            </div>
+                        </div>
+
+                    </nav>
+
+             }
+
+
+                        @*NAVBAR NESSUN RUOLO*@
 
 
 
-    </div>
+
+                        @if (!User.IsInRole("User") && !User.IsInRole("Admin") && !User.IsInRole("SuperAdmin"))
+                        {
+
+                            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark ">
+                                <img src="~/assets/images/logo.png" id="logo" />
+                                <div class="container mt-3 ">
+                                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
+                                            aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="navbar-toggler-icon"></span>
+                                    </button>
+                                    <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                                        <ul class="navbar-nav flex-grow-1">
+                                            @User.Identity.Name
+
+
+                                            @if (Request.IsAuthenticated)
+                                            {
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        @User.Identity.Name
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li class="nav-item">
+                                                            @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" })
+                                                        </li>
+
+                                                        <li><a href="#contact" class="nav-link">Contatti</a></li>
+                                                        <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-facebook"></span></a></li>
+                                                        <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-twitter"></span></a></li>
+                                                        <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-linkedin"></span></a></li>
+
+                                                    </ul>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li class="nav-item">
+                                                    @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" })
+                                                </li>
+                                            }
+                                        </ul>
+
+                                        @if (Request.IsAuthenticated)
+                                        {
+                                            <form method="post" action="@Url.Action("Logout", "Login")" id="logoutForm" class="form-inline my-2 my-lg-0">
+                                                @Html.AntiForgeryToken()
+                                                <button type="submit" class="btn button-nav">Logout</button>
+                                            </form>
+                                        }
+
+
+                                    </div>
+                                </div>
+                            </nav>
 
 
 
 
 
-    @Scripts.Render("~/bundles/jquery")
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    @RenderSection("scripts", required: false)
+                        }
 
 
-    <script src="~/Navbar/js/jquery-3.3.1.min.js"></script>
-    <script src="~/Navbar/js/popper.min.js"></script>
-    <script src="~/Navbar/js/bootstrap.min.js"></script>
-    <script src="~/Navbar/js/jquery.sticky.js"></script>
-    <script src="~/Navbar/js/main.js"></script>
 
-</body>
+
+                        <div>
+                            @RenderBody()
+
+
+
+                        </div>
+
+
+
+
+
+                        @Scripts.Render("~/bundles/jquery")
+                        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+                        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+                        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+                        @RenderSection("scripts", required: false)
+
+
+                        <script src="~/Navbar/js/jquery-3.3.1.min.js"></script>
+                        <script src="~/Navbar/js/popper.min.js"></script>
+                        <script src="~/Navbar/js/bootstrap.min.js"></script>
+                        <script src="~/Navbar/js/jquery.sticky.js"></script>
+                        <script src="~/Navbar/js/main.js"></script>
+
+                </body>
 </html>

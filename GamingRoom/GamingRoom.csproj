@@ -139,6 +139,7 @@
     <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SuperAdminController.cs" />
+    <Compile Include="Controllers\TeamRequestsController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\TitlesController.cs" />
@@ -208,6 +209,14 @@
     <Compile Include="Migrations\202311161110201_AddEventRequests.designer.cs">
       <DependentUpon>202311161110201_AddEventRequests.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202311161341161_AddTeamRequests.cs" />
+    <Compile Include="Migrations\202311161341161_AddTeamRequests.designer.cs">
+      <DependentUpon>202311161341161_AddTeamRequests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311161417475_ModificaModelTeamRequest.cs" />
+    <Compile Include="Migrations\202311161417475_ModificaModelTeamRequest.designer.cs">
+      <DependentUpon>202311161417475_ModificaModelTeamRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BusinessDetails.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -218,6 +227,7 @@
     <Compile Include="Models\ModelDBContext.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Players.cs" />
+    <Compile Include="Models\TeamRequest.cs" />
     <Compile Include="Models\Teams.cs" />
     <Compile Include="Models\Tickets.cs" />
     <Compile Include="Models\Titles.cs" />
@@ -510,6 +520,10 @@
     <Content Include="Views\EventRequests\Approve.cshtml" />
     <Content Include="Views\EventRequests\Index.cshtml" />
     <Content Include="Views\EventRequests\Delete.cshtml" />
+    <Content Include="Views\TeamRequests\Create.cshtml" />
+    <Content Include="Views\TeamRequests\Index.cshtml" />
+    <Content Include="Views\TeamRequests\Delete.cshtml" />
+    <Content Include="Views\TeamRequests\Approve.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -592,6 +606,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202311161110201_AddEventRequests.resx">
       <DependentUpon>202311161110201_AddEventRequests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311161341161_AddTeamRequests.resx">
+      <DependentUpon>202311161341161_AddTeamRequests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311161417475_ModificaModelTeamRequest.resx">
+      <DependentUpon>202311161417475_ModificaModelTeamRequest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
