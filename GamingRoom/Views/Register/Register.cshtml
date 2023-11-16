@@ -8,60 +8,60 @@
         <div class="col-md-6 offset-md-3">
             <div class="card" style="background-color: rgb(157, 0, 255);">
                 <div class="card-body text-white">
-                    <h2 class="card-title text-center">Register</h2>
+                    <h2 class="card-title text-center">Registrati</h2>
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
                         <div class="mb-3">
-                            @Html.LabelFor(m => m.Username, new { @class = "form-label" })
+                            Username
                             @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="mb-3">
-                            @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+                            Password
                             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="mb-3">
-                            @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+                            Email
                             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="mb-3">
-                            @Html.LabelFor(m => m.FirstName, new { @class = "form-label" })
+                            Nome                            
                             @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="mb-3">
-                            @Html.LabelFor(m => m.LastName, new { @class = "form-label" })
+                            Cognome
                             @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="mb-3">
-                            @Html.LabelFor(m => m.Address, new { @class = "form-label" })
+                            Indirizzo
                             @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="mb-3">
-                            @Html.LabelFor(m => m.ZipCode, new { @class = "form-label" })
+                            CAP
                             @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.ZipCode, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="mb-3">
-                            @Html.LabelFor(m => m.PhoneNumber, new { @class = "form-label" })
+                            Numero di Telefono
                             @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="text-center">
-                            <input type="submit" value="Register" class="btn button-index mt-4 btn-block" />
+                            <input type="submit" value="Registrati" class="btn button-index mt-4 btn-block" />
                         </div>
                     }
                 </div>
