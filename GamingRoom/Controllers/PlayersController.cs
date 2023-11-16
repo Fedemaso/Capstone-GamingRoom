@@ -11,7 +11,6 @@ using GamingRoom.Models;
 
 namespace GamingRoom.Controllers
 {
-    [Authorize(Roles = "SuperAdmin")]
     public class PlayersController : Controller
     {
         private ModelDBContext db = new ModelDBContext();
@@ -21,6 +20,9 @@ namespace GamingRoom.Controllers
             var players = db.Players.Include(p => p.Teams).Include(p => p.Users);
             return View(players.ToList());
         }
+
+
+
 
         public ActionResult Details(int? id)
         {
@@ -36,12 +38,23 @@ namespace GamingRoom.Controllers
             return View(player);
         }
 
+
+
+
+
+        [Authorize(Roles = "SuperAdmin")]
+
         public ActionResult Create()
         {
             ViewBag.TeamID = new SelectList(db.Teams, "TeamID", "Name");
             ViewBag.CreatedBy = new SelectList(db.Users, "UserID", "Username");
             return View();
         }
+
+
+
+
+        [Authorize(Roles = "SuperAdmin")]
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -65,6 +78,11 @@ namespace GamingRoom.Controllers
             return View(player);
         }
 
+
+
+
+        [Authorize(Roles = "SuperAdmin")]
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,6 +101,10 @@ namespace GamingRoom.Controllers
         }
 
 
+
+
+
+        [Authorize(Roles = "SuperAdmin")]
 
         // POST: Players/Edit/5
         [HttpPost]
@@ -127,6 +149,7 @@ namespace GamingRoom.Controllers
 
 
 
+        [Authorize(Roles = "SuperAdmin")]
 
         public ActionResult Delete(int? id)
         {
@@ -151,6 +174,9 @@ namespace GamingRoom.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+
 
         protected override void Dispose(bool disposing)
         {

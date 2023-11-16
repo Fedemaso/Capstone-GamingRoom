@@ -8,7 +8,7 @@ using System.Web.Mvc;
 namespace GamingRoom.Controllers
 {
 
-    [Authorize(Roles = "SuperAdmin")]
+    
 
 
     public class OrdersController : Controller
@@ -66,6 +66,7 @@ namespace GamingRoom.Controllers
 
 
 
+        [Authorize(Roles = "SuperAdmin")]
 
         // GET: Orders/Delete/5
         public ActionResult Delete(int id)
@@ -77,6 +78,11 @@ namespace GamingRoom.Controllers
             }
             return View(order);
         }
+
+
+
+
+        [Authorize(Roles = "SuperAdmin")]
 
         // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]

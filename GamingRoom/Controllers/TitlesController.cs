@@ -15,6 +15,7 @@ namespace GamingRoom.Controllers
     [Authorize(Roles = "SuperAdmin")]
 
 
+
     public class TitlesController : Controller
     {
         private ModelDBContext db = new ModelDBContext();
@@ -39,6 +40,9 @@ namespace GamingRoom.Controllers
             }
             return View(titles);
         }
+
+
+
 
         // GET: Titles/Create
         public ActionResult Create()

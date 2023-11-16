@@ -25,7 +25,7 @@ namespace GamingRoom.Controllers
         }
 
 
-        [Authorize(Roles = "SuperAdmin")]
+       
 
         public ActionResult Details(int? id)
         {

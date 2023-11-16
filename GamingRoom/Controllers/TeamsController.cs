@@ -30,7 +30,7 @@ namespace GamingRoom.Controllers
 
 
 
-        [Authorize(Roles = "SuperAdmin")]
+        
         // GET: Teams/Details/5
         public ActionResult Details(int? id)
         {
