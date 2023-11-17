@@ -5,32 +5,46 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Approva Richiesta Evento</h2>
+<h2 class="text-center">@ViewBag.Title</h2>
 
-<div>
-    <dl class="dl-horizontal">
-        <dt>Nome</dt>
-        <dd>@Html.DisplayFor(model => model.Name)</dd>
-        <dt>Descrizione</dt>
-        <dd>@Html.DisplayFor(model => model.Description)</dd>
-        <dt>Data Proposta</dt>
-        <dd>@Html.DisplayFor(model => model.ProposedDate)</dd>
-        <dt>Luogo Proposto</dt>
-        <dd>@Html.DisplayFor(model => model.VenueProposal)</dd>
-        <dt>Biglietti Disponibili</dt>
-        <dd>@Html.DisplayFor(model => model.ProposedTicketsAvailable)</dd>
-        <dt>Prezzo Biglietto</dt>
-        <dd>@Html.DisplayFor(model => model.ProposedTicketPrice)</dd>
-    </dl>
-
-    @using (Html.BeginForm("Approve", "EventRequests", new { id = Model.EventRequestId }, FormMethod.Post, new { @class = "form-horizontal" }))
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Approva Evento" class="btn btn-success" />
+<div class="container" style="min-height:100vh">
+    <div class="row justify-content-center align-items-center" style="height:100%">
+        <div class="col-md-8">
+            <div class="card mt-5 text-white" style="background-color: rgb(157, 0, 255)!important">
+                <div class="card-header">
+                    <h2 class="text-center">Dettagli Richiesta Evento</h2>
+                </div>
+                <div class="card-body">
+                    <dl class="dl-horizontal">
+                        <dt>Nome Evento</dt>
+                        <dd>@Html.DisplayFor(model => model.Name)</dd>
+                        <dt>Descrizione</dt>
+                        <dd>@Html.DisplayFor(model => model.Description)</dd>
+                        <dt>Data Proposta</dt>
+                        <dd>@Html.DisplayFor(model => model.ProposedDate)</dd>
+                        <dt>Luogo Proposto</dt>
+                        <dd>@Html.DisplayFor(model => model.VenueProposal)</dd>
+                        <dt>Biglietti Disponibili</dt>
+                        <dd>@Html.DisplayFor(model => model.ProposedTicketsAvailable)</dd>
+                        <dt>Prezzo Biglietto</dt>
+                        <dd>@Html.DisplayFor(model => model.ProposedTicketPrice)</dd>
+                    </dl>
+                    <div class="event-image">
+                        @if (Model.ImageFileName != null)
+                        {
+                            <img src="@Url.Content("~/Content/ImgEvents/" + Model.ImageFileName)" alt="Immagine Evento" class="img-fluid" />
+                        }
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    @using (Html.BeginForm("Approve", "EventRequests", new { id = Model.EventRequestId }, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-success">Approva Evento</button>
+                    }
+                    <a href="@Url.Action("Index")" class="btn btn-secondary mt-4">Annulla</a>
+                </div>
             </div>
         </div>
-    }
+    </div>
 </div>

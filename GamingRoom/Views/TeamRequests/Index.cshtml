@@ -10,9 +10,10 @@
     <table class="table table-hover text-white fs-5">
         <thead class="bg-primary">
             <tr>
+                <th>Foto Proposta</th>
                 <th>Nome Team</th>
                 <th>Descrizione</th>
-                <th>Foto Proposta</th>
+                
                 <th>Azioni</th>
             </tr>
         </thead>
@@ -20,9 +21,16 @@
             @foreach (var request in Model)
             {
                 <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(request.ProposedPhoto))
+                        {
+                            <img src="@Url.Content("~/Content/ImgTeams/" + request.ProposedPhoto)" alt="Foto Team" class="img-thumbnail" style="max-width: 100px;" />
+                        }
+                    </td>
+
                     <td>@Html.DisplayFor(modelItem => request.Name)</td>
                     <td>@Html.DisplayFor(modelItem => request.Description)</td>
-                    <td>@Html.DisplayFor(modelItem => request.ProposedPhoto)</td>
+
                     <td>
                         @Html.ActionLink("Approva", "Approve", new { id = request.TeamRequestId }, new { @class = "btn btn-success btn-sm" })
                         @Html.ActionLink("Elimina", "Delete", new { id = request.TeamRequestId }, new { @class = "btn btn-danger btn-sm" })

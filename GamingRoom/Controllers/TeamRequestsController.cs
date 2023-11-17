@@ -1,7 +1,9 @@
 ﻿using GamingRoom.Models;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace GamingRoom.Controllers
@@ -30,16 +32,25 @@ namespace GamingRoom.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name,Description,ProposedPhoto, CreatedBy")] TeamRequest teamRequest)
+        public ActionResult Create([Bind(Include = "Name,Description,CreatedBy")] TeamRequest teamRequest, HttpPostedFileBase proposedPhoto)
         {
             if (ModelState.IsValid)
             {
+                if (proposedPhoto != null && proposedPhoto.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(proposedPhoto.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/ImgTeams"), fileName);
+                    proposedPhoto.SaveAs(path);
+                    teamRequest.ProposedPhoto = fileName; // Salva il nome del file nel database
+                }
+
                 db.TeamRequests.Add(teamRequest);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
+
             ViewBag.CreatedBy = GetUsersList(); // Mantieni il dropdown in caso di errore
-            return View();
+            return View(teamRequest);
         }
 
         [Authorize(Roles = "SuperAdmin")]
@@ -68,6 +79,7 @@ namespace GamingRoom.Controllers
                 Name = teamRequest.Name,
                 Description = teamRequest.Description,
                 Photo = teamRequest.ProposedPhoto,
+                CreatedBy = teamRequest.CreatedBy
             };
 
             db.Teams.Add(newTeam);

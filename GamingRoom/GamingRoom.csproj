@@ -217,6 +217,10 @@
     <Compile Include="Migrations\202311161417475_ModificaModelTeamRequest.designer.cs">
       <DependentUpon>202311161417475_ModificaModelTeamRequest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202311171107424_AggiuntaImmagineEventRequest.cs" />
+    <Compile Include="Migrations\202311171107424_AggiuntaImmagineEventRequest.designer.cs">
+      <DependentUpon>202311171107424_AggiuntaImmagineEventRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BusinessDetails.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -612,6 +616,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202311161417475_ModificaModelTeamRequest.resx">
       <DependentUpon>202311161417475_ModificaModelTeamRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311171107424_AggiuntaImmagineEventRequest.resx">
+      <DependentUpon>202311171107424_AggiuntaImmagineEventRequest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

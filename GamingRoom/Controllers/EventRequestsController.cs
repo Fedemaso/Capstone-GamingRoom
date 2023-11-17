@@ -1,6 +1,7 @@
 ﻿using GamingRoom.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -23,11 +24,18 @@ namespace GamingRoom.Controllers
         // Questo metodo gestisce la richiesta POST per la creazione di una nuova richiesta di evento.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name,Description,ProposedDate,VenueProposal,ProposedTicketsAvailable,ProposedTicketPrice")] EventRequest eventRequest)
+        public ActionResult Create([Bind(Include = "Name,Description,ProposedDate,VenueProposal,ProposedTicketsAvailable,ProposedTicketPrice")] EventRequest eventRequest, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
-                // Aggiunge la nuova richiesta di evento al database e reindirizza alla pagina principale.
+                if (image != null && image.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(image.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/ImgEvents"), fileName);
+                    image.SaveAs(path);
+                    eventRequest.ImageFileName = fileName; // Salva il nome del file nel database
+                }
+
                 db.EventRequests.Add(eventRequest);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
@@ -75,6 +83,8 @@ namespace GamingRoom.Controllers
                 VenueID = venueId,
                 TicketsAvailable = eventRequest.ProposedTicketsAvailable,
                 TicketPrice = eventRequest.ProposedTicketPrice,
+                Photo = eventRequest.ImageFileName 
+
             };
 
             db.Events.Add(newEvent);

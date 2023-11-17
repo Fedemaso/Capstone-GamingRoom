@@ -22,6 +22,7 @@ namespace GamingRoom.Models
 
         public string VenueProposal { get; set; }
 
+        public string ImageFileName { get; set; }
         public int ProposedTicketsAvailable { get; set; }
 
         [DataType(DataType.Currency)]
