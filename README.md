@@ -1,7 +1,11 @@
-
-
-
 File readme in lavorazione :) 
+
+
+
+video presentazione funzioni della piattaforma
+https://www.canva.com/design/DAF0h5dpRvg/OIAIzmgy_RTXfeIVX0b9MQ/watch?utm_content=DAF0h5dpRvg&utm_campaign=designshare&utm_medium=link&utm_source=editor
+
+
 
 
 # Gaming Room
